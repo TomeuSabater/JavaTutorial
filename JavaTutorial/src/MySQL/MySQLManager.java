@@ -2,7 +2,9 @@ package MySQL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MySQLManager {
 	
@@ -19,16 +21,30 @@ public class MySQLManager {
     private static final String DB_MSQ_CONN_OK = "CONEXIÓN CORRECTA";
     private static final String DB_MSQ_CONN_NO = "ERROR EN LA CONEXIÓN";
     
+    // Configuración de la tabla Staff
+    private static final String TB_STAFF = "Staff";
+    private static final String TB_STAFF_SELECT = "SELECT * FROM " + TB_STAFF;
+    private static final String TB_STAFF_CODE = "Employee_Code";
+    private static final String TB_STAFF_NAME = "Name";
+    private static final String TB_STAFF_JOB = "Job";
+    private static final String TB_STAFF_SALARY = "Salary";
+    private static final String TB_STAFF_DEPTO = "Department_Code";
+    private static final String TB_STAFF_START = "Start_Date";
+    private static final String TB_STAF_SUPOFF = "Superior_Officer";
+       
     
+    ////////////////////////////////////////////////////////////////////////////////////////
     // Métodos de conexión a la DDBB
+    /////////////////////////////////////////////////////////////////////////////////////////
+    
     
     // Carga del driver
     public static boolean loadDriver() {
-    	
+
     	try {
-    		System.out.println("Cargando driver...");
+    		System.out.print("Cargando driver...");
     		Class.forName("com.mysql.cj.jdbc.Driver"); 
-    		 System.out.println("OK!");
+    		 System.out.println("Ok!");
     		return true; 
     	} catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -41,17 +57,37 @@ public class MySQLManager {
     
     //Conexión a la DDBB
     public static boolean connect() {
+    	
     	try {
     		System.out.print("Conectando a la base de datos...");
     		conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            System.out.println("Ok!");
+            System.out.println(DB_MSQ_CONN_OK);
     		return true; 
     	} catch (SQLException ex) {
-    		 ex.printStackTrace();
+            System.out.println(DB_MSQ_CONN_NO);
+    		ex.printStackTrace();
     		return false; 
     	}
     }
     
+    // Comprueba el estado de la conexión
+    public static boolean isConnected() {
+		System.out.print("Comprobando conexión a la base de datos...");
+    	try {
+    		if (conn != null && conn.isValid(0)) {
+                System.out.println(DB_MSQ_CONN_OK);
+                return true;    			
+    		} else {
+    			return false; 
+    		}
+    	} catch (SQLException ex) {
+            System.out.println(DB_MSQ_CONN_NO);
+    		ex.printStackTrace();
+    		return false; 
+    	}
+    }
+    
+    // Desconecta de la DDBB 
     public static boolean disconnect() {
     	try {
     		System.out.print("Desconectando de la base de datos...");
@@ -63,5 +99,70 @@ public class MySQLManager {
     		return false; 
     	}
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // Métodos particulares de tablas 
+    /////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    /* Solicita a la BD el Staff con id indicado
+     * @param id id del Staff
+     * @return ResultSet con el resultado de la consulta, null en caso de error
+     */
+    
+    
+    public static ResultSet getCliente(int id) {
+    	
+    	try {
+    		// creamos la consulta sql
+    		 Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    		 String sql = TB_STAFF_SELECT + " WHERE " + TB_STAFF_CODE + "='" + id + "';";
+    		 System.out.println(sql);
+    		 ResultSet rs = stmt.executeQuery(sql);
+    		 
+    		 //Si no hay primer resultado, entonces no hay cliente
+             if (!rs.first()) {
+                 return null;
+             } else {
+            	 return rs; 
+             }
+    	} catch (SQLException ex) {
+    		ex.printStackTrace();
+    		return null; 
+    	}
+    }
+    
+    /**
+     * Imprime los datos del Staff con id indicado
+     *
+     * @param id id del Staff
+     */
+    
+    public static void imprimeStaff(int id) {
+    	
+    	try {
+    		
+    		// Obtenemos el Staff
+    		ResultSet rs = getCliente(id);
+    		
+            if (rs == null || !rs.first()) {
+                System.out.println("Staff " + id + " NO EXISTE");
+                return;
+            }
+            
+            //Imprimimos su información por pantalla
+            int sid = rs.getInt(TB_STAFF_CODE);
+            String nombre = rs.getString(TB_STAFF_NAME);
+            String job = rs.getString(TB_STAFF_JOB); 
+      
+            System.out.println("Staff " + sid + "\t" + nombre + "\t" + job);
+    		
+    	} catch(SQLException ex) {
 
+    	     System.out.println("Error al solicitar Staff " + id);
+    	     ex.printStackTrace();
+    	}
+    }
+    
+    
 }
