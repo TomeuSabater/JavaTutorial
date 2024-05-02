@@ -154,8 +154,12 @@ public class MySQLManager {
             int sid = rs.getInt(TB_STAFF_CODE);
             String nombre = rs.getString(TB_STAFF_NAME);
             String job = rs.getString(TB_STAFF_JOB); 
-      
-            System.out.println("Staff " + sid + "\t" + nombre + "\t" + job);
+            int salary = rs.getInt(TB_STAFF_SALARY); 
+            int depto = rs.getInt(TB_STAFF_DEPTO); 
+            String start = rs.getString(TB_STAFF_START); 
+            int jefe = rs.getInt(TB_STAF_SUPOFF); 
+            
+            System.out.println("Staff " + sid + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
     		
     	} catch(SQLException ex) {
 
@@ -164,5 +168,5 @@ public class MySQLManager {
     	}
     }
     
-    
+   
 }
