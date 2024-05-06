@@ -2,9 +2,11 @@ package MySQL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.JDBCType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.CallableStatement;  
 
 public class MySQLManager {
 	
@@ -168,5 +170,58 @@ public class MySQLManager {
     	}
     }
     
+    /**
+    * Obtiene los datos del Staff con el id indicado
+    *
+    * @param id id del Staff
+    * @return ResultSet con el resultado de la consulta, null en caso de error
+    */
+    
+    // Lo que quiero es llamar a un proc almacenado que me devuelve los datos
+    // de una tupla de un Staff específico que pasamos por parámetro
+    
+    public static void getClienteProc(int id) {
+    	
+    	//Llama a un proc almacenado
+    	
+    	try {
+    		// Creamos la sentencia SQL de llamada al proc almacenado
+   		 	//String sql = "call get_staff(" + id + ",employee_name, @employee_job, @salary, @deparment_code, @start_date, @superior_officer)";
+  		 	
+   		 	//Preparamos el callable statement
+   		 	String sql_string = "call get_staff(?,?,?,?,?,?,?)";
+   		 	CallableStatement cStmt = conn.prepareCall(sql_string ); 
+   		 	
+   		 	//Registramos los parámetros de salida (si existen)
+   		 	cStmt.registerOutParameter(2, JDBCType.VARCHAR);
+   		 	cStmt.registerOutParameter(3, JDBCType.VARCHAR);
+   		 	cStmt.registerOutParameter(4, JDBCType.DECIMAL);
+   		 	cStmt.registerOutParameter(5, JDBCType.SMALLINT);
+   		 	cStmt.registerOutParameter(6, JDBCType.DATE);
+   		 	cStmt.registerOutParameter(7, JDBCType.SMALLINT);
+   		 	
+   		 	//Especificamos los parámetros de entrada (si existen)
+   		 	cStmt.setInt(1, id);  
+
+   		 	//Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
+   		 	cStmt.execute();    
+   		 	// ResultSet rs = cStmt.getResultSet();  
+   		 	
+   		 	//Extramos el resultado 
+            String nombre = cStmt.getString("employee_name");
+            String job = cStmt.getString("employee_job"); 
+            int salary = cStmt.getInt("salary"); 
+            int depto = cStmt.getInt("department_code"); 
+            String start = cStmt.getString("start_date"); 
+            int jefe = cStmt.getInt("superior_officer"); 
+   		 	
+            System.out.println("Staff :" + id + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
+    		
+    	} catch(SQLException ex) {
+
+   	     	System.out.println("Error al solicitar Staff " + id);
+   	     	ex.printStackTrace();
+    	}
+    }
    
 }

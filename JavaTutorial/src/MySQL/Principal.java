@@ -8,7 +8,9 @@ public class Principal {
 		MySQLManager.connect(); 
 		MySQLManager.isConnected(); 
 		
-		MySQLManager.imprimeStaff(222);
+		// MySQLManager.imprimeStaff(222);
+		
+		MySQLManager.getClienteProc(333);
 		
 		MySQLManager.disconnect(); 
 
