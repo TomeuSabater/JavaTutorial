@@ -161,7 +161,7 @@ public class MySQLManager {
             String start = rs.getString(TB_STAFF_START); 
             int jefe = rs.getInt(TB_STAF_SUPOFF); 
             
-            System.out.println("Staff " + sid + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
+            System.out.println("Staff :" + sid + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
     		
     	} catch(SQLException ex) {
 
@@ -223,5 +223,36 @@ public class MySQLManager {
    	     	ex.printStackTrace();
     	}
     }
+    
+    /**
+    * Crea un nuevo Staff a partir de la info que recibe
+    *
+    * @param tupla Staff: Employee_Code, Name, Job, Salary, Department_Code, Start_Date, Superior_Officer
+    * @return Employee_Code, Name, Job, Salary, Department_Code, Start_Date, Superior_Officer, Status, Error_Message
+    * Employee_Code: not null
+    * Name: not null
+    * Job: not null
+    * Salary: If Salary > Max(Salary) : Salary = Max(Salary)
+    * Salary: If Salary < Min(Salary) : Salary = Min(Salary)
+    * Salary: If Salary = null : Salary = Avg(Salary)
+    * Department_Code: If Department_Code is not null : must exist
+    * Start_Date: If Start_Date = null : Start_Date = Today
+    * Superior_Officer: If Supperior_Officer is null : Supperior_Officer = Employee_Code
+    * Superior_Officer: If Supperior_Officer is not null : Superior_Officer must exist 
+    * Status = 0 --> Todo ha sido ok, insert de la tupla es ok
+    * Status = 1 --> Inserción duplicada
+    * Status = 2 --> Falta algún dato obligatorio
+    * Status = 3 --> Superior_Officer no es válido
+    * Status = 4 --> Department_Code no es válido 
+    */
+    
+    public static void newClienteProc(short Employee_Code, String Name, String Job, short Salary, 
+    									short Department_Code, String Start_Date, short Superior_Officer) {
+    	
+    	
+    	
+    
+    }
+    
    
 }
