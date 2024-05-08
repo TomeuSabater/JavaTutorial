@@ -188,11 +188,15 @@ public class MySQLManager {
     		// Creamos la sentencia SQL de llamada al proc almacenado
    		 	//String sql = "call get_staff(" + id + ",employee_name, @employee_job, @salary, @deparment_code, @start_date, @superior_officer)";
   		 	
-   		 	//Preparamos el callable statement
+   		 	//1.- Preparamos el callable statement
+    		//CallableStatement cStmt = conn.prepareCall("{call demoSp(?, ?)}");
    		 	String sql_string = "call get_staff(?,?,?,?,?,?,?)";
    		 	CallableStatement cStmt = conn.prepareCall(sql_string ); 
    		 	
-   		 	//Registramos los parámetros de salida (si existen)
+   		 	//2.- Registramos los parámetros de salida (si existen)
+   		 	//parameters specified as OUT or INOUT when you created the stored procedure
+   		 	// cStmt.registerOutParameter("inOutParam", Types.INTEGER); // name-based
+   		 	// cStmt.registerOutParameter(2, Types.INTEGER); // index-based
    		 	cStmt.registerOutParameter(2, JDBCType.VARCHAR);
    		 	cStmt.registerOutParameter(3, JDBCType.VARCHAR);
    		 	cStmt.registerOutParameter(4, JDBCType.DECIMAL);
@@ -200,14 +204,19 @@ public class MySQLManager {
    		 	cStmt.registerOutParameter(6, JDBCType.DATE);
    		 	cStmt.registerOutParameter(7, JDBCType.SMALLINT);
    		 	
-   		 	//Especificamos los parámetros de entrada (si existen)
+   		 	//3.-Especificamos los parámetros de entrada (si existen)
+   		 	//Input and in/out parameters are set as for PreparedStatement objects.
+   		 	//  cStmt.setString(1, "abcdefg"); // index based
+   		 	// 	cStmt.setString("inputParam", "abcdefg"); // name based
    		 	cStmt.setInt(1, id);  
 
-   		 	//Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
+   		 	//4.- Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
    		 	cStmt.execute();    
    		 	// ResultSet rs = cStmt.getResultSet();  
    		 	
-   		 	//Extramos el resultado 
+   		 	//5.- Extramos el resultado de los in/out y out
+   		 	// int outputValue = cStmt.getInt(2); // index-based
+   		 	// int outputValue = cStmt.getInt("inOutParam"); // name-based
             String nombre = cStmt.getString("employee_name");
             String job = cStmt.getString("employee_job"); 
             int salary = cStmt.getInt("salary"); 
@@ -225,7 +234,7 @@ public class MySQLManager {
     }
     
     /**
-    * Crea un nuevo Staff a partir de la info que recibe
+    * Insertar un nuevo Staff mediante un procedimiento almacenado MySQL
     *
     * @param tupla Staff: Employee_Code, Name, Job, Salary, Department_Code, Start_Date, Superior_Officer
     * @return Employee_Code, Name, Job, Salary, Department_Code, Start_Date, Superior_Officer, Status, Error_Message
@@ -249,8 +258,7 @@ public class MySQLManager {
     public static void newClienteProc(short Employee_Code, String Name, String Job, short Salary, 
     									short Department_Code, String Start_Date, short Superior_Officer) {
     	
-    	
-    	
+
     
     }
     
