@@ -255,6 +255,7 @@ public class MySQLManager {
     * Status = 4 --> Department_Code no es válido 
     */
     
+    
     public static void newClienteProc(short Employee_Code, String Name, String Job, short Salary, 
     									short Department_Code, String Start_Date, short Superior_Officer) {
     	
