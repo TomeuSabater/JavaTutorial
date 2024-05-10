@@ -27,9 +27,9 @@ public class MySQLManager {
     private static final String TB_STAFF = "Staff";
     private static final String TB_STAFF_SELECT = "SELECT * FROM " + TB_STAFF;
     private static final String TB_STAFF_CODE = "Employee_Code";
-    private static final String TB_STAFF_NAME = "Name";
-    private static final String TB_STAFF_JOB = "Job";
-    private static final String TB_STAFF_SALARY = "Salary";
+    private static final String TB_STAFF_NAME = "Employee_Name";
+    private static final String TB_STAFF_JOB = "Employee_Job";
+    private static final String TB_STAFF_SALARY = "Employee_Salary";
     private static final String TB_STAFF_DEPTO = "Department_Code";
     private static final String TB_STAFF_START = "Start_Date";
     private static final String TB_STAF_SUPOFF = "Superior_Officer";
