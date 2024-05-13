@@ -233,6 +233,69 @@ public class MySQLManager {
     	}
     }
     
+    
+    public static void readClient(int idClient) {
+    	
+    	//Llama al almacenado de MySQL
+    	/*	read_staff_java(
+ 					1 inout employee_code smallint unsigned, 
+					2 out employee_name varchar(25),
+					3 out employee_job varchar(25),
+					4 out employee_salary decimal(7,2),
+					5 out department_code smallint unsigned,
+					6 out start_date date,
+					7 out superior_officer smallint unsigned,
+					8 out status smallint unsigned,
+					9 out error_message varchar(255)
+			)		
+		*/ 
+    	
+    	try {
+    		
+   		 	//1.- Preparamos el callable statement
+   		 	String sql_string = "call read_staff_java(?,?,?,?,?,?,?,?,?)";
+   		 	CallableStatement cStmt = conn.prepareCall(sql_string ); 
+   		 	
+   		 	//2.- Registramos los parámetros de salida OUT / INOUT 
+   		 	cStmt.registerOutParameter(1, JDBCType.SMALLINT); // 1 inout employee_code smallint unsigned
+   			cStmt.registerOutParameter(2, JDBCType.VARCHAR); // 2 out employee_name varchar(25)
+   			cStmt.registerOutParameter(3, JDBCType.VARCHAR); // 3 out employee_job varchar(25)
+   			cStmt.registerOutParameter(4, JDBCType.DECIMAL); // 4 out employee_salary decimal(7,2),
+   			cStmt.registerOutParameter(5, JDBCType.SMALLINT); // 5 out department_code smallint unsigned
+   			cStmt.registerOutParameter(6, JDBCType.DATE); // 6 out start_date date
+   			cStmt.registerOutParameter(7, JDBCType.SMALLINT); // 7 out superior_officer smallint unsigned
+   			cStmt.registerOutParameter(8, JDBCType.SMALLINT); // 8 out status smallint unsigned
+   			cStmt.registerOutParameter(9, JDBCType.VARCHAR); // 9 out error_message varchar(255)
+   			
+  		 	//3.-Especificamos los parámetros de entrada (si existen)
+   			cStmt.setInt(1, idClient);  
+   			
+   		 	//4.- Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
+   		 	cStmt.execute();   
+   		 	
+   		 	//5.- Extramos el resultado de los in/out y out
+   		 	int id = cStmt.getInt(1); // 1 inout employee_code smallint unsigned
+            String nombre = cStmt.getString(2); // 2 out employee_name varchar(25)
+            String job = cStmt.getString(3); // 3 out employee_job varchar(25)
+            int salary = cStmt.getInt(4); // 4 out employee_salary decimal(7,2)
+            int depto = cStmt.getInt(5); // 5 out department_code smallint unsigned
+            String start = cStmt.getString(6); // 6 out start_date date
+            int jefe = cStmt.getInt(7); // 7 out superior_officer smallint unsigned
+            int status = cStmt.getInt(8); // 8 out status smallint unsigned
+            String message = cStmt.getString(9); // 9 out error_message varchar(255)
+   		 	
+   
+   		 	//6.- Mostramos el resultado 
+            System.out.println("Status:" + status + "Message :" + message); 
+            System.out.println("Staff :" + id + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
+   		 	
+    	} catch (SQLException ex) {
+   	     	System.out.println("Error al solicitar Staff " + idClient);
+   	     	ex.printStackTrace();	
+    	}
+    	
+    }
+    
     /**
     * Insertar un nuevo Staff mediante un procedimiento almacenado MySQL
     *

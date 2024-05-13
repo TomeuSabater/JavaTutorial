@@ -10,6 +10,8 @@ public class Principal {
 		
 		MySQLManager.imprimeStaff(222);
 		MySQLManager.getClienteProc(222);
+		MySQLManager.readClient(221); // from CRUD
+	
 		
 		MySQLManager.disconnect(); 
 
