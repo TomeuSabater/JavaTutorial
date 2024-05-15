@@ -208,7 +208,8 @@ public class MySQLManager {
    		 	//Input and in/out parameters are set as for PreparedStatement objects.
    		 	//  cStmt.setString(1, "abcdefg"); // index based
    		 	// 	cStmt.setString("inputParam", "abcdefg"); // name based
-   		 	cStmt.setInt(1, id);  
+   		 	cStmt.setInt(1, id); 
+  
 
    		 	//4.- Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
    		 	cStmt.execute();    
