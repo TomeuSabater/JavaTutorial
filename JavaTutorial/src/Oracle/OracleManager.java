@@ -2,6 +2,7 @@ package Oracle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -116,12 +117,14 @@ public class OracleManager {
     
     public static ResultSet getCliente(int id) {
     	
+		// creamos la consulta sql
+		String query = TB_STAFF_SELECT + " WHERE " + TB_STAFF_CODE + "=(?)";
+		PreparedStatement stmt;
     	try {
-    		// creamos la consulta sql
-    		 Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    		 String sql = TB_STAFF_SELECT + " WHERE " + TB_STAFF_CODE + "=" + id + ";";
-    		 System.out.println(sql);
-    		 ResultSet rs = stmt.executeQuery(sql);
+    		stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); 
+    		//Pasamos por parámetro el ID de empleado.
+	    	stmt.setInt(1, id);
+	    	ResultSet rs = stmt.executeQuery();
     		 
     		 //Si no hay primer resultado, entonces no hay cliente
              if (!rs.first()) {
@@ -136,8 +139,7 @@ public class OracleManager {
     	}
     }
     
-  
-    
+ 
     /**
      * Imprime los datos del Staff con id indicado
      *
