@@ -11,6 +11,7 @@ public class Principal {
 		StaffManager staff = new StaffManager(); 
 		staff.getStaffId(222); // from CRUD
 		staff.newStaff((short)123, "Tomeu", "Profesor", 2000, (short)5, "2024-04-19", (short)333); // from CRUD
+		staff.updateStaff((short)123, "Tomeu", "Profesor", 2000, (short)5, "2024-04-19", (short)333); // from CRUD
 		
 		
 		// 	public void newStaff(short Employee_Code, String Name, String Job, int Salary, 
