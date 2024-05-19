@@ -153,9 +153,9 @@ public class StaffManager {
 		}
 	}
 
+	// Llamadas al CRUD.sql 
 	
-
-	public void getStaffId(int EmployeeCode) {
+	public void get_StaffId(short Employee_Code) {
 	
 	//Llama al almacenado de MySQL
 	/*	read_staff_java(
@@ -169,6 +169,11 @@ public class StaffManager {
 			8 out status smallint unsigned,
 			9 out error_message varchar(255)
 		)		
+		
+		comment 'Obtiene un Staff específico de t5_employees.staff
+    	Status = 0 --> error_message = "Info: Staff econtrado, se devuelve su info"
+		Status = 1 --> error_message = "Error: Staff no econtrado"
+    	Status = 2 --> error_message = "Error: Falta algún dato obligatorio, no se aporta employee_code"'
 	*/ 
 
 	try {
@@ -189,13 +194,17 @@ public class StaffManager {
 		cStmt.registerOutParameter(9, JDBCType.VARCHAR); // 9 out error_message varchar(255)
 
 		//3.-Especificamos los parámetros de entrada (si existen)
-		cStmt.setInt(1, EmployeeCode);  
+		if (Employee_Code != 0) {
+			cStmt.setInt(1, Employee_Code);
+		} else {
+			cStmt.setNull(1, Employee_Code);
+		}
 
 		//4.- Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
 		cStmt.execute();   
 
 		//5.- Extramos el resultado de los in/out y out
-		int id = cStmt.getInt(1); // 1 inout employee_code smallint unsigned
+		short id = cStmt.getShort(1); // 1 inout employee_code smallint unsigned
 		String nombre = cStmt.getString(2); // 2 out employee_name varchar(25)
 		String job = cStmt.getString(3); // 3 out employee_job varchar(25)
 		int salary = cStmt.getInt(4); // 4 out employee_salary decimal(7,2)
@@ -210,39 +219,15 @@ public class StaffManager {
 		System.out.println("Staff :" + id + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
 
 		} catch (SQLException ex) {
-			System.out.println("Error al solicitar Staff " + EmployeeCode);
+			System.out.println("Error al solicitar Staff " + Employee_Code);
 			ex.printStackTrace();	
 		}
 	}
 
 
-	public void newStaff(short Employee_Code, String Name, String Job, int Salary, 
+	public void new_Staff(short Employee_Code, String Name, String Job, int Salary, 
 	short Department_Code, String Start_Date, short Superior_Officer) {
-		
-		
-		/**
-		* Insertar un nuevo Staff mediante un procedimiento almacenado MySQL
-		*
-		* @param tupla Staff: Employee_Code, Name, Job, Salary, Department_Code, Start_Date, Superior_Officer
-		* @return Employee_Code, Name, Job, Salary, Department_Code, Start_Date, Superior_Officer, Status, Error_Message
-		* Employee_Code: not null
-		* Name: not null
-		* Job: not null
-		* Salary: If Salary > Max(Salary) : Salary = Max(Salary)
-		* Salary: If Salary < Min(Salary) : Salary = Min(Salary)
-		* Salary: If Salary = null : Salary = Avg(Salary)
-		* Department_Code: If Department_Code is not null : must exist
-		* Start_Date: If Start_Date = null : Start_Date = Today
-		* Superior_Officer: If Supperior_Officer is null : Supperior_Officer = Employee_Code
-		* Superior_Officer: If Supperior_Officer is not null : Superior_Officer must exist 
-		* Status = 0 --> Todo ha sido ok, insert de la tupla es ok
-		* Status = 1 --> Inserción duplicada
-		* Status = 2 --> Falta algún dato obligatorio
-		* Status = 3 --> Superior_Officer no es válido
-		* Status = 4 --> Department_Code no es válido 
-		*/
-			
-		
+	
 		/* create_staff_java(inout employee_code smallint unsigned, 
 				inout employee_name varchar(25),
 				inout employee_job varchar(25),
@@ -253,6 +238,19 @@ public class StaffManager {
 				out status smallint unsigned,
 				out error_message varchar(255)
 			)
+			
+		comment 'Inserta tupla en t5_employees.staff
+		Hay handler sobre datos obligatorios, integridad referencial e inserción duplicada
+		If Salary is null : Salary = Avg(Salary) (trigger)
+		If Salary > Max(Salary) : Salary = Max(Salary) (trigger)
+		If Salary < Min(Salary) : Salary = Min(Salary) (trigger) 
+		If Start_Date is null : Start_Date = current_date()
+		If Supperior_Officer is null : Supperior_Officer = Employee_Code (trigger)
+    	Status = 0 --> error_message = "Info: Se ha insertado la tupla"
+    	Status = 1 --> error_message = "Error: Inserción duplicada, el empleado ya existe"
+    	Status = 2 --> error_message = "Error: Falta algún dato obligatorio"
+    	Status = 3 --> error_message = "Error: Superior_Officer / Department_Code no es válido"' 
+			
 		*/ 
 
 		try {
@@ -276,7 +274,11 @@ public class StaffManager {
 			cStmt.setShort(1, Employee_Code);  
 			cStmt.setString(2, Name);  
 			cStmt.setString(3, Job);
-			cStmt.setInt(4, Salary); 
+			if (Salary != 0) {
+				cStmt.setInt(4, Salary);
+			} else {
+				cStmt.setNull(4, Salary);
+			}
 			cStmt.setShort(5, Department_Code); 
 			cStmt.setString(6, Start_Date); 
 			cStmt.setShort(7, Superior_Officer);
@@ -308,7 +310,7 @@ public class StaffManager {
 	}
 	
 	
-	public void updateStaff(short Employee_Code, String Name, String Job, int Salary, 
+	public void update_Staff(short Employee_Code, String Name, String Job, int Salary, 
 	short Department_Code, String Start_Date, short Superior_Officer) {
 		
 	/* update_staff_java(inout employee_code smallint unsigned, 
@@ -386,5 +388,70 @@ public class StaffManager {
 	} // public void updateStaff
 	
 	
+	public void del_StaffId(short Employee_Code) {
+		
+	//Llama al almacenado de MySQL
+	/*	delete_staff_java(inout employee_code smallint unsigned, 
+							out employee_name varchar(25),
+							out employee_job varchar(25),
+							out employee_salary decimal(7,2),
+							out department_code smallint unsigned,
+							out start_date date,
+							out superior_officer smallint unsigned,
+							out status smallint unsigned,
+							out error_message varchar(255))	
+							
+		comment 'Elimina un Staff específico de t5_employees.staff
+    	Status = 0 --> error_message = "Info: Staff eliminado, se devuelve su info"
+		Status = 1 --> error_message = "Error: Staff no econtrado"
+    	Status = 2 --> error_message = "Error: Falta algún dato obligatorio, no se aporta employee_code"'
+	*/ 
+		
+		try {
+			
+			//1.- Preparamos el callable statement
+			String sql_string = "call delete_staff_java(?,?,?,?,?,?,?,?,?)";
+			CallableStatement cStmt = MySQLManager.conn.prepareCall(sql_string); 
+			
+			//2.- Registramos los parámetros de salida OUT / INOUT 
+			cStmt.registerOutParameter(1, JDBCType.SMALLINT); // 1 inout employee_code smallint unsigned
+			cStmt.registerOutParameter(2, JDBCType.VARCHAR); // 2 out employee_name varchar(25)
+			cStmt.registerOutParameter(3, JDBCType.VARCHAR); // 3 out employee_job varchar(25)
+			cStmt.registerOutParameter(4, JDBCType.DECIMAL); // 4 out employee_salary decimal(7,2),
+			cStmt.registerOutParameter(5, JDBCType.SMALLINT); // 5 out department_code smallint unsigned
+			cStmt.registerOutParameter(6, JDBCType.DATE); // 6 out start_date date
+			cStmt.registerOutParameter(7, JDBCType.SMALLINT); // 7 out superior_officer smallint unsigned
+			cStmt.registerOutParameter(8, JDBCType.SMALLINT); // 8 out status smallint unsigned
+			cStmt.registerOutParameter(9, JDBCType.VARCHAR); // 9 out error_message varchar(255)
+			
+			//3.-Especificamos los parámetros de entrada (si existen)
+			cStmt.setShort(1, Employee_Code);  
+			
+			//4.- Ejecutamos CallableStatement, recibimos cualquier conjunto de resultados o parámetros de salida
+			cStmt.execute();   
+			
+			//5.- Extramos el resultado de los in/out y out
+			Employee_Code = cStmt.getShort(1); // 1 inout employee_code smallint unsigned
+			String Name = cStmt.getString(2); // 2 out employee_name varchar(25)
+			String Job = cStmt.getString(3); // 3 out employee_job varchar(25)
+			int Salary = cStmt.getInt(4); // 4 out employee_salary decimal(7,2)
+			short Department_Code = cStmt.getShort(5); // 5 out department_code smallint unsigned
+			String Start_Date = cStmt.getString(6); // 6 out start_date date
+			short Superior_Officer = cStmt.getShort(7); // 7 out superior_officer smallint unsigned
+			int status = cStmt.getShort(8); // 8 out status smallint unsigned
+			String message = cStmt.getString(9); // 9 out error_message varchar(255)
+			
+			//6.- Mostramos el resultado 
+			System.out.println("Status: " + status + " Message :" + message); 
+			System.out.println("Staff :" + Employee_Code + "\t" + Name + "\t" + Job + 
+								"\t" + Salary + "\t" + Department_Code + "\t" + Start_Date + 
+								"\t" + Superior_Officer);
+			
+		} catch (SQLException ex) {
+			System.out.println("Error al crear Staff " + Employee_Code);
+			ex.printStackTrace();	
+		}
+	} // del_StaffId	
 
-}
+
+} // StaffManager
