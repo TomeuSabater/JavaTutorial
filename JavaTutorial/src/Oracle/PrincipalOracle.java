@@ -10,6 +10,7 @@ public class PrincipalOracle {
 		OracleManager.isConnected(); 
 		
 		OracleManager.imprimeStaff(368);
+		OracleManager.imprimeStaffName("Bauza");
 		
 		OracleManager.disconnect(); 
 	

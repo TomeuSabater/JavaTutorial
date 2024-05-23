@@ -115,11 +115,34 @@ public class OracleManager {
      * @return ResultSet con el resultado de la consulta, null en caso de error
      */
     
+    
+    private static void imprime_registro (ResultSet rs) {
+    	
+    	try {
+            //Imprimimos su información por pantalla
+            int sid = rs.getInt(TB_STAFF_CODE);
+            String nombre = rs.getString(TB_STAFF_NAME);
+            String job = rs.getString(TB_STAFF_JOB); 
+            int salary = rs.getInt(TB_STAFF_SALARY); 
+            int depto = rs.getInt(TB_STAFF_DEPTO); 
+            String start = rs.getString(TB_STAFF_START); 
+            int jefe = rs.getInt(TB_STAF_SUPOFF); 
+            
+            System.out.println("Staff :" + sid + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
+            
+    	} catch (SQLException ex) {
+    		
+    		ex.printStackTrace();
+    	}
+    }
+    
+      
     public static ResultSet getCliente(int id) {
     	
 		// creamos la consulta sql
-		String query = TB_STAFF_SELECT + " WHERE " + TB_STAFF_CODE + "=(?)";
+		String query = TB_STAFF_SELECT + " WHERE " + TB_STAFF_CODE + "=(?)";	
 		PreparedStatement stmt;
+		
     	try {
     		stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); 
     		//Pasamos por parámetro el ID de empleado.
@@ -139,7 +162,6 @@ public class OracleManager {
     	}
     }
     
- 
     /**
      * Imprime los datos del Staff con id indicado
      *
@@ -157,17 +179,8 @@ public class OracleManager {
                 return;
             }
             
-            //Imprimimos su información por pantalla
-            int sid = rs.getInt(TB_STAFF_CODE);
-            String nombre = rs.getString(TB_STAFF_NAME);
-            String job = rs.getString(TB_STAFF_JOB); 
-            int salary = rs.getInt(TB_STAFF_SALARY); 
-            int depto = rs.getInt(TB_STAFF_DEPTO); 
-            String start = rs.getString(TB_STAFF_START); 
-            int jefe = rs.getInt(TB_STAF_SUPOFF); 
+            imprime_registro(rs); // Get Staff por Id sólo da un reultado 
             
-            System.out.println("Staff :" + sid + "\t" + nombre + "\t" + job + "\t" + salary + "\t" + depto + "\t" + start + "\t" + jefe);
-    		
     	} catch(SQLException ex) {
 
     	     System.out.println("Error al solicitar Staff " + id);
@@ -175,6 +188,66 @@ public class OracleManager {
     	}
     }
     
+    
+    
+    /* Solicita a la BD el Staff con nombre indicado, puede haber más de uno
+     * @param nombre: Nombre del Staff
+     * @return ResultSet con el resultado de la consulta, null en caso de error
+     */
+    
+    public static ResultSet getClienteName(String name) {
+    	
+		// creamos la consulta sql
+		String query = TB_STAFF_SELECT + " WHERE " + TB_STAFF_NAME + "=(?)";
+		PreparedStatement stmt;
+    	try {
+    		stmt = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); 
+    		//Pasamos por parámetro el ID de empleado.
+	    	stmt.setString(1, name);
+	    	ResultSet rs = stmt.executeQuery();
+	    	
+	    	return rs; // Devuelve resultado, puede estar vacío
 
+    	} catch (SQLException ex) {
+    		System.out.println(DB_STM_EX_NO);
+    		ex.printStackTrace();
+    		return null; 
+    	}
+    }
+    
+    
+    /**
+     * Imprime los datos de los Staff con name indicado
+     *
+     * @param name;  name del Staff
+     */
+    public static void imprimeStaffName(String name) {
+    	
+    	try {
+    		
+    		// Obtenemos el Staff
+    		ResultSet rs =  getClienteName(name); 
+    		
+            if (rs == null || !rs.first()) {
+            	
+                System.out.println("Staff " + name + " NO EXISTE");
+                
+            } else {
+            	
+            	//Bucle para imprimir la info por pantalla
+            	imprime_registro(rs); // Imprime el primero
+            	while (rs.next()) {
+            		imprime_registro(rs); // Imprime los siguientes registros
+            	}
+            }
+            
+    	} catch(SQLException ex) {
+
+    	     System.out.println("Error al solicitar Staff " + name);
+    	     ex.printStackTrace();
+    	}
+    }
+ 
+    
 }
 
