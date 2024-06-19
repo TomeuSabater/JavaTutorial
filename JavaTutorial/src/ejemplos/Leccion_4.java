@@ -33,6 +33,7 @@ public class Leccion_4 {
 			int x; // Atributo. Posición x en el plano
 			int y; // Atributo. Posición y en el plano
 			int radio; //Atributo. Radio del círculo
+			
 		}
 		
 		//Ahora hemos definido la Clase Circulo (o el molde)
@@ -43,8 +44,15 @@ public class Leccion_4 {
 		Circulo circulo2 = new Circulo(); //circulo2 es el identificador de un Objeto, no es el Objeto. 
 		
 		//Ahora tenemos dos objetos generados con el molde Circulo. 
+		
+		//Asignamos valores a los atributos de los objetos
+		circulo1.x = 1; 
+		circulo1.y = 2;
+		circulo1.radio = 3; 
+		
+		//Podemos mostrar los atributos de cada objeto
+		System.out.println("circulo1.x = " + circulo1.x + " circulo1.y = " + circulo1.y + " circulo1.radio = " + circulo1.radio); 
 
-	
 		//ELEMENTOS DE UNA CLASE
 		//Definimos la información que almacena un objeto mediante sus atributos. 
 	
