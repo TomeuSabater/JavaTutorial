@@ -4,7 +4,7 @@ public class Leccion_4 {
 
 
 	public static void main(String[] args) {
-		// CLASES Y OBJETOS. 
+		// Introducción a CLASES Y OBJETOS. 
 		
 		
 		//Una CLASE es un tipo de dato complejo. 
@@ -12,20 +12,20 @@ public class Leccion_4 {
 		
 		//Tengo la CLASE  que es como un molde para fabricar coches, o figuras de plastelina
 		//Con una CLASE o molde creo OBJETOS que serán los coches, o las figura de plastelina
-		//EL creador de coches es la CLASE y cada coche es un OBJETO
+		//EL creador de coches es la CLASE y cada coche es un OBJETO de esa CLASE
 		//El molde de la plastelina es la CLASE y cada figura de plastelina es el OBJETO
-		//Hay una CLASE, pero puede haber muchos OBJETOS
+		//Hay una CLASE, pero puede haber muchos OBJETOS de esa CLASE 1:n
 		
-		//Aplicamos terminología de Programación Orientada a Objetos
+		//Redefinimos ahora aplicando terminología correcta de Programación Orientada a Objetos
 		//Un Objeto es una "instancia" de una Clase. 
-		//Un Objeto tiene una "identidad" y un "estado".
+		//Un Objeto tiene una "identidad", un "estado" y un "comportamiento".
 		//La "identidad" se define por su identificador.
 		//Su "estado" se define por el valor de sus atributos.
 		//Su "comportamiento" queda determinado por el 
 		//comportamiento de la clase a la que pertenece
-		//Actuamos con los objetos medinate lo "metodos" 
-		//que publica
+		//Actuamos con los objetos medinate lo "metodos" que publica
 
+		
 		// CLASES; Recordar, son como moldes para definir objetos
 		
 		class Circulo {
@@ -51,7 +51,7 @@ public class Leccion_4 {
 		class Vehiculo {
 			
 			//Atributos del Objeto
-			String matricula;
+			String matricula; 
 			String marca;
 			String modelo;
 			int precio;
@@ -63,6 +63,9 @@ public class Leccion_4 {
 		//Instanciamos la clase Vehiculo para crear Objetos
 		Vehiculo v1 = new Vehiculo(); // v1 es el identificador del Objeto 
 		Vehiculo v2 = new Vehiculo(); // v2 es el identificador del Objeto 
+		
+		System.out.println("Identificador de v1 = " + v1); 
+		System.out.println("Identificador de v2 = " + v2); 
 		
 		//Hemos visto que el Objeto puede tener "atributos" 
 		//Veamos cómo los empleamos para definir su "estado"
@@ -77,10 +80,9 @@ public class Leccion_4 {
 			boolean electrico;
 			boolean hibrido;
 			
-			//Metodo constructor
-			//mismo nombre que la clase y se ejecuta
+			//Metodo constructor, tiene mismo nombre que la clase y se ejecuta
 		    //automáticamente cuando se instancia la clase
-			//y se utiliza para inicializar los atributos 
+			//y se utiliza para inicializar los atributos del objeto  
 			
 			public Vehiculo2 (String matricula,
 				String marca,
@@ -89,34 +91,35 @@ public class Leccion_4 {
 				boolean electrico,
 				boolean hibrido) {
 				
-					this.matricula = matricula;
+					//Se usa la palabra "this" para diferenciar los atributos del objeto de los parámetros
+					this.matricula = matricula; 
 					this.marca = marca;
 					this.modelo = modelo;
 					this.precio = precio;
 					this.electrico = electrico;
 					this.hibrido = hibrido;
 			}
-			
 		}
 		
-		//Instanciamos la clase Vehiculo2
+		//Instanciamos la Clase Vehiculo2
 		Vehiculo2 v3 = new Vehiculo2("1234JXC", "Ford", "Fiesta", 14000, false, true);
 		Vehiculo2 v4 = new Vehiculo2("4321PRX", "Renault", "Megane", 20000, true, false);
 		
-		//Ahora tenemos dos Objetos Vehiculo2, v3 y v4, cuyos atributos son diferentes
-		//Es como crear dos objetos con un molde de plastelina
+		//Ahora tenemos dos Objetos Vehiculo2, v3 y v4, cuyos Atributos son diferentes
+		//Es como crear dos Objetos con un molde de plastelina
 		//pero con plastelina diferente (color, tipo plastelina)
-		//Son instancias de la misma CLase, pero en absoluto son el mismo objeto
+		//Son Instancias de la misma Clase, pero en absoluto son el mismo Objeto
 		
-		//Para consultar los valors de sus atributos y
+		//Para consultar/obtener los valores de sus atributos y
 		//para asignar nuevos valores se usan los "get" y "set"
-		//get --> Consultar valores
-		//set --> Modificar su estado (inicializado con el constructor)
+		//get (getter) --> Consultar valores
+		//set (setter) --> Modificar su estado (inicializado con el constructor)
 		
 		
 		class Vehiculo3 {
 			
 			//Atributos de un objeto
+			//Esta vez los definimos como privados, solo serán accesibles mediante métodos
 			private String matricula;
 			private String marca;
 			private String modelo;
@@ -199,59 +202,8 @@ public class Leccion_4 {
 		}
 
 		
-		class Vehiculo4 {
-			
-			//Atributos de un objeto
-			private String matricula;
-			private String marca;
-			private String modelo;
-			private int precio;
-			private boolean electrico;
-			private boolean hibrido;
-			
-			//Método Constructor
-			public Vehiculo4 (String matricula,
-				String marca,
-				String modelo,
-				int precio,
-				boolean electrico,
-				boolean hibrido) {
-				
-					this.matricula = matricula;
-					this.marca = marca;
-					this.modelo = modelo;
-					this.precio = precio;
-					this.electrico = electrico;
-					this.hibrido = hibrido;
-			}
-			
-			//Métodos Get y Set para obtener los valores y modificarlos
-			public String get_matricula() {
-				return this.matricula;
-			}
-			public String get_marca() {
-				return this.marca;
-			}
-			public String get_modelo() {
-				return this.modelo;
-			}
-			public int get_precio() {
-				return this.precio;
-			}
-			public boolean get_electrico() {
-				return this.electrico;
-			}
-			public boolean get_hibrido() {
-				return this.hibrido;
-			}
-			public void set_precio(int precio) {
-				this.precio = precio;
-			}
-			
-		}
-
-		
 		//Vamos a mejorar nuestra clase con más métodos
+		//y utilizaremos los getter y setter
 		
 		class Vehiculo5 {
 			
@@ -271,15 +223,17 @@ public class Leccion_4 {
 				boolean electrico,
 				boolean hibrido) {
 				
-					this.matricula = matricula;
-					this.marca = marca;
-					this.modelo = modelo;
-					this.precio = precio;
-					this.electrico = electrico;
-					this.hibrido = hibrido;
+					set_matricula(matricula); 
+					set_marca(marca);
+					set_modelo(modelo); 
+					set_precio(precio); 
+					set_electrico(electrico);
+					set_hibrido(hibrido); 
 			}
 			
-			//Métodos Get y Set para obtener los valores y modificarlos
+			//Métodos Get y Set para la gestión de atributos
+			
+			//Getters
 			public String get_matricula() {
 				return this.matricula;
 			}
@@ -298,31 +252,49 @@ public class Leccion_4 {
 			public boolean get_hibrido() {
 				return this.hibrido;
 			}
+			
+			//Setters: matricula, marca, modelo, precio, electrico, hibrido
+			
+			public void set_matricula(String matricula) {
+				this.matricula = matricula; 
+			}
+			public void set_marca(String marca) {
+				this.marca = marca; 
+			}
+			public void set_modelo(String modelo) {
+				this.modelo = modelo; 
+			}
 			public void set_precio(int precio) {
 				this.precio = precio;
 			}
+			public void set_electrico(boolean electrico) {
+				this.electrico = electrico; 
+			}
+			public void set_hibrido(boolean hibrido) {
+				this.hibrido = hibrido; 
+			}
+			
 			
 			//Método que muestra los atributos del Objeto
 			
 			public void muestra_coche() {
-				System.out.println("Vehiculo de matricula "+ this.matricula);
-				System.out.println("Vehiculo de marca "+ this.marca);
-				System.out.println("Vehiculo de modelo "+ this.modelo);
-				System.out.println("Vehiculo de precio "+ this.precio);
-				System.out.println("Vehiculo electrico "+ this.electrico);
-				System.out.println("Vehiculo hibrido "+ this.hibrido);
+				System.out.println("Vehiculo Vehiculo5"); 
+				System.out.println("Vehiculo de matricula "+ get_matricula());
+				System.out.println("Vehiculo de marca "+ get_marca());
+				System.out.println("Vehiculo de modelo "+ get_modelo());
+				System.out.println("Vehiculo de precio "+ get_precio());
+				System.out.println("Vehiculo electrico "+ get_electrico());
+				System.out.println("Vehiculo hibrido "+ get_hibrido());
 			}
 		}
-		
-		
+				
 		//Instanciamos Clase Vehiculo5 y llamamos al método que nos muestra sus atributos 
 		Vehiculo5 v7 = new Vehiculo5("777ABC", "Mercedes", "A220D", 44000, false, false);
 		v7.muestra_coche();
 		
 		//Demostració de que cuando instancimos una Clase tenemos la referencia al Objeto y no el Objeto
-		
 		Vehiculo5 v8;
-		v8 = v7;
+		v8 = v7; //Igualamos la referencia del nuevo objeto al existente
 		System.out.println(v7);
 		System.out.println(v8);
 		v8.muestra_coche();
