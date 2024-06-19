@@ -5,34 +5,59 @@ public class Leccion_1 {
 	
 	public static void main(String[] args) {
 
-		// TIPOS DE DATOS EN JAVA; Simples y Complejos
+		// TIPOS DE DATOS EN JAVA; Simples y Complejos (Arrays) 
 		// Operaciones básicas: Asignación, ++x, --x, x++, x--
-		// ESTRUCTURAS DE Repeticion; For
+		// ESTRUCTURAS DE Repeticion; FOR
 	
 		//Números enteros
-		byte v_byte; //Entero con signo -128 a +127
-		short v_short; //Entero con signo -32768 a +32767
-		int v_entero; //Entero con signo -2147483648 a +2147483648
-		long v_long; //Entero con signo 
+		byte v_byte = 0; //Entero con signo -128 a +127
+		short v_short = 0; //Entero con signo -32768 a +32767
+		int v_int = 0; //Entero con signo -2147483648 a +2147483648
+		long v_long = 0; //Entero con signo 
+		long creditCardNumber = 1234_5678_9012_3456L; //Underscore es para mejora visual 
 		
+		System.out.println("v_byte = " + v_byte); 
+		System.out.println("v_short = " + v_short); 
+		System.out.println("v_int = " + v_int); 
+		System.out.println("v_long = " + v_long); 
+		System.out.println("creditCardNumber = " + creditCardNumber); //Se muestra sin el símbolo "_"
+				
 		//Números reales
-		float v_float; //Real con precisión simple
-		double v_double; //Real de precisión doble
+		float v_float = 0.00f; //Real con precisión simple
+		double v_double = 3.14d; //Real de precisión doble
 		
-		//Carácteres
-		char v_char; //Caracter Unicode
-		String v_cadena; //Cadena de carácteres
+		System.out.println("v_float = " + v_float); 
+		System.out.println("v_double = " + v_double); 
 		
 		//Valores lógicos
-		boolean v_boolean; //Booleano
+		boolean v_booleant = true; //Booleano
+		boolean v_booleanf = false; //Booleano
 		
+		System.out.println("v_boolean = " + v_booleant); 
+		System.out.println("v_boolean = " + v_booleanf); 
+		
+		//Carácteres
+		char v_char = 'X'; //Caracter Unicode
+		String v_cadena = "Bartolomé Sabater"; //Cadena de carácteres
+		
+		System.out.println("v_char = " + v_char); 
+		System.out.println("v_cadena = " + v_cadena); 
+			
 		//Constantes
 		final int C_NUM = 5;
 		final boolean C_VERDADERO = true;
-		final boolean C_FALSO = false;
 		final char C_LAX = 'X'; 
+		final String MI_NOMBRE = "Bartolomé"; 
+		final float PI = 3.1421f;  
 		
-		//Tipos de datos complejos
+		System.out.println("C_NUM = " + C_NUM); 
+		System.out.println("C_VERDADERO = " + C_VERDADERO); 
+		System.out.println("C_LAX = " + C_LAX); 
+		System.out.println("MI_NOMBRE = " + MI_NOMBRE); 
+		System.out.println("PI = " + PI); 
+		
+		
+		//Tipos de datos complejos ARRAYS 
 		int[] a_enteros = new int[C_NUM]; // Vector de enteros de NUM posiciones
 		boolean[] a_booleanos = new boolean[C_NUM]; //Vector de booleanos de NUM posiciones
 		char[] a_caracteres = new char[C_NUM]; //Vector de caracters de NUM posiciones
@@ -41,95 +66,98 @@ public class Leccion_1 {
 		int[][] m_enteros = new int[C_NUM][C_NUM]; //Matriz de dos dimensiones de enteros de NUMxNUM posciones
 		boolean[][] m_booleanos = new boolean[C_NUM][C_NUM]; //Matriz de dos dimensione de booleanos de NUMxNUM
 		char[][][] m_caracteres = new char[C_NUM][C_NUM][C_NUM]; // Matriz de tres dimensiones de caracters de NUMxNUMxNUM 
+
 		
-	
-		//Clases para crear objetos. 
-	    //Se verá en ontra lección 
 		
 		//OPERACIONES BASICAS. 
+		System.out.println("*********** OPERACIONES BASICAS"); 
 		
 		//Asignación
 		
-		v_entero = 0; //Derecha a izquierda SIEMPRE
+		v_int = 0; //Derecha a izquierda SIEMPRE
+		System.out.println("v_int = " + v_int); 
 		
-		v_entero = v_entero + 0; // Derecha a izquierda SIEMPRE.
+		v_int = v_int + 0; // Derecha a izquierda SIEMPRE.
+		System.out.println("v_int = " + v_int); 
 		
-		v_entero = 1;
-		v_entero = v_entero + v_entero + v_entero + v_entero;
-		System.out.println("soy v_entero y valgo :" + v_entero);
+		v_int = 1;
+		v_int = v_int + v_int + v_int + v_int;
+		System.out.println("soy v_int y valgo :" + v_int);
 		
-	
 		//La asignación de derecha a izquiera se resuelve en el compilador / interprete mediante variables temporales. 
 		//La siguiente secuencia de instrucciones
-		v_entero = 0;
-		v_entero = v_entero + 1; // Él es igual a Él + 1. 
-        //Internmente se resuelve de esta manera
-		v_entero =0;
-		int temporal = 0; //Variable que define el compilador / interprete
-		temporal = v_entero + 1;
-		v_entero = temporal;
+		v_int = 0;
+		v_int = v_int + 1; // Él es igual a Él + 1. 
 		
-		//Asignación compleja; Siempre se calcula el valor y luego se asigna. 		
-		v_entero = 1;
-		v_entero = v_entero + v_entero + v_entero + v_entero; 
-		System.out.println("soy v_entero y ahora valgo: " + v_entero);
+        //Internamente se resuelve de esta manera
+		v_int = 0;
+		int temporal = 0; //Variable que define el compilador / interprete
+		temporal = v_int + 1; //Calcula la parte de la derecha
+		v_int = temporal; //La asigna a la variable final
+		
+		//Otro ejemplo con asignación compleja
+		//Siempre se calcula el valor mediante operaciones temporales y luego se asigna. 		
+		//Revisar microcódigo de máquina de Von Neumann
+		v_int = 1;
+		v_int = v_int + v_int + v_int + v_int; 
+		System.out.println("soy v_entero y ahora valgo: " + v_int);
 		
 		
 		//Operaciones específicas de Java
-		v_entero = 0;
-		v_entero = v_entero + 1; //Operación muy común en cualquier lenguaje de programación
+		v_int = 0;
+		v_int = v_int + 1; //Operación muy común en cualquier lenguaje de programación, que tiene sintaxis específica
 		
-		v_entero++; //Incremento en 1 unidad DESPUES DE SER UTILIZADA
-		v_entero--; //Decremento en 1 unidad DESPUES DE SER UTILIZADA
+		v_int++; //Incremento en 1 unidad DESPUES DE SER UTILIZADA
+		v_int--; //Decremento en 1 unidad DESPUES DE SER UTILIZADA
 		
-		++v_entero; //Incremento en 1 unidad para la variable ANTES DE SER UTILIZADA
-		--v_entero; //Decremento en 1 unidad para la variable ANTES DE SER UTILIZADA
+		++v_int; //Incremento en 1 unidad para la variable ANTES DE SER UTILIZADA
+		--v_int; //Decremento en 1 unidad para la variable ANTES DE SER UTILIZADA
 		
-		
-		v_entero = 0;
-		System.out.println("soy v_entero y valgo: "+ v_entero); //aquí usamos la variable; la mostramos
-		System.out.println("soy v_entero++ y valgo: " + v_entero++); //mostramos su valor y la incrementamos
-		v_entero = 0;
-		System.out.println("soy ++v_entero y valgo: " + (++v_entero)); //incrementamos su valor y la mostramos;
+		//Veamos un ejemplo 
+		v_int = 0;
+		System.out.println("soy v_entero y valgo: "+ v_int); //aquí usamos la variable; la mostramos
+		System.out.println("soy v_entero++ y valgo: " + v_int++); //mostramos su valor y la incrementamos
+		v_int = 0;
+		System.out.println("soy ++v_entero y valgo: " + (++v_int)); //incrementamos su valor y la mostramos;
 		
 		// Otro ejemplo de diferencia entre ++x y x++
 		
-		v_entero = 0;
+		v_int = 0;
 		temporal = 0;
-		temporal = v_entero++;
+		temporal = v_int++;
 		System.out.println("soy temporal = v_entero++ y valgo:" + temporal);
 		
-		v_entero = 0;
+		v_int = 0;
 		temporal = 0;
-		temporal = ++v_entero;
+		temporal = ++v_int;
 		System.out.println("soy temporal = ++v_entero y valgo:" + temporal);
 		
 		//Complicarse la vida innecesariamente con este tipo de operaciones
-		v_entero = 0;
-		v_entero = v_entero++;
-		System.out.println("soy v_entero y valgo:" + v_entero);
+		v_int = 0;
+		v_int = v_int++;
+		System.out.println("soy v_entero y valgo:" + v_int);
 		
 		//El compilador hace esto
-		v_entero =0;
-		temporal = v_entero;
-		v_entero++;
-		v_entero = temporal;
-		System.out.println("soy v_entero y valgo:" + v_entero);
+		v_int =0;
+		temporal = v_int;
+		v_int++;
+		v_int = temporal;
+		System.out.println("soy v_entero y valgo:" + v_int);
 		
 		//En este caso no hay mucha complicación
-		v_entero = 0;
-		v_entero = ++v_entero;
-		System.out.println("soy v_entero y valgo:" + v_entero);
+		v_int = 0;
+		v_int = ++v_int;
+		System.out.println("soy v_entero y valgo:" + v_int);
 	
 		//Complicarse mucho la vida con este tipo de operacioes
 		
-		v_entero = 0;
-		v_entero = (v_entero++) + (v_entero++) + (v_entero++); //0 + (1) + (2)
-		System.out.println("Soy v_entero complicado y valgo: " + v_entero);
+		v_int = 0;
+		v_int = (v_int++) + (v_int++) + (v_int++); //0 + (1) + (2)
+		System.out.println("Soy v_entero complicado y valgo: " + v_int);
 		
-		v_entero = 0;
-		v_entero = (++v_entero) + (++v_entero) + (++v_entero); //Evitar este tipo de operaciones (1) + (2) + (3)
-		System.out.println("Soy v_entero chulo porras y valgo: " + v_entero);
+		v_int = 0;
+		v_int = (++v_int) + (++v_int) + (++v_int); //Evitar este tipo de operaciones (1) + (2) + (3)
+		System.out.println("Soy v_entero chulo porras y valgo: " + v_int);
 		
 		//Las operaciones x++, ++x, --x, etc. mucho mejor si son sencillas. 
 	   

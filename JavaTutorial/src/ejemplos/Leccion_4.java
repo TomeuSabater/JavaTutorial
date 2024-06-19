@@ -29,10 +29,12 @@ public class Leccion_4 {
 		// CLASES; Recordar, son como moldes para definir objetos
 		
 		class Circulo {
+					
+			int x; // Atributo. Posición x en el plano. Variable de Instancia. Idepediente en cada Objeto 
+			int y; // Atributo. Posición y en el plano. Variable de Instancia. Idepediente en cada Objeto 
+			int radio; //Atributo. Radio del círculo. Variable der Insancia. Idepediente en cada Objeto
 			
-			int x; // Atributo. Posición x en el plano
-			int y; // Atributo. Posición y en el plano
-			int radio; //Atributo. Radio del círculo
+			static final String FIGURA = "Circulo"; //Static: Es la misma para todos los objetos. Final: Es una cte.  
 			
 		}
 		
@@ -46,12 +48,19 @@ public class Leccion_4 {
 		//Ahora tenemos dos objetos generados con el molde Circulo. 
 		
 		//Asignamos valores a los atributos de los objetos
+		//Recordamos que al ser variables de instancia, son independientes para cada objeto 
 		circulo1.x = 1; 
 		circulo1.y = 2;
 		circulo1.radio = 3; 
 		
+		circulo2.x = 4; 
+		circulo2.y = 5;
+		circulo2.radio = 6; 
+		
+		
 		//Podemos mostrar los atributos de cada objeto
-		System.out.println("circulo1.x = " + circulo1.x + " circulo1.y = " + circulo1.y + " circulo1.radio = " + circulo1.radio); 
+		System.out.println("Figura: " + Circulo.FIGURA + " circulo1.x = " + circulo1.x + " circulo1.y = " + circulo1.y + " circulo1.radio = " + circulo1.radio); 
+		System.out.println("Figura: " + Circulo.FIGURA +"circulo2.x = " + circulo2.x + " circulo2.y = " + circulo2.y + " circulo2.radio = " + circulo2.radio); 
 
 		//ELEMENTOS DE UNA CLASE
 		//Definimos la información que almacena un objeto mediante sus atributos. 
@@ -65,7 +74,6 @@ public class Leccion_4 {
 			int precio;
 			boolean electrico;
 			boolean hibrido;
-			
 		}
 		
 		//Instanciamos la clase Vehiculo para crear Objetos

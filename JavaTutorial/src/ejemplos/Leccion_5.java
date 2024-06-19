@@ -74,7 +74,7 @@ public class Leccion_5 {
 			//Además de los atributos de la Super Clase Bicycle
 			//también tendremos los siguiente nuevos atributos
 			
-			static final int GEARS = 6; //Número de marchas, es una constante
+			static final int NUM_GEARS = 6; //Número de marchas, estática y constante
 			
 			private int cadence = 0; //Nuevo atributo cadencia
 			private float speed = 0; //Nuevo atributo velocidad
@@ -115,8 +115,8 @@ public class Leccion_5 {
 			//Método para aumentar/disminuir de marcha
 			public void change_gear(int value) {
 				//Controlamos el máximo y mímio de marchas
-				if ((this.gear + value) > GEARS) {
-					this.gear = GEARS;
+				if ((this.gear + value) > NUM_GEARS) {
+					this.gear = NUM_GEARS;
 				} else if ((this.gear + value ) < 1) {
 					this.gear = 1; 
 				} else {
