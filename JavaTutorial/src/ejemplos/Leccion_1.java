@@ -7,7 +7,7 @@ public class Leccion_1 {
 
 		// TIPOS DE DATOS EN JAVA; Simples y Complejos (Arrays) 
 		// Operaciones básicas: Asignación, ++x, --x, x++, x--
-		// ESTRUCTURAS DE Repeticion; FOR
+		// ESTRUCTURAS DE REPETICION; for
 	
 		//Números enteros
 		byte v_byte = 0; //Entero con signo -128 a +127
@@ -68,7 +68,6 @@ public class Leccion_1 {
 		char[][][] m_caracteres = new char[C_NUM][C_NUM][C_NUM]; // Matriz de tres dimensiones de caracters de NUMxNUMxNUM 
 
 		
-		
 		//OPERACIONES BASICAS. 
 		System.out.println("*********** OPERACIONES BASICAS"); 
 		
@@ -115,81 +114,90 @@ public class Leccion_1 {
 		
 		//Veamos un ejemplo 
 		v_int = 0;
-		System.out.println("soy v_entero y valgo: "+ v_int); //aquí usamos la variable; la mostramos
-		System.out.println("soy v_entero++ y valgo: " + v_int++); //mostramos su valor y la incrementamos
+		System.out.println("soy v_entero y valgo: " + v_int); //mostramos su valor
+		System.out.println("soy v_entero++ y valgo: " + v_int++); //mostramos su valor y luego la incrementamos
+		System.out.println("soy v_entero y valgo: " + v_int); //mostramos su nuevo valor
+		
 		v_int = 0;
 		System.out.println("soy ++v_entero y valgo: " + (++v_int)); //incrementamos su valor y la mostramos;
+		System.out.println("soy v_entero y valgo: " + v_int); //mostramos su nuevo valor
+			
+		// Veamos otros ejemplos de diferencia entre ++x y x++
 		
-		// Otro ejemplo de diferencia entre ++x y x++
-		
-		v_int = 0;
-		temporal = 0;
+		v_int = temporal = 0; 
 		temporal = v_int++;
 		System.out.println("soy temporal = v_entero++ y valgo:" + temporal);
+		System.out.println("soy v_entero  = " + v_int); 
 		
-		v_int = 0;
-		temporal = 0;
+		v_int = temporal = 0;
 		temporal = ++v_int;
 		System.out.println("soy temporal = ++v_entero y valgo:" + temporal);
+		System.out.println("soy v_entero  = " + v_int); 
 		
-		//Complicarse la vida innecesariamente con este tipo de operaciones
+		
+		//Se recomienda no complicar innecesariamente este tipo de operaciones
 		v_int = 0;
 		v_int = v_int++;
-		System.out.println("soy v_entero y valgo:" + v_int);
+		System.out.println("soy v_int y valgo:" + v_int);
 		
-		//El compilador hace esto
-		v_int =0;
+		//Para entenderlo mejor, podemos decir que el compilador hace esta secuencia: 
+		v_int = 0;
 		temporal = v_int;
 		v_int++;
 		v_int = temporal;
-		System.out.println("soy v_entero y valgo:" + v_int);
+		System.out.println("soy v_entero y valgo:" + v_int + "soy temporal y valgo:" + temporal);
 		
 		//En este caso no hay mucha complicación
 		v_int = 0;
 		v_int = ++v_int;
-		System.out.println("soy v_entero y valgo:" + v_int);
+		System.out.println("soy v_int y valgo:" + v_int);
 	
-		//Complicarse mucho la vida con este tipo de operacioes
-		
+		//Ejemplo de cómo complicar innecesariamente el código con este tipo de operacioes
 		v_int = 0;
 		v_int = (v_int++) + (v_int++) + (v_int++); //0 + (1) + (2)
-		System.out.println("Soy v_entero complicado y valgo: " + v_int);
-		
+		System.out.println("Soy v_int complicado y valgo: " + v_int);
+			
 		v_int = 0;
 		v_int = (++v_int) + (++v_int) + (++v_int); //Evitar este tipo de operaciones (1) + (2) + (3)
 		System.out.println("Soy v_entero chulo porras y valgo: " + v_int);
 		
-		//Las operaciones x++, ++x, --x, etc. mucho mejor si son sencillas. 
+
+		//Las operaciones x++, ++x, --x, etc. es altamenterecomendables 
+		//que sean sencillas, de todas maneras, si existe un optimizador de código
+		//acabará reorganizándolo. No escatiméis en usar más pasos si queda más legible 
 	   
+		
 		
 		//ESTRUCTURA DE CONTROL
 		
 		//FOR --> Repetición, bucle, iteración
 		 
-		//Un For Repite las instrucciones que controla
+		//Un For Repite el bloque de  instrucciones que están bajo su control
 		
-		/*
+		/* Sintaxis
 		
-		for (inicialización; control; acción de cada iteración) {}
-		
-		for (;;)  {}
-		
-		for (;;System.out.println("hola")) {}
-		
-		for (;;System.out.print("no me canso de decir")) {
-			System.out.println(" hola");
-		}
-		
-        for (byte i =0; ; ) {
-        	System.out.println(i++);
-        }
-		
-		for (byte i =0; ; i++) {
-			System.out.println(i);
-		}
+			for (inicialización; control; acción de cada iteración) {}
+			
+			for (;;)  {}
+			
+			for (;;System.out.println("hola")) {}
+			
+			for (;;System.out.print("no me canso de decir")) {
+				System.out.println(" hola");
+			}
+			
+	        for (byte i =0; ; ) {
+	        	System.out.println(i++);
+	        }
+			
+			for (byte i =0; ; i++) {
+				System.out.println(i);
+			}
+			
+		*/ 
 		
 		//Vamos a controlar el bucle para que no se salga de rango
-		for (byte i =0; ; i++) {
+		for (byte i = 0; ; i++) {
 			System.out.println(i);
 			if (i >= 127) {
 				break;
@@ -203,8 +211,7 @@ public class Leccion_1 {
 	    }
 		
 	    //Mejoramos un pelín la anterior estructura
-	    
-	    for (byte v2_byte =0; v2_byte <= 100;) {
+	    for (byte v2_byte = 0; v2_byte <= 100;) {
 			System.out.println(v2_byte++);
 	    }
 	    
@@ -213,7 +220,7 @@ public class Leccion_1 {
 		for (;;) {
 			System.out.println(j);
 			j++;
-			if (j >= 127) {
+			if (j == 127) {
 				break;
 			}
 		}
@@ -222,6 +229,7 @@ public class Leccion_1 {
 		for(byte k = 0; k < 127; k++) {
 			System.out.println("Soy k y valgo: " + k);
 		}
+		
 
 		//Aprovechamos la estructura del FOR
 		j = 0;
@@ -234,123 +242,112 @@ public class Leccion_1 {
 		for (byte r = 0; r != 0; r++) {
 			System.out.println("Nunca me ejecuto");
 		}
-		//NOS PARAMOS CON EL FOR, SIGUIENTE DIA DAREMOS EL DO WHILE()
 		
 	
 	  //MANEJAMOS ARRAYS
 	    
-	  //Definimos un array que luego lo vamos a ustilizar. 
-	  int[] a_enteros2 = new int[C_NUM]; //Array de enteros de 1 dimension de C_NUM posiciones
+	  //Definimos un array que luego lo vamos a utilizar. 
+	  // int[] a_enteros = new int[C_NUM]; //Recordamos su definición anterior 
 	  
-	  //REllenamos y mostramos
-	  a_enteros2[0] = 0;
-	  a_enteros2[1] = 1;
-	  a_enteros2[2] = 2;
-	  a_enteros2[3] = 3;
-	  a_enteros2[4] = 4;  
+	  //Rellenamos manualmente y mostramos su contenido 
+	  a_enteros[0] = 0;
+	  a_enteros[1] = 1;
+	  a_enteros[2] = 2;
+	  a_enteros[3] = 3;
+	  a_enteros[4] = 4;  
 
-	  System.out.println("a_enteros2[0] = " +  a_enteros2[0]);
-	  System.out.println("a_enteros2[1] = " +  a_enteros2[1]);
-	  System.out.println("a_enteros2[2] = " +  a_enteros2[2]);
-	  System.out.println("a_enteros2[3] = " +  a_enteros2[3]);
-	  System.out.println("a_enteros2[4] = " +  a_enteros2[4]);
-	  
+	  System.out.println("a_enteros[0] = " +  a_enteros[0]);
+	  System.out.println("a_enteros[1] = " +  a_enteros[1]);
+	  System.out.println("a_enteros[2] = " +  a_enteros[2]);
+	  System.out.println("a_enteros[3] = " +  a_enteros[3]);
+	  System.out.println("a_enteros[4] = " +  a_enteros[4]); 
+  
 	  //Rellenamos de una manera más inteligente y mostramos
 	  v_byte = 0;
-	  a_enteros2[v_byte] = v_byte++;
-	  a_enteros2[v_byte] = v_byte++;
-	  a_enteros2[v_byte] = v_byte++;
-	  a_enteros2[v_byte] = v_byte++;
-	  a_enteros2[v_byte] = v_byte++; 
+	  a_enteros[v_byte] = v_byte++;
+	  a_enteros[v_byte] = v_byte++;
+	  a_enteros[v_byte] = v_byte++;
+	  a_enteros[v_byte] = v_byte++;
+	  a_enteros[v_byte] = v_byte++; 
 	  
 	  v_byte = 0;
-	  System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[v_byte++]);
-	  System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[v_byte++]);
-	  System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[v_byte++]);
-	  System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[v_byte++]);
-	  System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[v_byte++]);
+	  System.out.println("a_enteros[" + v_byte + "] = " +  a_enteros[v_byte++]);
+	  System.out.println("a_enteros[" + v_byte + "] = " +  a_enteros[v_byte++]);
+	  System.out.println("a_enteros[" + v_byte + "] = " +  a_enteros[v_byte++]);
+	  System.out.println("a_enteros[" + v_byte + "] = " +  a_enteros[v_byte++]);
+	  System.out.println("a_enteros[" + v_byte + "] = " +  a_enteros[v_byte++]);
 	  
-	  //Ejemplo con (++v_byte)
+	  //Mismo ejemplo con (++v_byte)
 	  v_byte = -1; System.out.println();
 	  //System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[v_byte++]); //No Funciona
 	  //System.out.println("a_enteros2[" + v_byte + "] = " +  a_enteros2[++v_byte]); //No funciona
 	  //System.out.println("a_enteros2[" + (++v_byte) + "] = " +  a_enteros2[++v_byte]); //No funciona
 	  
-	  System.out.println("a_enteros2[" + (++v_byte) + "] = " +  a_enteros2[v_byte]); 
-	  System.out.println("a_enteros2[" + (++v_byte) + "] = " +  a_enteros2[v_byte]); 
-	  System.out.println("a_enteros2[" + (++v_byte) + "] = " +  a_enteros2[v_byte]); 
-	  System.out.println("a_enteros2[" + (++v_byte) + "] = " +  a_enteros2[v_byte]); 
-	  System.out.println("a_enteros2[" + (++v_byte) + "] = " +  a_enteros2[v_byte]); 
+	  System.out.println("a_enteros[" + (++v_byte) + "] = " +  a_enteros[v_byte]); 
+	  System.out.println("a_enteros[" + (++v_byte) + "] = " +  a_enteros[v_byte]); 
+	  System.out.println("a_enteros[" + (++v_byte) + "] = " +  a_enteros[v_byte]); 
+	  System.out.println("a_enteros[" + (++v_byte) + "] = " +  a_enteros[v_byte]); 
+	  System.out.println("a_enteros[" + (++v_byte) + "] = " +  a_enteros[v_byte]); 
 
-
-      //Vamos a rellenarlo con un FOR	  
-	  v_byte = 0; System.out.println();
-	  for (;;) {
-		  a_enteros2[v_byte] = v_byte;
-		  v_byte++;
-		  if (v_byte >= 4) {
-			  break;
-		  }
-	  }
+	  //Vamos a rellenarlo con un FOR
+	  //siendo la manera más "normal" o abitual
 	  
 	  v_byte = 0;
 	  for (;;) {
-		  System.out.println(a_enteros2[v_byte]);
+		  System.out.println(a_enteros[v_byte]);
 		  v_byte++;
 		  if (v_byte >= 4) {
 			  break;
 		  }
 	  }
 	  
-	  //Rellenamos aprovechando la estructura del for
+	  //Podemos saber la longitud de un array
+	  System.out.println("Soy a_enteros y tengo " + a_enteros.length + " posiciones"); 
+	  
+	  //Rellenamos aprovechando la estructura del for y su longitud
 	  for (v_byte = 0; v_byte < a_enteros.length; v_byte++) {
-		  a_enteros2[v_byte] = v_byte;
-		  System.out.println("a_enteros[" + v_byte + "] = " + a_enteros2[v_byte]);
+		  a_enteros[v_byte] = v_byte;
+		  System.out.println("a_enteros[" + v_byte + "] = " + a_enteros[v_byte]);
 	  }
 	  
-	  //Recorremos de manera inversa
+	  //Recorremos el array de manera inversa
 	  System.out.println();
-	  for (int indice = a_enteros2.length - 1; indice >= 0; indice--) {
-		  System.out.println("a_enteros[" + indice + "] = " + a_enteros2[indice]);
+	  for (int indice = a_enteros.length - 1; indice >= 0; indice--) {
+		  System.out.println("a_enteros[" + indice + "] = " + a_enteros[indice]);
 		  
 	  }
-	  
 	  
 	  //Recorrer un Array es una operación muy común en programación
 	  //JAVA tiene una for "especial" para recorrer un array (extraer sus valores en orden ascendente)
 	  
-	  for (int variable : a_enteros2) {
+	  for (int variable : a_enteros) {
 		  System.out.println(variable);
 	  }
-	
+	   
 	  for (boolean variable : a_booleanos) {
 		  System.out.println(variable);
 	  }
 	  
-	  
-	  //Array puede ser de booleanos, enteros, carateres
-	  
+	  //Un array puede ser de booleanos, enteros, carateres
+	  //Ejemplo con array de Strings
 	  String[] dias_semana = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
 	  
 	  for (String variable : dias_semana) {
 		  System.out.println(variable);
 	  }
 	  
-	  //El problema de recorrer un Sring al estilo java es que no tiene control sobre ello
+	  //El problema de recorrer un array al estilo java es que no tienes control sobre ello
 	  //por ejemplo, muestrame sólo los dias laborales. 
 	  
 	  v_byte = 0;
 	  for (String variable : dias_semana) {
 		  System.out.println(variable);
-		  if (v_byte++ > 3) {
+		  if (variable == "Jueves") 
 			  break;
-		  }
 	  }
-	  
-	  //Siguiente lección, Arrays de 2 dimensiones, y DO WHILE()
-	  
-*/
-	}
 	
-
-}
+	
+	} // public static void main
+	  
+} // public class Leccion_1 
+	
