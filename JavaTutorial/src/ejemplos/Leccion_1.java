@@ -1,32 +1,39 @@
 package ejemplos;
 
 public class Leccion_1 {
-	
-	
+		
 	public static void main(String[] args) {
 
 		// TIPOS DE DATOS EN JAVA; Simples y Complejos (Arrays) 
 		// Operaciones básicas: Asignación, ++x, --x, x++, x--
 		// ESTRUCTURAS DE REPETICION; for
 	
+		// *********************************** TIPOS DE DATOS SIMPLES
+		
 		//Números enteros
 		byte v_byte = 0; //Entero con signo -128 a +127
 		short v_short = 0; //Entero con signo -32768 a +32767
-		int v_int = 0; //Entero con signo -2147483648 a +2147483648
-		long v_long = 0; //Entero con signo 
-		long creditCardNumber = 1234_5678_9012_3456L; //Underscore es para mejora visual 
+		int v_int = 0; //Entero con signo -214.7483.648 a +214.748.3648 (32-bit signed) 
+		int v_dni = 43_026_097; //Entero con undescore para mejorar su visualización 
+		long v_long = 0; //Entero con signo 64-bit. Minimum value of -2^63 and a maximum value of 2^63-1
+		long creditCardNumber = 1234_5678_9012_3456L; //Underscore es para mejora visualizarlo  
 		
 		System.out.println("v_byte = " + v_byte); 
 		System.out.println("v_short = " + v_short); 
 		System.out.println("v_int = " + v_int); 
+		System.out.println("v_dni = " + v_dni); 
 		System.out.println("v_long = " + v_long); 
 		System.out.println("creditCardNumber = " + creditCardNumber); //Se muestra sin el símbolo "_"
 				
 		//Números reales
-		float v_float = 0.00f; //Real con precisión simple
-		double v_double = 3.14d; //Real de precisión doble
+		float v_float = 0.00f; //Real con precisión simple (32-bit float literal)
+		float pi = 3.1415f; // Ejemplo de real simple
+		double v_double = 3.14d; //Real de precisión doble (64-bit double literal)
+		v_double = 123.4; //Ejemplo de real doble
+		v_double = 1.234e2; //Ejemplo de real doble
 		
 		System.out.println("v_float = " + v_float); 
+		System.out.println("pi = " + pi); 
 		System.out.println("v_double = " + v_double); 
 		
 		//Valores lógicos
@@ -37,18 +44,24 @@ public class Leccion_1 {
 		System.out.println("v_boolean = " + v_booleanf); 
 		
 		//Carácteres
-		char v_char = 'X'; //Caracter Unicode
-		String v_cadena = "Bartolomé Sabater"; //Cadena de carácteres
+		char v_char = 'X'; //Caracter. 16-bit Unicode character
+		String v_cadena = null; //Cadena de carácteres de longitud variable. Puede ser null.  
+		v_cadena = "Bartolomé Sabater"; // Ejemplo de cadena 
+		String v_nif = "43.026.097-C"; // Ejemplo de uso de cadena
 		
 		System.out.println("v_char = " + v_char); 
 		System.out.println("v_cadena = " + v_cadena); 
+		System.out.println("v_nif = " + v_nif);
 			
-		//Constantes
+		//Constantes, valor fijo inmutable que se asigna en momento de creación
 		final int C_NUM = 5;
 		final boolean C_VERDADERO = true;
 		final char C_LAX = 'X'; 
 		final String MI_NOMBRE = "Bartolomé"; 
 		final float PI = 3.1421f;  
+		
+		// C_NUM = 3; Muestra un error, una CTE no puede alterar su contenido
+		// C_VERDADERO = false; Muestra un error. 
 		
 		System.out.println("C_NUM = " + C_NUM); 
 		System.out.println("C_VERDADERO = " + C_VERDADERO); 
@@ -57,16 +70,25 @@ public class Leccion_1 {
 		System.out.println("PI = " + PI); 
 		
 		
+		// *********************************** TIPOS DE DATOS COMPLEJOS (Arrays)
+		
+				
 		//Tipos de datos complejos ARRAYS 
-		int[] a_enteros = new int[C_NUM]; // Vector de enteros de NUM posiciones
-		boolean[] a_booleanos = new boolean[C_NUM]; //Vector de booleanos de NUM posiciones
-		char[] a_caracteres = new char[C_NUM]; //Vector de caracters de NUM posiciones
-		String[] a_cadenas = new String[C_NUM]; //Vector de cadenas de caracteres de NUM posiciones
+		//Al ser un objeto se utiliza la instanciación para definirlos
+		
+		int[] a_enteros; // Paso 1: Definimos un array de enteros, sin definir cuántos elementos entero contiene
+		a_enteros = new int[C_NUM];  //Paso 2: Definimos cuántos elementos contiene, usamos la CTE C_NUM 
+		boolean[] a_booleanos = new boolean[C_NUM]; //Definición en un paso. Vector de booleanos de NUM posiciones
+		char a_caracteres[] = new char[C_NUM]; //Vector de caracters de NUM posiciones. Ejemplo en 1 paso y corchetes después nombre. 
+		String a_cadenas[] = new String[C_NUM]; //Vector de cadenas de caracteres de NUM posiciones. Ejemplo en 1 paso y corchetes después nombre. 
 		
 		int[][] m_enteros = new int[C_NUM][C_NUM]; //Matriz de dos dimensiones de enteros de NUMxNUM posciones
-		boolean[][] m_booleanos = new boolean[C_NUM][C_NUM]; //Matriz de dos dimensione de booleanos de NUMxNUM
+		boolean m_booleanos[][] = new boolean[C_NUM][C_NUM]; //Matriz de dos dimensione de booleanos de NUMxNUM. Corchetes después nombre
 		char[][][] m_caracteres = new char[C_NUM][C_NUM][C_NUM]; // Matriz de tres dimensiones de caracters de NUMxNUMxNUM 
 
+		
+		
+		// *********************************** OPERACIONES BÁSICAS
 		
 		//OPERACIONES BASICAS. 
 		System.out.println("*********** OPERACIONES BASICAS"); 
@@ -167,6 +189,7 @@ public class Leccion_1 {
 		//acabará reorganizándolo. No escatiméis en usar más pasos si queda más legible 
 	   
 		
+		// *********************************** ESCTRUCTURAS DE CONTROL: FOR
 		
 		//ESTRUCTURA DE CONTROL
 		
@@ -245,6 +268,7 @@ public class Leccion_1 {
 		
 	
 	  //MANEJAMOS ARRAYS
+	
 	    
 	  //Definimos un array que luego lo vamos a utilizar. 
 	  // int[] a_enteros = new int[C_NUM]; //Recordamos su definición anterior 
@@ -345,6 +369,8 @@ public class Leccion_1 {
 		  if (variable == "Jueves") 
 			  break;
 	  }
+	  
+	  // Ver Arrays.java con código ejemplo de manipuación avanzada de arrays. 
 	
 	
 	} // public static void main
