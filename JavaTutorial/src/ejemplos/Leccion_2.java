@@ -7,7 +7,7 @@ public class Leccion_2 {
 	public static void main(String[] args) {
 		
 		// ESTRUCTURAS DE CONTROL; If, If Else, If Else If
-		// ESTRUCTURA DE REPETICION: DO WHILE
+		// ESTRUCTURA DE REPETICION: Do While
 		// OPERACIONES DE CAPTURA DE NÚMEROS POR ENTRADA DE USUARIO
 				
 		//Estructuras de Repeticion DO WHILE
@@ -54,8 +54,7 @@ public class Leccion_2 {
 			System.out.println(v_entero++);
 		} while (v_entero < 10);
 		
-		
-		
+				
 		//La diferencia entre un For y un Do While
 		//Do While no hay inicializaciones
 		//Do While nosotros controlamos el incremento
