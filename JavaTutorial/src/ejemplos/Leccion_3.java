@@ -221,9 +221,7 @@ public class Leccion_3 {
 			}
 
 		} while (v_nombre != "Fin");
-		System.out.println("Fin"); 
-		entrada.close();
-		
+		System.out.println("Fin"); 		
 		*/ 
 		
 		//BREAK CONTINUE
@@ -281,8 +279,8 @@ public class Leccion_3 {
 			}
 			puesto++;
 		}
-		entrada.close();
 		
+		entrada.close(); //Cerramos input. 
 		
 	} // public static void main
 
