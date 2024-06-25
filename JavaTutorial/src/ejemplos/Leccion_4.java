@@ -4,9 +4,9 @@ public class Leccion_4 {
 
 
 	public static void main(String[] args) {
+		
 		// Introducción a CLASES Y OBJETOS. 
-		
-		
+				
 		//Una CLASE es un tipo de dato complejo. 
 		//Un OBJETO es un elemento que se crea a partir de la CLASE
 		
