@@ -4,16 +4,25 @@ public class Leccion_5 {
 
 	public static void main(String[] args) {
 
-		// Introducción a CLASES Y OBJETOS. 
-		// Concepto de HERENCIA (Inheritance)
+		// Introducción_II a CLASES Y OBJETOS. 
+		
+		// Concepto de Herencia (Inheritance)
+		// Métodos Privados 
+		// Shadowing en Constructores y Setters
 		
 		class Bicycle {
 			
+			//Constantes de la Clase 
+			static final String ELEMENTO = "Bicycle"; 
+			
+			//Atributos de la Clase
 			private String brand; 
 			private String model; 
 			private boolean ebike = false; //Asignamos un valor por defecto
 					
-			//Método constructor, mismo nombre que la clase, usamos los setters
+			//Método constructor, mismo nombre que la clase, y usamos los setters
+			//Dar el nombre del atributo al parámetro se denomina Shadowing
+			//Al poder dificultar el código, solamente se suele usar en constructores o setters
 			public Bicycle (String brand, String model, boolean ebike) {
 				
 				set_brand(brand); 
@@ -47,7 +56,7 @@ public class Leccion_5 {
 			//Método públicos 
 			public void show_bicycle() {
 				
-				System.out.println("Bicycle Details *******");
+				System.out.println(Bicycle.ELEMENTO + " Details *******");
 				System.out.println("Brand : " + get_brand());
 				System.out.println("Model : " + get_model());
 				System.out.println("e_Bike: " + get_ebike()); 
@@ -55,12 +64,11 @@ public class Leccion_5 {
 			
 		} //class Bicycle 
 		
-		//Creamos una bicicleta
+		//Creamos algunas bicicletas
 		Bicycle bici1 = new Bicycle("Orbea", "Rallón", false);
 		Bicycle bici2 = new Bicycle("Lapierre", "Overvolt", true); 
 		bici1.show_bicycle();
 		bici2.show_bicycle(); 
-		
 		
 		//Vamos a mejorar la Clase Bicycle
 		//Pero para ellos aplicaremos el concepto de herencia (inheritance) 
@@ -85,7 +93,7 @@ public class Leccion_5 {
 				super(brand, model, ebike);
 			}
 			
-			//Getters, uno para cada nuevo atributo 
+			//Getters, uno para cada nuevo atributo
 			public int get_cadence() {
 				return this.cadence;
 			}
@@ -96,25 +104,24 @@ public class Leccion_5 {
 				return this.gear; 
 			}
 			
-			//Setters
-			//No existen como tales puesto que no permitiremos asignar
-			//de manera "directa" estos valores
+			//Setters, no existen puesto que no permitiremos asignar de manera "directa" estos valores
+			//En su lugar, ofreceremos métodos
 						
-			//Aumento de velocidad no es posible invocarlo 
-			//desde el exterior, es de tipo privado
+			//Método privado: No es posible invocarlo desde el exterior del Objeto
+			//El método es llamado con parámetros
 			private void change_speed(int value) {
 				speed += (value * 0.3); 
 			}
 			
-			//Método para aumentar/disminuir la cadencia
+			//Método público para aumentar/disminuir la cadencia
 			public void change_cadence(int value) {
 				cadence += value; 
-				change_speed(value);
+				change_speed(value); //invocamos el método privado
 			}
 			
-			//Método para aumentar/disminuir de marcha
+			//Método público para aumentar/disminuir de marcha
 			public void change_gear(int value) {
-				//Controlamos el máximo y mímio de marchas
+				//Controlamos el máximo y mínimo de marchas
 				if ((this.gear + value) > NUM_GEARS) {
 					this.gear = NUM_GEARS;
 				} else if ((this.gear + value ) < 1) {
@@ -122,10 +129,10 @@ public class Leccion_5 {
 				} else {
 					this.gear += value; 
 				}
-				change_speed(value);
+				change_speed(value); //invocamos el método privado
 			}
 			
-			//Método mostrar valores, utilizaremos el de la Super Clase
+			//Método público para mostrar valores, utilizaremos el de la Super Clase
 			public void show_bicyle() {
 				
 				super.show_bicycle(); //Utilizamos el método de la Super Clase
