@@ -5,6 +5,7 @@ public class Leccion_6 {
 	public static void main(String[] args) {
 
 		// Introducción_III a CLASES Y OBJETOS. 
+		
 		// Paso por valor y por referencia en métodos
 		// Primitive arguments, such as an int or a double, are passed into methods by value.
 		// Reference data type parameters, such as objects, are also passed into methods by value. However, the values of the object's fields can be changed in the method
@@ -83,6 +84,7 @@ public class Leccion_6 {
 						
 				ci.setX(ci.getX() + deltaX); 
 				ci.setY(ci.getY() + deltaY);
+				ci = null; //Se pasan los parámetros por valor, c1 no es afectado. Java VM liberará los recursos de ci
 			}
 			
 		} // class UtilidadesCirculo
