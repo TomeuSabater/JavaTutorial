@@ -14,6 +14,7 @@ public class Leccion_4 {
 		// Atributos Privados
 		// Métodos Públicos
 		// Sobrecarga de métodos
+		// Palabra reservada "this"
 				
 		//Podemos ver una CLASE es un tipo de dato complejo. 
 		//Y un OBJETO como un elemento que se crea a partir de la CLASE
@@ -120,6 +121,8 @@ public class Leccion_4 {
 				boolean hibrido) {
 				
 					//Se usa la palabra "this" para diferenciar los atributos del objeto de los parámetros
+					//Los parámetros pueden llamarse como los atributos del objeto
+					//La palabra reservada "this" diferencia el atributo del objeto del parámetro
 					this.matricula = matricula; 
 					this.marca = marca;
 					this.modelo = modelo;

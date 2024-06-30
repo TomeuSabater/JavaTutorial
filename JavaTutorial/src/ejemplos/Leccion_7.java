@@ -1,6 +1,6 @@
 package ejemplos;
 
-public class Leccion_7 {
+class Leccion_7 {
 
 	public static void main(String[] args) {
 
@@ -12,6 +12,12 @@ public class Leccion_7 {
 		// 		Declaración, Instanciación e Inicialización de Objetos.  
 		// 		Uso del Objeto
 		// 		Destrucción del Objeto 
+		// Operador Ternario condición ? valor_si_verdadero : valor_si_falso
+		// Métodos void, return
+		// Métodos con Objetos como parámetros de entrada
+		// Métodos que retornasn Objetos
+		// Clases sin constructor (repositorios de métodos) 
+		// "This" en constructores
 		
 		class Point {
 			//Define un punto (x,y) en el espacio
@@ -57,10 +63,7 @@ public class Leccion_7 {
 		
 			//Métodos constructores x 5, Sobrecarga
 			public Rectangle() { //Sin valores
-				this.ancho = 0; 
-				this.alto = 0; 
-				this.origen = new Point(0,0); 
-				this.area = 0; 
+				this(0,0); //Llamamos a otro constructor
 			}
 			
 			public Rectangle(Point p) { //Solo punto de origen
@@ -91,15 +94,31 @@ public class Leccion_7 {
 				this.alto = h; 
 				this.area = getArea(); 
 			}
-			
-			
+						
 			//Métodos públicos
 			public int getArea() { //Calcula área del rectángulo
-				return (this.alto * this.ancho); 
+				//Ejemplo de utilización del operador ternario de Java
+				// Sintaxis:
+				//		condición ? valor_si_verdadero : valor_si_falso;
+				//  	String mensaje = (edad >= 18) ? “Eres mayor de edad” : “Eres menor de edad”;
+				
+				return (this.alto == 0 || this.ancho == 0) ? 0 : (this.alto * this.ancho);
+				
+				/* El código anterior substituye al siguiente bloque de código
+				if (this.alto == 0 || this.ancho == 0) {
+					return 0; 
+				} else {	
+					return (this.alto * this.ancho); 
+				} 
+				*/ 
+				//Es evidente que aplicando refactorización obtendríamos:
+				// return (this.alto * this.ancho);
 			}
+			
 						
 			public void moveRectangle(int dX, int dY) { //Desplaza el rectángulo 
 				this.origen.movePoint(dX, dY);
+				return; //Aún siendo un método "void" es posible añadir la cláusula return para indicar la finalización del método  
 			}
 			
 			public void showRectangle() {
@@ -108,6 +127,7 @@ public class Leccion_7 {
 				System.out.println("Ancho = " + this.ancho);
 				System.out.println("Alto = " + this.alto);
 				System.out.println("Área = " + this.area); 
+				return; //Aún siendo "void", es posible añadir la cláusula return para indicar la finalización del método 
 			}
 			
 		} //class Rectangulo
@@ -179,6 +199,44 @@ public class Leccion_7 {
 		r2 = null; 
 		r3 = null; 
 		System.out.println("Objetos destruidos"); 
+		
+		
+		//Un método puede recibir un Objeto como parámetro y también devolver un Objeto
+		//Ejemplo; Creamos una Clase Utiles para que nos proporcione métodos que gestionan Objetos
+		//De la Clase que definimos no nos interesará tanto los Objetos como sus métodos
+		//El Ojbeto que instanciamos de la Clase se puede ver como un contenedor de métodos genéricos
+		
+		class Utiles {
+						
+			//Método que calcula el área del rectángulo que define el Objeto Punto
+			public int areaPunto(Point a) {
+				
+				return Math.abs(a.x * a.y); //Valor absoluto de base * altura
+			}
+			
+			//Método que genera un nuevo Punto a partir de la resta de dos Puntos
+			public Point restaPuntos(Point a, Point b) {
+				
+				return new Point((a.x - b.x), (a.y - b.y));
+			}
+			
+		} //class Utiles
+		
+		//Ejemplos de uso de los métodos de la Clase Utiles
+		
+		Utiles ut = new Utiles(); //Objeto Utiles, del que usaremos sus métodos
+		Point pt1 = new Point(2,2); //Punto
+		Point pt2 = new Point(4,4); //Punto
+	
+		pt1.showPoint();
+		System.out.println("Area = " + ut.areaPunto(pt1)); //Area que define el Punto pt1
+		pt2.showPoint();
+		System.out.println("Area = " + ut.areaPunto(pt2)); //Area que define el Punto pt2
+	
+		Point pt3 = ut.restaPuntos(pt1, pt2); //Punto resultante de la resta del Punto pt1 y Punto pt2
+		pt3.showPoint();
+		System.out.println("Area = " + ut.areaPunto(pt3)); //Area que define el nuevo Punto pt3
+		
 
 	} //public static void main
 	
