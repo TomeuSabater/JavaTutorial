@@ -12,6 +12,8 @@ public class Leccion_8 {
 		// Access Control: public, protected, no-level (package-private), private. 
 		// Class Variables / Métodos : static (static fields o class variables, y métodos static invocables sin instanciar la Clase) 
 		// Constantes: static final (propiedades de static además de final que indica que su valor nunca cambiará) 
+		// Inicialización de: Variables / Atributos, Class variables.  
+		
 				
 		
 		// Control de acceso a los atributos y métodos de una Clase
@@ -19,6 +21,7 @@ public class Leccion_8 {
 		
 		// Dos niveles de acceso:
 		// Top Level: public or package-private (sin nivel explícito)
+		
 		// Member Level: public, private, protected o package-private (sin nivel explícito) 
 		
 		// Una Clase puede ser public, y será visible por todo, si no tiene nivel (package-private), es visible solamente dentro de su propio package 
@@ -32,7 +35,12 @@ public class Leccion_8 {
 		
 		// Variables static son compartidas por todos los Objetos y son variables de la Clase
 		// Métodos static se pueden invocar sin instanciar la Clase (sin crear un Ojbeto) y su uso más común es acceder a variables static
+		
+		// La inicialización de Atributos de una Clase es sencilla y pude hacerse en la definición de la clase o en el constructor 
+		// Para inicializar una variables static (Class variable), podemos usar los "static initialization blocks". 
 				
+		
+		
 		//Creamos una Class que contendrá un atributo static; será una variable de la Clase, todos los Objetos la comparten 
 
 		class Booking {
@@ -42,17 +50,30 @@ public class Leccion_8 {
 			
 			//Abributos del Objeto
 			private String nombre; 
-			private int precio; 
+			private int precio = 0; // Inicialización
 			private int numReserva; 
+		
+			//Atributos de la Clase
+			private static int numActualReservas = Booking.iniNumActualReservas(); //Contador de Reservas
 			
-			//Variables de Clase
-			private static int numActualReservas = 0; //Contador 
+			// Static initialization block
+			private static int iniNumActualReservas() {
 			
+					return 2024; //inicializa el número actual de reservas
+			}
+			
+			// Métodos static, permite invocarlo sin instanciar la Class
+			public static int getnumActualReservas() {
+				
+				return Booking.numActualReservas; 
+			}	
+			
+			// Constructor
 			public Booking (String nombre, int precio) {
 				
 				this.nombre = nombre; 
 				this.precio = precio;
-				this.numReserva = ++Booking.numActualReservas; //Asigna número de reserva
+				this.numReserva = ++Booking.numActualReservas; //Asigna número de reserva y actualiza contador
 			}
 			
 			// Métodos públicos 
@@ -63,18 +84,13 @@ public class Leccion_8 {
 			
 			public void showBooking() {
 				
-				System.out.println(Booking.ELEMENTO + " Número : " + this.numReserva);
+				System.out.println(Booking.ELEMENTO + " Número : " + this.getNumReserva());
 				System.out.println(this.nombre);
 				System.out.println(this.precio);
 			}
 			
-			// Métodos static, permite invocarlo sin instanciar la Class
-			public static int getnumActualReservas() {
-				
-				return Booking.numActualReservas; 
-			}
-			
 		} // public class booking
+		
 		
 		// Creamos dos reservas
 		Booking bk1 = new Booking("Tomeu Sabater", 1000);
@@ -89,7 +105,12 @@ public class Leccion_8 {
 		//Indagamos sobre el elemento
 		System.out.println("Elemento es : " + Booking.ELEMENTO); 
 		
-
+		//Inicialización de la static variable
+		Booking.numActualReservas = Booking.iniNumActualReservas(); 
+		System.out.println("Número actual de reservas :" + Booking.getnumActualReservas()); 
+		
+		//En la siguiente lección (Leccion_9_Ejercicio) veremos cómo podemos inicializar una static sin posibilidad de reinicialización
+		
 	} // void main
 
 } // public class Leccion_8 

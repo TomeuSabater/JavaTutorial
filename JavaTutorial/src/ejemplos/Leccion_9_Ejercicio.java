@@ -1,0 +1,232 @@
+package ejemplos;
+
+import java.time.LocalDate;
+
+public class Leccion_9_Ejercicio {
+
+	public static void main(String[] args) {
+				
+		// EJERCICIO CLASES Y OBJETOS. 
+
+		// Se trata de diseñar una Class Reserva aplicando lo visto hasta el momento
+		// La Reserva tiene como atributos comunes:
+		//		Número de reserva; compuesto por "Tipo/Año/Número"; 
+		//			Tipo; HTL si es de Hotel, VUE si es un vuelo, TRL si es un traslado
+		//			Año; Año en curso (del momento de la reserva, no de la fecha de consumo) 
+		//			Número; Es un número consecutivo del tipo de reserva
+		//			Ejemplos: "HTL/2024/0001", "HTL/2024/0002", "VUE/2024/001", "TRL/2024/0001",...
+		//		Pax; máximo 4 Ejemplo; [Bartolomé Sabater, Juan Pérez, Pep Gonella, Pepito Perez]
+		//		Fecha de Inicio/Llegada y Fecha de Fin/Salida; Ejemplo: 01-Agosto-2024, 05-Agosto-2024
+		// 		Precio sin Impuestos y Precios con Impuestos (IVA 21%); Ejemplo: 1.000, 1.210
+		// Atributos particulares:
+		//		Si es HTL: 
+		//			Dirección; Dirección postal del hotel
+		//			Tipo de Habitación: [S]imple, [D]oble, [T]riple
+		// 		Si es VUE:
+		//			A/P de salida: Código 3 letras aeropuerto de salida, Eje: PMI
+		//			A/P de llegada: Código 3 letras aeropuerto de llegada, Eje: MAD
+		//		Si es TRL:
+		//			Recogida: Lugar de Recogida, es una dirección
+		//			Destino: Lugar de Destino, es una dirección 
+		// Tiene que haber un método constructor
+		// Tiene que haber Getters y Setters para cada Atributo
+		// Tiene que haber un método que muestra el contenido de la reserva
+		// Típicamente, habría 5 reservas: el vuelo, el traslado y el hotel. 
+		// Los pasajeros toman un vuelo desde el a/p origen al a/p destino (reserva 1), a la llegada toman un traslado cuyo destino es el hotel (reserva 2), 
+		// una vez finalizada la estancia en el hotel (reserva 3) toman un traslado hasta el a/p destino (reserva 4) donde el un vuelo los devuelve al a/p origen (reserva 5) 
+		
+		
+		// Diseñaremos una Class Reserva que contendrá los elementos comunes y 3 sub Class para HTL, VUE y TRL cada una con los particulares
+	
+		//
+		class Reserva {
+			
+			// Ctes
+			private static final String ELEMENTO = "Reserva"; // Identifica el elemento 
+			private static final byte MAX_NUM_PAX = 4; // Numero máximo de pasajeros
+			private static final byte IVA = 21; // Impuestos aplicados
+			
+			// Atributos o Variables de Instancia
+			
+			// Número de la Reserva (De cada una de las reservas)
+			protected String numeroReserva = null; //Se rellenará en la sub clase, no puede ser private 
+			
+			// Pax, máximo de 4
+			private String[] pax = new String[Reserva.MAX_NUM_PAX];
+			
+			// Fechas Inicio/Llegada, Fin/Salida
+			private LocalDate fechaInicio;  // Inicio o Llegada, se podría inicializar con LocalDate.now();
+			private LocalDate fechaFin; // Fin o Salida, se podría inicializar con LocalDate.now();
+			
+			//Precio
+			private int precioNeto = 0; //Precio sin impuestos
+			private int precioBruto = 0; //Precio con impuestos
+						
+			// Método constructor
+			public Reserva(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, int neto) {
+				
+				//Asigna pax
+				this.asignaPax(pax1, pax2, pax3, pax4); // Asigna los pax 
+				
+				//Fechas Inicio y Fin
+				this.fechaInicio = LocalDate.parse(fInicio); 
+				this.fechaFin = LocalDate.parse(fFin); 			
+				
+				//Precios
+				this.precioNeto = neto; 
+				this.precioBruto = calculaBruto(this.precioNeto); 
+			}
+			
+			// Metodos Privados
+			// Asigna Pax
+			private void asignaPax(String p1, String p2, String p3, String p4) {
+				
+				this.pax[0] = p1; 
+				this.pax[1] = p2;
+				this.pax[2] = p3;
+				this.pax[3] = p4; 	
+			}
+			
+			// Calcula Precio Bruto
+			private int calculaBruto(int neto) {
+				
+				return (neto + ((neto * Reserva.IVA) / 100)); 
+			}
+			
+			// Métodos Públicos
+			
+			// Muestra las Fechas Inicio/Entrada Fin/Salida 
+			public void muestraFechas()  {
+				
+				System.out.println("Fecha Inicio : " + this.fechaInicio);
+				System.out.println("Fecha Fin :" + this.fechaFin); 
+			}
+						
+			// Muestra Pax
+			public void muestraPax() {
+				
+				byte contador = 0; 
+				for (String pasajero : this.pax) {
+				  System.out.println("Pasajero : " + ++contador + " " + pasajero);
+				}
+			}
+			
+			// Mostrar Reserva 
+			public void muestraReserva() {
+				
+				System.out.println(Reserva.ELEMENTO); 
+				muestraPax(); 
+				muestraFechas(); 
+				System.out.println("Precio Neto : " + this.precioNeto);
+				System.out.println("Precio Bruto: " + this.precioBruto); 
+			} // Mostrar Reserva
+			
+		} // Class Reserva 
+		
+		//Creamos una reserva y probamos los construido hasta ahora
+		Reserva r1;
+		r1 = new Reserva("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", 1000);
+		r1.muestraReserva(); 
+		
+		// Creamos ahora las 3 x Class para cada una de las Reservas Particulares
+		
+		
+		class ReservaHTL extends Reserva {
+			
+			// Ctes particulares de la Clase ReservaHTL
+			private static final String ELEMENTO = "Reserva Hotel"; // Identifica el elemento
+			private static final String TIPO_RESERVA = "HTL"; //Tipo de Reserva
+			
+			// Atributos de la Clase ReservaHTL
+			private static int numReservaHtl; 
+			static {
+				ReservaHTL.numReservaHtl = 0; 
+			}
+						
+			// Atributos o Variables de Instancia del Objeto ReservaHTL
+			private String direccionHtl = null; // Dirección Postal del Hotel
+			private char tipoHab = '\0';  //Tipo de Habitación: Simple, Doble, Triple
+
+			
+			// Método constructor
+			public ReservaHTL(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, String direccion, char habitacion, int neto) {
+				
+				// Llamamos al constructor de la Super Clase 
+				super(pax1, pax2, pax3, pax4, fInicio, fFin, neto);
+				
+				//Asignamos valores particuales para ReservaHTL
+				this.direccionHtl = direccion; 
+				this.tipoHab = habitacion; 
+				
+				//Asignamos número de reserva
+				this.numeroReserva = generaNuevoNumeroReserva(); 
+			}
+			
+			// Métodos static
+			
+			// Devuelve el número actual de Reservas de Hotel
+			public static int numReservasHotel() {
+				
+				return ReservaHTL.numReservaHtl; 
+			}
+			
+			// Métodos privados
+			
+			//Genera el número de reserva para la reserva de hotel 
+			private String generaNuevoNumeroReserva() {
+				
+				String numero = null;
+				LocalDate hoy = LocalDate.now(); // Fecha actual
+				int anyo = hoy.getYear(); //Obtenemos el año
+				String sanyo = String.valueOf(anyo); //Transformamos año en String
+				String numeroHlt = String.valueOf(++ReservaHTL.numReservaHtl); 
+				
+				numero = ReservaHTL.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt; 
+				return numero; 
+			} // dameNuevoNumeroReserva()
+			
+			// Métodos públicos
+			
+			//Mostrar Reserva 
+			public void muestraReserva() {
+				
+				super.muestraReserva(); //Llamamos al método de la Super Class
+				System.out.println(ReservaHTL.ELEMENTO); 
+				System.out.println("Número de Reserva :" + this.numeroReserva); 
+				System.out.println("Dirección : " + this.direccionHtl);
+				System.out.println("Tipo Habitación : " + this.tipoHab); 
+				
+			} // Mostrar Reserva
+			
+		} // class ReservaHTL
+		
+		//Hacemos algunas pruebas con ReservaHTL
+		
+		//Creamos una primera Reserva de Hotel
+		ReservaHTL r2;
+		r2 = new ReservaHTL("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", "Padre Ventura", 'D', 1000); 
+		r2.muestraReserva(); 
+		
+		//Comprobamos cuántas reservas de Hotel hay
+		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo " + ReservaHTL.ELEMENTO); 
+		
+		//Creamos una segunda Reserva de Hotel
+		ReservaHTL r3;
+		r3 = new ReservaHTL("Juan Pérez","Benito Boniato", null, null, "2024-08-15", "2024-09-17", "Juan Maragall", 'S', 3000); 
+		r3.muestraReserva(); 
+		
+		//Comprobamos cuántas reservas de Hotel hay
+		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo " + ReservaHTL.ELEMENTO); 
+
+		//Intentamos alterar el numReservasHotel
+		ReservaHTL.numReservaHtl++; 
+		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo " + ReservaHTL.ELEMENTO); 
+		
+		//Hemos podido alterar el valor porque estamos dentro de la misma class Leccion_9_Ejercicio
+		//Para aplicar correctamente el nivel de protección debemos separar cada clase en un ficheros separados.
+		//Realmente, estamos anidando Clases dentro de la Clase Leccion_9
+		//Lo haremos correctamente en la Lección_10, junto con las Class para ReservaVUE y ReservaTRL
+		
+	} // public static void main
+
+} // Leccion_9_Ejercicio
