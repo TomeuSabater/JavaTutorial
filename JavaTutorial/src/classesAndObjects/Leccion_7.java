@@ -1,4 +1,4 @@
-package ejemplos;
+package classesAndObjects;
 
 class Leccion_7 {
 
