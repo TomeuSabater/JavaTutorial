@@ -26,7 +26,7 @@ class Leccion_12_Ejercicio {
 		
 		//Creamos una segunda reserva
 		Reserva r2 = new Reserva("Pepito Pérez", "2024-08-15"); 
-		r2.muestraReserva(); //Obervamos que el número de reserva no ha sido consecutivo
+		r2.muestraReserva(); //Obervamos que el número de reserva ha sido consecutivo
 		
 		//Creamos una tercera reserva
 		Reserva r3 = new Reserva("Pepito Pérez", "2024-08-15"); 

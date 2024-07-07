@@ -6,6 +6,7 @@ public class Leccion_13_ejercicio {
 	public static void main(String[] args) {
 	
 		// Ejercicio de Control de Acceso
+		// Simplificación de Leccion_12_Ejercicio
 		
 		
 		// Intentamos hacerlo todo más sencillo

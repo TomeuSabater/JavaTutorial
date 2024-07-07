@@ -6,6 +6,8 @@ public class Leccion_15_Ejercicio {
 		
 		// Introducción_VII a CLASES Y OBJETOS. 
 		
+		// Simplificación de Leccion_14
+		
 		// Local Class
 		// Local classes are similar to inner classes because they cannot define or declare any static members.
 		// You cannot declare static initializers or member interfaces in a local class. 
