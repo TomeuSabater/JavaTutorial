@@ -6,7 +6,7 @@ public class Leccion_16 {
 	
 	// Anonymous Classes
 	// They enable you to declare and instantiate a class at the same time.
-	// They are like local classes except that they do not have a name.  Use them if you need to use a local class only once.
+	// They are like local classes except that they DO NOT HAVE A NAME.  Use them if you need to use a local class only once.
 	// Anonymous Classe implements and Interface or extends a Class. In the body, method declarations are allowed but statements are not.
 	// It must be part of a statement, This explains why there is a semicolon after the closing brace.
 	// An anonymous class has access to the members of its enclosing class.
@@ -22,7 +22,6 @@ public class Leccion_16 {
 				//Métodos públicos de la Interface 
 				public void greet();
 				public void greetSomeone(String someone); 
-				
 			}
 			
 			//Métodos públicos 

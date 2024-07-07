@@ -1,4 +1,4 @@
-package ejemplos;
+package languageBasics;
 
 public class Leccion_1 {
 		
