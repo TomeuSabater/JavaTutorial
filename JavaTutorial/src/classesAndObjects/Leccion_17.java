@@ -28,19 +28,23 @@ public class Leccion_17 {
 			Person(String name, String birthday, Sex sex) {
 				
 				this.name = name; 
-				this.birthday = LocalDate.parse(birthday);
+				this.birthday = LocalDate.parse(birthday); // Se espera un formato "yyy-mm-dd"
 				this.gender = sex; 
 			}
 			
-			//Métodos públicos			
-			public int getAge() {
-				
+			//Métodos 			
+			private int getAge() {
 				//Devuelve la edad estimada
 				LocalDate hoy = LocalDate.now(); // Fecha actual
 				return (hoy.getYear() - this.birthday.getYear()); 
 			}
 			
-			public void printPerson() {
+			private Sex getGender() {
+				// Devuelve Sex
+				return this.gender; 
+			}
+			
+			private void printPerson() {
 				
 				//Imprime los datos de la persona
 				System.out.println("Nombre : " + this.name);
@@ -52,39 +56,73 @@ public class Leccion_17 {
 					
 		} //class Person
 	
-		class RosterTest {
+		
+		// Interfaces
+		interface CheckPerson {
+			boolean testAge(Person p); 
+		}
+		
+		// Class que implemente el Interface
+		class CheckPersonEligibleForSelectiveService implements CheckPerson {
 			
-			interface CheckPerson {
-				boolean testAge(Person p); 
+			//Métodos 
+			public boolean testAge(Person p) {
+				
+				int age = p.getAge();
+				
+				return p.getGender() == Sex.MALE
+				&& age >= 50
+				&& age <= 60; 
 			}
-			
-			//Aproach 1 :  Create static Methods That Search for Members That Match One Characteristic
-			public static void printPersonsOlderThan(List<Person> roster, int age) {
+		} // class CheckPersonEligibleForSelectiveService
+		
+		// Implementa los métodos static que llamaremos desde main()
+		class RosterTest {
+		
+			//Aproach 1 :  Create static methods that search for members that match one characteristic
+			private static void printPersonsOlderThan(List<Person> roster, int age) {
 				
 				for (Person p: roster) {
 					if (p.getAge() >= age) {
 						p.printPerson();
 					}
 				}
-			} // public static void printPersonsOlderThan
+			} // private static void printPersonsOlderThan
 			
-			//Approach 2: Create More Generalized Search Methods
-			public static void printPersonsWithinAgeRange(List<Person> roster, int low, int high) {
+			//Approach 2: Create static methods that search using a more generalized search methods
+			private static void printPersonsWithinAgeRange(List<Person> roster, int low, int high) {
 			
+				int age = 0; //Contendrá la edad de la Person
 				for (Person p: roster) {
-					if (low <= p.getAge() && p.getAge() < high) {
+					age = p.getAge(); //Obtenemos la edad de la Person
+					if (low <= age && age < high) {
 						p.printPerson();
 					}
 				}
-			} // public static void printPersonsWithinAgeRange
+			} // private static void printPersonsWithinAgeRange
+			
+			// Approach 3: Specify Search Criteria Code in a Local Class
+			// Approach 4: Specify Search Criteria Code in an Anonymous Class
+			// Approach 5: Specify Search Criteria Code with a Lambda Expression
+			
+			private static void printPersons(List<Person> roster, CheckPerson tester) {
+				
+				for (Person p: roster) {
+					if (tester.testAge(p)) {
+						p.printPerson();
+					}
+				}
+			} // private static void printPersons
 			
 			
-			
+						
 		} // class RosterTest
+
+		
+		// main() ********************************************************
 		
 		
 		//Creamos algunos Objetos Person
-
 		Person p1 = new Person("Tomeu", "1966-03-18",  Sex.MALE); 
 		p1.printPerson();
 		
@@ -100,6 +138,7 @@ public class Leccion_17 {
 		Person p5 = new Person("Vicente", "1965-06-06",  Sex.MALE); 
 		p5.printPerson();
 		
+		
 		//Creamos una Lista de Objetos Person, será una lista de punteros a Objetos de Class Person
 		List<Person> listaPersona = new ArrayList<Person>();
 		
@@ -109,15 +148,51 @@ public class Leccion_17 {
 		listaPersona.add(p3); 
 		listaPersona.add(p4); 
 		listaPersona.add(p5); 
+		listaPersona.add(new Person("Maria", "1964-12-12",  Sex.FEMALE)); // Insertamos en la Lista de Personas un nuevo Objeto Persona
 
-		//Aproach 1
+		//Mostramos el contenido de cada Objeto Person
+		for (Person p: listaPersona) {
+			p.printPerson();
+		}
+				
+		//Aproach 1 Create Methods that Search for Persons that Match One
 		System.out.println("***************Aproach 1"); 
 		RosterTest.printPersonsOlderThan(listaPersona, 60);
 
-		//Aproach 2
+		//Aproach 2 Create More Generalized Search Methods
 		System.out.println("***************Aproach 2"); 
 		RosterTest.printPersonsWithinAgeRange(listaPersona, 50, 80);
 		
+		//Aproach 3 Specify Search Criteria Code in a Local Class
+		System.out.println("***************Aproach 3"); 
+		RosterTest.printPersons(listaPersona, new CheckPersonEligibleForSelectiveService());
+		
+	    //Approach 4: Specify Search Criteria Code in an Anonymous Class
+		//One of the arguments of the invocation of the method printPersons is an anonymous class 
+		System.out.println("***************Aproach 4"); 
+		RosterTest.printPersons(listaPersona, 
+								new CheckPerson() {
+									public boolean testAge(Person p) {
+										int edad = p.getAge(); 
+										return (p.getGender() == Sex.MALE
+												&& edad >= 50
+												&& edad <= 60); 
+									} //public boolean testAge
+								}
+		);
+				
+		// Approach 5: Specify Search Criteria Code with a Lambda Expression
+		// In the previous approach, The syntax of anonymous classes is bulky considering that the CheckPerson interface contains only one method.
+		// We can use a lambda expression instead of an anonymous class, as described in the next section.
+		// Because a functional interface contains only one abstract method, you can omit the name of that method when you implement it. 
+		// To do this, instead of using an anonymous class expression, you use a lambda expression
+		RosterTest.printPersons(listaPersona,
+								(Person p) -> p.getGender() == Sex.MALE
+								&& p.getAge() >= 50
+								&& p.getAge() <= 60
+		);
+		
+		// Y me paro aquí porque me estoy perdiendo. 
 		
 	} // public static void main
 } // class Leccion_17
