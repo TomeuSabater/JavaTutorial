@@ -8,8 +8,8 @@ public class Leccion_9_Ejercicio {
 				
 		// EJERCICIO CLASES Y OBJETOS. 
 
-		// Se trata de diseñar una Class Reserva aplicando lo visto hasta el momento
-		// La Reserva tiene como atributos comunes:
+		// Se trata de diseñar una Class Reserva aplicando la mayoría de los conceptos vistos hasta el momento
+		// La Class Reserva tiene como atributos comunes:
 		//		Número de reserva; compuesto por "Tipo/Año/Número"; 
 		//			Tipo; HTL si es de Hotel, VUE si es un vuelo, TRL si es un traslado
 		//			Año; Año en curso (del momento de la reserva, no de la fecha de consumo) 
@@ -26,22 +26,27 @@ public class Leccion_9_Ejercicio {
 		//			A/P de salida: Código 3 letras aeropuerto de salida, Eje: PMI
 		//			A/P de llegada: Código 3 letras aeropuerto de llegada, Eje: MAD
 		//		Si es TRL:
-		//			Recogida: Lugar de Recogida, es una dirección
-		//			Destino: Lugar de Destino, es una dirección 
+		//			Recogida: Lugar de Recogida, es una dirección postal
+		//			Destino: Lugar de Destino, es una dirección postal 
 		// Tiene que haber un método constructor
 		// Tiene que haber Getters y Setters para cada Atributo
 		// Tiene que haber un método que muestra el contenido de la reserva
-		// Típicamente, habría 5 reservas: el vuelo, el traslado y el hotel. 
-		// Los pasajeros toman un vuelo desde el a/p origen al a/p destino (reserva 1), a la llegada toman un traslado cuyo destino es el hotel (reserva 2), 
-		// una vez finalizada la estancia en el hotel (reserva 3) toman un traslado hasta el a/p destino (reserva 4) donde el un vuelo los devuelve al a/p origen (reserva 5) 
+		// Típicamente, habría 5 reservas: 2 x vuelo, 2 x traslado, 1 x  hotel 
+		// Los pasajeros toman un Vuelo desde el A/P origen al A/P destino (reserva 1), a la llegada toman un Traslado cuyo destino es el Hotel (reserva 2), 
+		// una vez finalizada la estancia en el Hotel (reserva 3) toman un Traslado hasta el A/P destino (reserva 4) donde un Vuelo los devuelve al A/P origen (reserva 5) 
+		// Nota: En la realidad, existen más elementos, por ejemplo el seguro de viaje y entradas a museos, parques temáticos y otras atracciones, 
+		//		todo ello se almacena en un único expediente, no trataremos esta estructura por el momento, nos limitamos a Reservas independientes. 
+
 		
 		
-		// Diseñaremos una Class Reserva que contendrá los elementos comunes y 3 sub Class para HTL, VUE y TRL cada una con los particulares
+		// Se muestra una aproximación (no tiene todas las Sub Class) a una posible Solución:  
+		
+		// Diseñaremos una Super Class Reserva que contendrá los elementos comunes y 3 Sub Class para HTL, VUE y TRL cada una con los particulares
 	
-		//
+		// Super Class Reserva 
 		class Reserva {
 			
-			// Ctes
+			// Ctes de la Class
 			private static final String ELEMENTO = "Reserva"; // Identifica el elemento 
 			private static final byte MAX_NUM_PAX = 4; // Numero máximo de pasajeros
 			private static final byte IVA = 21; // Impuestos aplicados
@@ -69,8 +74,8 @@ public class Leccion_9_Ejercicio {
 				this.asignaPax(pax1, pax2, pax3, pax4); // Asigna los pax 
 				
 				//Fechas Inicio y Fin
-				this.fechaInicio = LocalDate.parse(fInicio); 
-				this.fechaFin = LocalDate.parse(fFin); 			
+				this.fechaInicio = LocalDate.parse(fInicio); // Se espera un formato de fecha yyyy-mm-dd
+				this.fechaFin = LocalDate.parse(fFin); 	// Se espera un formato de fecha yyyy-mm-dd
 				
 				//Precios
 				this.precioNeto = neto; 
@@ -78,6 +83,7 @@ public class Leccion_9_Ejercicio {
 			}
 			
 			// Metodos Privados
+			
 			// Asigna Pax
 			private void asignaPax(String p1, String p2, String p3, String p4) {
 				
@@ -107,7 +113,7 @@ public class Leccion_9_Ejercicio {
 				
 				byte contador = 0; 
 				for (String pasajero : this.pax) {
-				  System.out.println("Pasajero : " + ++contador + " " + pasajero);
+				  System.out.println("Pasajero " + ++contador + " : " + pasajero);
 				}
 			}
 			
@@ -123,35 +129,37 @@ public class Leccion_9_Ejercicio {
 			
 		} // Class Reserva 
 		
-		//Creamos una reserva y probamos los construido hasta ahora
+		//Creamos una Super Reserva y probamos los construido hasta ahora
+		//No deberíamos tener ninguna Super Reservas, la instanciamos por motivos de test
 		Reserva r1;
 		r1 = new Reserva("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", 1000);
 		r1.muestraReserva(); 
+			
 		
 		// Creamos ahora las 3 x Class para cada una de las Reservas Particulares
 		
-		
+		// Class Reserva de Hotel
 		class ReservaHTL extends Reserva {
 			
-			// Ctes particulares de la Clase ReservaHTL
+			// Ctes particulares de la Class ReservaHTL
 			private static final String ELEMENTO = "Reserva Hotel"; // Identifica el elemento
 			private static final String TIPO_RESERVA = "HTL"; //Tipo de Reserva
 			
-			// Atributos de la Clase ReservaHTL
+			// Atributos de la Class ReservaHTL
 			private static int numReservaHtl; 
 			static {
 				ReservaHTL.numReservaHtl = 0; 
 			}
 						
-			// Atributos o Variables de Instancia del Objeto ReservaHTL
+			// Atributos o Variables de Instancia del Obj ReservaHTL
 			private String direccionHtl = null; // Dirección Postal del Hotel
-			private char tipoHab = '\0';  //Tipo de Habitación: Simple, Doble, Triple
-
+			private char tipoHab = '\0';  	//Tipo de Habitación: Simple, Doble, Triple
+											//Posteriormente veremos los tipo enum
 			
 			// Método constructor
 			public ReservaHTL(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, String direccion, char habitacion, int neto) {
 				
-				// Llamamos al constructor de la Super Clase 
+				// Llamamos al constructor de la Super Class Reserva 
 				super(pax1, pax2, pax3, pax4, fInicio, fFin, neto);
 				
 				//Asignamos valores particuales para ReservaHTL
@@ -173,6 +181,7 @@ public class Leccion_9_Ejercicio {
 			// Métodos privados
 			
 			//Genera el número de reserva para la reserva de hotel 
+			//Sería adecuado que fuera un método static
 			private String generaNuevoNumeroReserva() {
 				
 				String numero = null;
@@ -183,7 +192,8 @@ public class Leccion_9_Ejercicio {
 				
 				numero = ReservaHTL.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt; 
 				return numero; 
-			} // dameNuevoNumeroReserva()
+			} // generaNuevoNumeroReserva()
+			
 			
 			// Métodos públicos
 			
@@ -223,9 +233,9 @@ public class Leccion_9_Ejercicio {
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo " + ReservaHTL.ELEMENTO); 
 		
 		//Hemos podido alterar el valor porque estamos dentro de la misma class Leccion_9_Ejercicio
-		//Para aplicar correctamente el nivel de protección debemos separar cada clase en un ficheros separados.
-		//Realmente, estamos anidando Clases dentro de la Clase Leccion_9
-		//Lo haremos correctamente en la Lección_10, junto con las Class para ReservaVUE y ReservaTRL
+		//Para aplicar correctamente el nivel de protección debemos separar cada Class en ficheros separados
+		//Realmente, estamos anidando la Super Class y las Sub Class dentro de la Clas Leccion_9 y los niveles de protección de actúan como deseamos
+		//Lo haremos correctamente en la Lección_10_Ejercicio, junto con las Sub Class para ReservaVUE y ReservaTRL
 		
 	} // public static void main
 

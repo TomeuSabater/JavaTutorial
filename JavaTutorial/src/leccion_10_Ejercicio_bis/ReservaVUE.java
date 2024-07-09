@@ -1,4 +1,4 @@
-package leccion_10_Ejercicio;
+package leccion_10_Ejercicio_bis;
 
 import java.time.LocalDate;
 
@@ -34,7 +34,7 @@ public class ReservaVUE extends Reserva{
 		this.apSalida = Ap2; 
 		
 		//Asignamos número de reserva
-		this.numeroParticularReserva = ReservaVUE.generaNuevoNumeroReserva(); 
+		this.numeroParticularReserva = this.numeroParticularReserva + ReservaVUE.generaNuevoNumeroReserva(); 
 	}
 	
 	//// Métodos Static
@@ -48,12 +48,13 @@ public class ReservaVUE extends Reserva{
 	//Genera el número de reserva para la reserva de vuelo 
 	private static String generaNuevoNumeroReserva() {
 		
+		
 		LocalDate hoy = LocalDate.now(); // Fecha actual
 		int anyo = hoy.getYear(); //Obtenemos el año
 		String sanyo = String.valueOf(anyo); //Transformamos año en String
-		String numeroVue = String.valueOf(++ReservaVUE.numReservaVue); // Número único consecutivo
+		String numeroHlt = String.valueOf(++ReservaVUE.numReservaVue); // Número único consecutivo para el tipo de reserva	
 		
-		return (ReservaVUE.TIPO_RESERVA + "/" + sanyo + "/" + numeroVue); 
+		return ("/" + ReservaVUE.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt); 
 	} // generaNuevoNumeroReserva()
 	
 	//// Métodos públicos

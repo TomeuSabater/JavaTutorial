@@ -1,16 +1,17 @@
-package leccion_10_Ejercicio;
+package leccion_10_Ejercicio_bis;
 
-public class Leccion_10_Ejercicio {
+public class Leccion_10_Ejercicio_bis {
 	
 	// EJERCICIO CLASES Y OBJETOS. 
 
 			// Se trata de diseñar una Class Reserva aplicando la mayoría de los conceptos vistos hasta el momento
 			// La Class Reserva tiene como atributos comunes:
-			//		Número de reserva; compuesto por "Tipo/Año/NúmeroParcial"; 
+			//		Número de reserva; compuesto por "NúmeroTotal/Tipo/Año/NúmeroParcial"; 
+			//			NúmeroTotal: Es un número consecutivo único para cada Reserva
 			//			Tipo; HTL si es de Hotel, VUE si es un vuelo, TRL si es un traslado
 			//			Año; Año en curso (del momento de la reserva, no de la fecha de consumo) 
 			//			Número Parcial; Es un número consecutivo del tipo de reserva
-			//			Ejemplos: "HTL/2024/0001", "HTL/2024/0002", "VUE/2024/001", "TRL/2024/0001",...
+			//			Ejemplos: "001/HTL/2024/0001", "002/HTL/2024/0002", "003/VUE/2024/001", "004/TRL/2024/0001",...
 			//		Pax; máximo 4 Ejemplo; [Bartolomé Sabater, Juan Pérez, Pep Gonella, Pepito Perez]
 			//		Fecha de Inicio/Llegada y Fecha de Fin/Salida; Ejemplo: 01-Agosto-2024, 05-Agosto-2024
 			// 		Precio sin Impuestos y Precios con Impuestos (IVA 21%); Ejemplo: 1.000, 1.210
@@ -25,30 +26,27 @@ public class Leccion_10_Ejercicio {
 			//			Recogida: Lugar de Recogida, es una dirección postal
 			//			Destino: Lugar de Destino, es una dirección postal 
 			// Tiene que haber un método constructor
-			// Tiene que haber Getters y Setters para cada Atributo
+			// Tiene que haber Getters y Setters para los Atributos principales
 			// Tiene que haber un método que muestra el contenido de la reserva
+			// Lo más importante; NúmeroTotal y NúmeroParcial deben quedar "ocultos" tal que no sea posible su manipulación a excepción de la Instanciación donde se usarán
+			// 		para crear el Número de Reserva de cada reserva. 
 			// Típicamente, habría 5 reservas: 2 x vuelo, 2 x traslado, 1 x  hotel 
 			// Los pasajeros toman un Vuelo desde el A/P origen al A/P destino (reserva 1), a la llegada toman un Traslado cuyo destino es el Hotel (reserva 2), 
 			// una vez finalizada la estancia en el Hotel (reserva 3) toman un Traslado hasta el A/P destino (reserva 4) donde un Vuelo los devuelve al A/P origen (reserva 5) 
 			// Nota: En la realidad, existen más elementos, por ejemplo el seguro de viaje y entradas a museos, parques temáticos y otras atracciones, 
-			//		todo ello se almacena en un único expediente, no trataremos esta estructura por el momento, nos limitamos a Reservas independientes. 
+			//		todo ello se almacena en un único expediente, no trataremos esta estructura expediente por el momento, nos limitamos a Reservas independientes. 
 						
 			// Se muestra una posible Solución:  
 
 	public static void main(String[] args) {
 		
-		//// Hacemos algunas pruebas con la super Class Reserva
-		
-		// Creamos una reserva instanciando la Super Class Reserva
-		Reserva r1;
-		r1 = new Reserva("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", 1000);
-		r1.muestraReserva(); 
-		
-		// Inicialmente, y sin instanciar ninguna Sub Class, podemos saber cuántas reserva hay de cada tipo
+		// Inicialmente, y sin instanciar ninguna Sub Class, podemos saber cuántas reserva hay de cada tipo y cuantas totales
 		// mediante la invocación del método static de la Class
+		System.out.println("Reservas totales = " + Reserva.numReservas()); 
 		System.out.println("Reservas de tipo HTL = " + ReservaHTL.numReservasHotel()); 
 		System.out.println("Reservas de tipo VUE = " + ReservaVUE.numReservasVuelo()); 
 		System.out.println("Reservas de tipo TRL = " + ReservaTRL.numReservasTraslado()); 
+		
 		
 		//// Hacemos algunas pruebas con ReservaHTL
 		
@@ -57,7 +55,8 @@ public class Leccion_10_Ejercicio {
 		r2 = new ReservaHTL("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", "Padre Ventura", 'D', 1000); 
 		r2.muestraReserva(); 
 				
-		//Comprobamos cuántas reservas de Hotel hay
+		//Comprobamos cuántas reservas totales hay y de Hotel
+		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo HTL"); 
 				
 		//Creamos una segunda Reserva de Hotel
@@ -66,11 +65,15 @@ public class Leccion_10_Ejercicio {
 		r3.muestraReserva(); 
 				
 		//Comprobamos cuántas reservas de Hotel hay
+		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo HTL"); 
 		
-		//Intentamos alterar el numReservasHotel
-		// ReservaHTL.numReservaHtl++; --> Genera un error, es una static de tipo private, no es accesible 
-		// String numero = ReservaHTL.generaNuevoNumeroReserva(); --> Genera un error, este método static de tipo private no es accesible
+		//Intentamos alterar el numReserva y/o el numReservaHtl
+		//System.out.println(Reserva.generaNumTotalReservas()); // No funciona, es un método privado. 
+		//Reserva.numReserva++ // No funciona, es una private static, no tiene visibilidad 
+		//ReservaHTL.numReservaHtl++; // Genera un error, es una static de tipo private, no tiene visibilidad
+		//String numero = ReservaHTL.generaNuevoNumeroReserva(); // Genera un error, este método static de tipo private no tiene visibilidad
+	
 		
 		//// Hacemos algunas pruebas con ReservaVUE
 		
@@ -80,6 +83,7 @@ public class Leccion_10_Ejercicio {
 		r4.muestraReserva(); 
 		
 		//Comprobamos cuántas reservas de Vuelo hay
+		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaVUE.numReservasVuelo() + " Reservas de tipo VUE"); 
 		
 		//// Hacemos algunas pruebas con ReservaTRL
@@ -90,11 +94,16 @@ public class Leccion_10_Ejercicio {
 		r5.muestraReserva(); 
 		
 		//Comprobamos cuántas reservas de Traslado hay
+		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaTRL.numReservasTraslado() + " Reservas de tipo TRL"); 
+
 
 	} // public static void main
 	
-	// En el lección_10_Ejercicio_bis se construye una solución donde cohexisten el Número Particular de la Reserva (único para cada tipo de reserva)
-	// y el Número Total de la Reserva (único para todas las reservas independientemente de su tipo)
+	// Tenemos que encontrar alguna manera de aislar el numero total de reservas y el número particular de reservas
+	// La manera que hemos aplicado ha sido con variables y métodos privados que se invocan únicamente mediante los constructores
+	// Al invocarse únicamente con el constructor, es necesario la generación de una reserva para alterar su valor
+	// También podemos probar con Nested Class, es decir, Una Class dentro de otra Class
+	
 
-} // class Leccion_10_Ejercicio
+} // class Leccion_10_Ejercicio_bis

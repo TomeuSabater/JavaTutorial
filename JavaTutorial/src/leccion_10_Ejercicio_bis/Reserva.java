@@ -1,4 +1,4 @@
-package leccion_10_Ejercicio;
+package leccion_10_Ejercicio_bis;
 
 import java.time.LocalDate;
 
@@ -9,12 +9,19 @@ public class Reserva {
 	private static final byte MAX_NUM_PAX = 4; // Numero máximo de pasajeros
 	private static final byte IVA = 21; // Impuestos aplicados
 	
+	//// Atributos o Variables de la Class Reserva
+	
+	// Número consecutivo de Reservas Totales
+	private static int numReserva; // private para eliminar su visibilidad
+	static {
+		Reserva.numReserva = 0; //Inicialización
+	}
 
 	//// Atributos o Variables de Instancia
 	
 	// Localizador de la Reserva (Código único para cada reserva)
 	// Todas las Reservas tendrán este dato, por tanto, lo definimos en la Super Class Reserva
-	protected String numeroParticularReserva = null; //Se rellenará en la sub clase, no puede ser private 
+	protected String numeroParticularReserva = null; //Se comienza a rellenar en la Super Class y se finaliza en cada Sub Class 
 	
 	// Pax, máximo de 4
 	private String[] pax = new String[Reserva.MAX_NUM_PAX];
@@ -32,6 +39,9 @@ public class Reserva {
 	// Constructor único
 	public Reserva(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, int neto) {
 		
+		//Comienza la creación del número particular de la reserva
+		this.numeroParticularReserva = String.valueOf(++Reserva.numReserva); 
+		
 		//Asigna pax
 		this.asignaPax(pax1, pax2, pax3, pax4); // Asigna los pax 
 		
@@ -43,6 +53,15 @@ public class Reserva {
 		this.precioNeto = neto; 
 		this.precioBruto = this.calculaBruto(this.precioNeto); 
 	}
+
+	//// Métodos Static
+	
+	// Devuelve el número actual de Reservas Totales
+	public static int numReservas() {
+		
+		return Reserva.numReserva; 
+	}
+		
 	
 	//// Metodos Privados
 	

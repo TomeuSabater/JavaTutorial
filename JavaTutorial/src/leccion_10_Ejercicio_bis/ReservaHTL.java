@@ -1,4 +1,4 @@
-package leccion_10_Ejercicio;
+package leccion_10_Ejercicio_bis;
 
 import java.time.LocalDate;
 
@@ -35,7 +35,7 @@ public class ReservaHTL extends Reserva{
 		this.tipoHab = habitacion; 
 		
 		//Asignamos número de reserva
-		this.numeroParticularReserva = ReservaHTL.generaNuevoNumeroReserva(); 
+		this.numeroParticularReserva = this.numeroParticularReserva + ReservaHTL.generaNuevoNumeroReserva(); 
 	}
 	
 	//// Métodos Static
@@ -48,9 +48,9 @@ public class ReservaHTL extends Reserva{
 		LocalDate hoy = LocalDate.now(); // Fecha actual
 		int anyo = hoy.getYear(); //Obtenemos el año
 		String sanyo = String.valueOf(anyo); //Transformamos año en String
-		String numeroHlt = String.valueOf(++ReservaHTL.numReservaHtl); // Número único consecutivo
+		String numeroHlt = String.valueOf(++ReservaHTL.numReservaHtl); // Número único consecutivo para el tipo de reserva
 		
-		return (ReservaHTL.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt);
+		return ("/" + ReservaHTL.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt);
 
 	} // generaNuevoNumeroReserva()
 		

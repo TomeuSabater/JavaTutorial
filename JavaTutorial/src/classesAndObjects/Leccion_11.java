@@ -7,18 +7,19 @@ public class Leccion_11 {
 	public static void main(String[] args) {
 
 		// Introducción_VI a CLASES Y OBJETOS. 
+		// Preparació para Nested Class; Inner Class / Static Class
 		
-		// Nested Class; Inner / Static
 		
 		class LocalizadorReserva {
 			
-			//Localizador de una reserva está compuesto por
-			// YYYY/MM/Contador. Ejemplo: 2024/07/1
-			// YYYY: Año en curso
-			// MM: Mes en curso
-			// Contador: Número consecutivo incremental
+			// El Localizador de una Reserva está compuesto por:
+			// YYYY/MM/Contador:
+			// 	- YYYY: Año en curso
+			// 	- MM: Mes en curso
+			// 	- Contador: Número consecutivo incremental
+			// Ejemplos: 2024/07/1, 2024/08/2, 2024/08/3, etc. 
 			
-			// Variables de la Class
+			// Variables de la Class, Variables static
 			
 			private static String localizador; // Ultimo Localizador generado
 			static {
@@ -31,7 +32,7 @@ public class Leccion_11 {
 			}
 			
 			// Métodos de la Class
-			static String generaLocalizador() {
+			private static String generaLocalizador() {
 				
 				LocalDate hoy = LocalDate.now(); // Fecha actual
 				int anyo = hoy.getYear(); //Obtenemos el año
@@ -44,12 +45,12 @@ public class Leccion_11 {
 				return LocalizadorReserva.localizador; 		
 			}
 			
-			static int muestraNumeroReservas() {
+			public static int muestraNumeroReservas() {
 				
 				return LocalizadorReserva.numeroReserva; 
 			}
 			
-			static String muestraLocalizadorActual() {
+			public static String muestraLocalizadorActual() {
 				
 				return LocalizadorReserva.localizador; 
 			}
@@ -67,7 +68,7 @@ public class Leccion_11 {
 			//Constructor
 			Reserva(String titular, String fecha) {
 						
-				this.LocataReserva = LocalizadorReserva.generaLocalizador(); 
+				this.LocataReserva = LocalizadorReserva.generaLocalizador(); // Nos proporciona un nuevo Localizador
 				this.titular = titular; 
 				this.fechaReserva = LocalDate.parse(fecha); 
 			}
@@ -86,25 +87,25 @@ public class Leccion_11 {
 		//Inicialmente, vamos a probar el generador de locatas
 		
 		//Comprobamos datos inicales
-		System.out.println("Número de reservas es:" + LocalizadorReserva.muestraNumeroReservas());
+		System.out.println("Número actual de reservas es:" + LocalizadorReserva.muestraNumeroReservas());
 		System.out.println("Localizador actual es :" + LocalizadorReserva.muestraLocalizadorActual()); 
-
+	
 		//Generamos dos Localizadores
 		System.out.println("Nuevo Localizador es :" + LocalizadorReserva.generaLocalizador()); 
 		System.out.println("Nuevo Localizador es :" + LocalizadorReserva.generaLocalizador()); 
-		
+				
 		//Comprobamos los valores actuales
 		System.out.println("Número de reservas es:" + LocalizadorReserva.muestraNumeroReservas());
 		System.out.println("Localizador actual es :" + LocalizadorReserva.muestraLocalizadorActual()); 
-
+		
 		//Creamos una reserva
-		Reserva r1 = new Reserva("Tomeu Sabater", "2024-07-01"); 
+		Reserva r1 = new Reserva("Tomeu Sabater", "2024-04-09"); 
 		r1.muestraReserva(); 
 		
-		//Observamos que la Class LocalizadorReserva solamente es utilizada en la Class Reserva
-		//por tanto, lo que proponemos es un Ejercicio en el que se anidará la Class LocalizadorReserva en la Class Reserva
-		//de esta manera, ocultamos todos los métodos de la Class LocalizadoReserva y estructuramos mejor el código
-		//Ver la solución en la Leccion_12_Ejercicio
+		//Observamos que la Class LocalizadorReserva solamente es utilizada en la Class Reserva y que podemos llamar al método generaLocalizador() sin problemas. 
+		//Lo que proponemos es un Ejercicio en el que se anidará la Class LocalizadorReserva en la Class Reserva, 
+		// 	de esta manera, ocultamos todos los métodos de la Class LocalizadoReserva y estructuramos mejor el código.
+		//Ver la solución en la Leccion_12_Ejercicio			
 				
 	} // static void main
 
