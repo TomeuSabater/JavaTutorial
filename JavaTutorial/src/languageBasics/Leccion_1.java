@@ -4,7 +4,8 @@ public class Leccion_1 {
 		
 	public static void main(String[] args) {
 
-		// TIPOS DE DATOS EN JAVA; Simples y Complejos (Arrays) 
+		// TIPOS DE DATOS EN JAVA; Simples y Complejos (Arrays)
+		// CASTING
 		// Operaciones básicas: Asignación, ++x, --x, x++, x--
 		// ESTRUCTURAS DE REPETICION; for
 	
@@ -69,6 +70,38 @@ public class Leccion_1 {
 		System.out.println("MI_NOMBRE = " + MI_NOMBRE); 
 		System.out.println("PI = " + PI); 
 		
+		
+		// *********************************** CASTING
+		
+		// Widening Casting; 
+		// is done automatically when passing a smaller size type to a larger size type
+		
+	    System.out.println("Automatic Casting from int to double");
+	    
+	    int myInt1 = 9;
+	    double myDouble1 = myInt1; // Automatic casting: int to double
+	    
+	    System.out.println(myInt1);      // Outputs 9
+	    System.out.println(myDouble1);   // Outputs 9.0
+		
+	    // Widening Casting; 
+	    // must be done manually by placing the type in parentheses () in front of the value:
+	    
+	    System.out.println("Manual Casting from double to int");
+	    
+	    double myDouble2 = 9.78d;
+	    int myInt2 = (int) myDouble2; // Manual casting: double to int
+	    	    
+	    System.out.println(myDouble2);   // Outputs 9.78
+	    System.out.println(myInt2);      // Outputs 9
+	    
+	    System.out.println("Real Life Casting to calculate the tax");
+	    int net = 520;
+	    byte iva = 21; 
+	    
+	    float impuesto = (float)(net * iva) / 100.0f;
+	    System.out.println("Impuesto = " + impuesto); 
+	    	    
 		
 		// *********************************** TIPOS DE DATOS COMPLEJOS (Arrays)
 		

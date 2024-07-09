@@ -7,20 +7,31 @@ public class Leccion_6 {
 		// Introducción_III a CLASES Y OBJETOS. 
 		
 		// Paso por valor y por referencia en métodos
-		// Primitive arguments, such as an int or a double, are passed into methods by value.
-		// Reference data type parameters, such as objects, are also passed into methods by value. However, the values of the object's fields can be changed in the method
+		// Estándares para nombre de Class, Atributo y Método
 		
-		class Circulo { //Por convención, el nombre de la Clase comienza en mayúsculas
+		
+		// Primitive arguments, such as an int or a double, are passed into methods by value.
+		// Reference data type parameters, such as objects, are also passed into methods by value. 
+		// However, the values of the object's fields of the objects passed can be changed in the method
+		
+		// Es importante entender que en Java, los parámetros se pasan por valor, nunca por referencia
+		// Es imporante enteder que cuando pasamos por valor un Obj, pasamos por valor la referencia al Obj, nunca el Obj en sí
+		// y al pasar por valor una referencia a un Obj creamos una nueva referencia que apunta al mismo Obj. 
+		
+
+		
+		class Circulo { //Por convención, el nombre de una Class comienza siempre en mayúsculas
+						//Si es palabra compuesta, se juntan las palabras y cada palabra en mayúsculas, ej: UtilidadesCirculo
 			
-			//Constantes de la Clase
-			static final String FIGURA = "Circulo"; // Tipo de figura
-			static final float PI = 3.14f; // Valor de PI
+			//Variables de la Class y Ctes de la Class 
+			static final String FIGURA = "Circulo"; // Tipo de figura. CTEs en mayúscula
+			static final float PI = 3.14f; // Valor de PI. CTEs en mayúscula
 		
 			//Atributos de la Clase
-			private int x; // Posición x en el plano. 
-			private int y; // Posición y en el plano. 
-			private int radio; // Radio del círculo. 
-			private float area; // Area del cículo. 
+			private int x; // Posición x en el plano. Nombre de atributo en minúscula, siguientes palabra en mayúscula
+			private int y; // Posición y en el plano. Nombre de atributo en minúscula, siguientes palabra en mayúscula
+			private int radio; // Radio del círculo. Nombre de atributo en minúscula, siguientes palabra en mayúscula
+			private float area; // Area del cículo. Nombre de atributo en minúscula, siguientes palabra en mayúscula
 			
 			//Constructor
 			public Circulo(int x, int y, int r) {
@@ -29,8 +40,8 @@ public class Leccion_6 {
 				setRadio(r); 
 			}
 			
-			//Métodos privados
-			private float calculaArea(int r) {
+			//Métodos privados, solo accesible desde el interior de la Class
+			private float calculaArea(int r) { //Nombre método es un verbo, comienza minúscula, si compuesta primera palabra mayúscula
 				return (PI * (radio * radio)); 
 			}
 			
@@ -57,17 +68,16 @@ public class Leccion_6 {
 				this.radio = r; 
 				this.area = calculaArea(this.radio); 
 			}
-					
 			
-			//Método al que pasamos por referencia el identificador el Objeto
-			public void muestraCirculo(Circulo c) {
+			//Método al que pasamos por valor el identificador el Objeto
+			public void muestraCirculo(Circulo c) { //Circulo c es totalmente redundante
 				
 				System.out.println("Figura :" + FIGURA); 
 				System.out.println("Referencia :" + c); 
-				System.out.println("X = " + getX());
-				System.out.println("Y = " + getY());
-				System.out.println("Radio = " + getRadio());
-				System.out.println("Área = " + getArea()); 
+				System.out.println("X = " + c.getX());
+				System.out.println("Y = " + c.getY());
+				System.out.println("Radio = " + c.getRadio());
+				System.out.println("Área = " + c.getArea()); 
 			} // public void muestraCirculo
 			
 		} // class Circulo
@@ -75,17 +85,19 @@ public class Leccion_6 {
 		
 		//Definimos una nueva clase cuyo único objetivo será la de ofrecer 
 		//utilidades mediante métodos públicos para el manejo del círculo
-		//Los métodos tendrán como parámetros referencias a Objetos Círculo
+		//Los métodos tendrán como parámetros referencias a Objeto Círculo
+		//Circulo ci se pasa por valor, lo que significa que ci es una NUEVA referencia al Circulo c1
+		//c1 y ci son dos "variables" distintas que referencian al mismo Obj Círculo
 		class UtilidadesCirculo {
 			//Esta clase nos servirá para agrupar métodos con utilidades para el manejo de círculos
 			
-			public void desplazaCirculo(Circulo ci, int deltaX, int deltaY) {
-			//Método público que desplaza un deltaX, deltaY la posición del círculo
+			public void desplazaCirculo(int deltaX, int deltaY, Circulo ci) {
+			//Método público que desplaza un deltaX, deltaY la posición del Círculo ci
 						
-				ci.setX(ci.getX() + deltaX); 
-				ci.setY(ci.getY() + deltaY);
-				ci = null; //Se pasan los parámetros por valor, c1 no es afectado. Java VM liberará los recursos de ci
-			}
+				ci.setX(ci.getX() + deltaX); //Llama a los métodos de Circulo
+				ci.setY(ci.getY() + deltaY); //Llama a los métodos de Circulo
+				ci = null; //Se pasan los parámetros por valor, c1 no es afectado. Java VM liberará los recursos de ci, pero hacerlo es redundante
+			} //Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci (que es una ref al Obj no el Obj en sí), c1 no afectado
 			
 		} // class UtilidadesCirculo
 		
@@ -96,7 +108,7 @@ public class Leccion_6 {
 		
 		//Desplazamos el círculo
 		UtilidadesCirculo Utils = new UtilidadesCirculo();
-		Utils.desplazaCirculo(c1, +1, -3);
+		Utils.desplazaCirculo(+1, -3, c1);
 		c1.muestraCirculo(c1);
 
 	} //public static void main

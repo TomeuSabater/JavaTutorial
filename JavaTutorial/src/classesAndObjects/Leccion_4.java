@@ -8,10 +8,10 @@ public class Leccion_4 {
 		// Introducción_I a CLASES Y OBJETOS. 
 		
 		// Definición de Clases, Instanciación de Objetos
-		// Constantes y Atributos de la Clase/Objeto
+		// Constantes y Atributos de la Class/Objeto
 		// Métodos Constructores, Getters y Setters
 		// Constructor implícito
-		// Atributos Privados
+		// Atributos Publicos/Privados
 		// Métodos Públicos
 		// Sobrecarga de métodos
 		// Palabra reservada "this"
@@ -32,19 +32,18 @@ public class Leccion_4 {
 		//Su "estado" se define por el valor de sus atributos.
 		//Su "comportamiento" queda determinado por el comportamiento de la clase a la que pertenece
 		//Actuamos con los objetos medinate lo "metodos" que publica
-
 		
 		// CLASES; Recordar, son como moldes para definir objetos
 		
 		class Circulo { //Por convención, el nombre de la Clase comienza en mayúsculas
 			
 			//Constantes de la Clase
-			static final String FIGURA = "Circulo"; //Static: Es la misma para todos los objetos. Final: Es una cte.  
+			static final String FIGURA = "Circulo"; //Static: Variable de la Class, misma para todos los objetos, Final: Es una cte.  
 		
-			//Atributos de la Clase
-			int x; // Atributo. Posición x en el plano. Variable de Instancia. Idepediente en cada Objeto 
-			int y; // Atributo. Posición y en el plano. Variable de Instancia. Idepediente en cada Objeto 
-			int radio; //Atributo. Radio del círculo. Variable der Insancia. Idepediente en cada Objeto
+			//Atributos de la Clase, variables de Instancia
+			int x; // Atributo. Posición x en el plano. Variable de Instancia. Idependiente en cada Objeto, cada Obj tiene la suya. 
+			int y; // Atributo. Posición y en el plano. Variable de Instancia. Idependiente en cada Objeto, cada Obj tiene la suya. 
+			int radio; //Atributo. Radio del círculo. Variable de Insancia. Idependiente en cada Objeto, cada Obj tiene la suya. 
 		}
 		
 		//Ahora hemos definido la Clase Circulo (o el molde)
@@ -55,7 +54,7 @@ public class Leccion_4 {
 		Circulo circulo2 = new Circulo(); //circulo2 es el identificador del Objeto, no es el Objeto. 
 		
 		//Ahora tenemos dos objetos generados con el molde Circulo. 
-		//Ahora hemos instanciado la Clase Circulo para generar dos Objetos
+		//Hemos "instanciado" la Class Circulo para generar dos Objetos circulo1 y circulo2
 		
 		//Asignamos valores a los atributos de los Objetos
 		//Recordamos que al ser variables de instancia, son independientes para cada objeto 
@@ -67,20 +66,20 @@ public class Leccion_4 {
 		circulo2.y = 5;
 		circulo2.radio = 6; 
 		
-		//circulo2.FIGURA = "Cuadrado"; Genera un eror, es una cte. 
+		//circulo2.FIGURA = "Cuadrado"; // Genera un eror, porque FIGURA es una cte. 
 		
 		//Podemos mostrar los atributos de cada objeto
 		System.out.println("Figura: " + Circulo.FIGURA + " circulo1.x = " + circulo1.x + " circulo1.y = " + circulo1.y + " circulo1.radio = " + circulo1.radio); 
 		System.out.println("Figura: " + Circulo.FIGURA +" circulo2.x = " + circulo2.x + " circulo2.y = " + circulo2.y + " circulo2.radio = " + circulo2.radio); 
 
-		//System.out.println("Figura:" + circulo1.FIGURA); //No es un error pero se desaconseja
+		//System.out.println("Figura:" + circulo1.FIGURA); //No es un error pero se desaconseja porque FIGURA es variable de la Class 
 		
 		//ELEMENTOS DE UNA CLASE
 		//Definimos la información que almacena un Objeto mediante sus atributos. 
 	
 		class Vehiculo {
 			
-			//Atributos del Objeto
+			//Atributos del Objeto, variables de instancia (cada Obj tendrá los suyos)
 			String matricula; 
 			String marca;
 			String modelo;
@@ -101,7 +100,7 @@ public class Leccion_4 {
 		
 		class Vehiculo2 {
 			
-			//Atributos de un objeto
+			//Atributos del Objeto, variables de Instancia (particulares de cada Objeto) 
 			String matricula;
 			String marca;
 			String modelo;
@@ -109,10 +108,10 @@ public class Leccion_4 {
 			boolean electrico;
 			boolean hibrido;
 			
-			//Metodo constructor, tiene mismo nombre que la Clase y llama para crear el objeto
-			//Se puede utilizar para asignar valores inicial a los atributos del Objeto mediante parámetros, pero no es obligatorio
+			//Metodo constructor, tiene mismo nombre que la Classs y se llama para crear el objeto
+			//Se puede utilizar para asignar valores iniciales a los atributos del Obj mediante parámetros, pero no es obligatorio
 			//El constructor no retorna ningún valor, puede haber más de un constructor mediante sobrecarga
-			//Si no se define un constructor Java define uno implícitamente, caso de Circulo() y Vehículo()
+			//Si no se define un constructor Java define uno implícitamente, caso de Circulo() y Vehículo() no lo hemos definido explícitamente
 			public Vehiculo2 (String matricula,
 				String marca,
 				String modelo,
@@ -120,9 +119,9 @@ public class Leccion_4 {
 				boolean electrico,
 				boolean hibrido) {
 				
-					//Se usa la palabra "this" para diferenciar los atributos del objeto de los parámetros
-					//Los parámetros pueden llamarse como los atributos del objeto
-					//La palabra reservada "this" diferencia el atributo del objeto del parámetro
+					//Se usa la palabra "this" para diferenciar los atributos del Obj de los parámetros
+					//Los parámetros pueden llamarse como los atributos del Obj
+					//La palabra reservada "this" diferencia el atributo del Obj del parámetro
 					this.matricula = matricula; 
 					this.marca = marca;
 					this.modelo = modelo;
@@ -132,28 +131,28 @@ public class Leccion_4 {
 			} //public Vehiculo2 
 		} //class Vehiculo2
 		
-		//Instanciamos la Clase Vehiculo2 y llamamos al método constructor
+		//Instanciamos la Class Vehiculo2 y llamamos al método constructor
 		Vehiculo2 v3 = new Vehiculo2("1234JXC", "Ford", "Fiesta", 14000, false, true);
 		Vehiculo2 v4 = new Vehiculo2("4321PRX", "Renault", "Megane", 20000, true, false);
 		
 		//Ahora tenemos dos Objetos Vehiculo2; v3 y v4, cuyos atributos son diferentes
 		//Es como crear dos Objetos con un molde de plastelina
 		//pero con plastelina diferente (color, tipo plastelina)
-		//Son Instancias de la misma Clase, pero en absoluto son el mismo Objeto
+		//Son Instancias de la misma Class, pero en absoluto son el mismo Obj
 		
-		//Es abituar ofrecer un método constructor para asignar valores iniciales a los atributos del Objeto. 
-		//Para consultar/obtener los valores de sus atributos y para asignar nuevos valores se usan los "get" y "set"
+		//Es abitual ofrecer un método constructor para asignar valores iniciales a los atributos del Obj. 
+		//Para consultar/obtener los valores de sus atributos y para asignar nuevos valores se usan los métodos "get" y "set"
 		//get (getter) --> Consultar valores
 		//set (setter) --> Modificar su estado (inicializado con el constructor)
 		
 		class Vehiculo3 {
 			
-			//Cte de la Clase
+			//Cte de la Clase. static: variable de la Class (cada Obj la comparte), final : es una cte. 
 			static final String ELEMENTO = "Vehículo"; 
 			
-			//Atributos del Objeto
-			//Esta vez los definimos como privados, solo serán accesibles desde la propia clase
-			//o indirectamente mediante métodos públicos que oferte la Clase 
+			//Atributos del Obj, particulares a cada Obj de la Class
+			//Esta vez los definimos como privados (private), solo serán accesibles desde la propia Class
+			//o indirectamente mediante métodos públicos que oferte la Class 
 			private String matricula;
 			private String marca;
 			private String modelo;
@@ -177,10 +176,12 @@ public class Leccion_4 {
 					this.hibrido = hibrido;
 			}
 			
-			//Los atributos son de tipo private, por tanto deberemos dar algún
-			//método público para obtener/modificar su valor
-			//Métodos Get (Getter) y Set (Setter) para obtener/modificar los valores de los atributos
-			//Si un método no devuelve ningún valor, entonces es de tipo void
+			//Los atributos son de tipo private, no accesibles desde el exterior de la Class, 
+			//por tanto, deberemos dar algún método público para obtener/modificar sus valores:
+			//	Métodos Get (Getter) para asignar/modificar los valores de los atributos
+			//	Métodos Set (Setter) para obtener/leer los valores de los atributos
+			//Si un método no devuelve ningún valor, entonces es de tipo "void"
+			
 			public String get_matricula() {
 				return this.matricula;
 			}
@@ -199,12 +200,15 @@ public class Leccion_4 {
 			public boolean get_hibrido() {
 				return this.hibrido;
 			}
-			public void set_precio(int precio) { //Solamente es posible modificar el precio
+			
+			// Solo damos la posibilidad de modificar el precio
+			// Al ser los atributos private, no es posible el acceso desde fuera de la Class 
+			public void set_precio(int precio) { // Modifica el precio
 				this.precio = precio;
 			}
 		} //class Vehiculo3 
 		
-		//Instanciamos la Clase para crear el Objeto y mostramos sus valores
+		//Instanciamos la Class para crear el Obj y mostramos sus valores
 		Vehiculo3 v5 = new Vehiculo3("9999XXX", "Seat", "Leon", 34000, false, true);
 		Vehiculo3 v6 = new Vehiculo3("777ABC", "Mercedes", "A220D", 44000, false, false);
 		
@@ -224,6 +228,8 @@ public class Leccion_4 {
 		v5.set_precio(24000);
 		System.out.println("y ahora vale "+ v5.get_precio());
 	
+		//v5.precio = 25000; // No genera un error porque estamos dentro de la Class Leccion_4, ver Leccion_4_Ejercicio.java
+		
 		//Mostramos los valores para v6
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v6.get_matricula());
 		System.out.println("es marca "+ v6.get_marca());		
@@ -260,7 +266,7 @@ public class Leccion_4 {
 				int precio,
 				boolean electrico,
 				boolean hibrido) {
-				
+					//Utilizamos los Setter
 					set_matricula(matricula); 
 					set_marca(marca);
 					set_modelo(modelo); 
@@ -271,15 +277,16 @@ public class Leccion_4 {
 			
 			//En Java podemos duplicar los métodos (incluído el constructor), se denomina Sobrecarca
 			//Es necesario que tengan una "firma" diferente
-			//Firma está compuesta por nombre_método y lista_parámetros
-			//Cambiando lista_parámetros, entonces tenemos una firma diferente
+			//La "firma" está compuesta por nombre_método y lista_parámetros
+			//Cambiando lista_parámetros tenemos una firma diferente
 			
 			//Método Constructor 2
+			//Cambiamos la lista_de_parámetros para conseguir una firma diferente
 			public Vehiculo5 (String matricula,
 					String marca,
 					String modelo,
 					int precio) {
-					
+						//Utilizamos los Setter
 						set_matricula(matricula); 
 						set_marca(marca);
 						set_modelo(modelo); 
@@ -333,8 +340,8 @@ public class Leccion_4 {
 			}
 						
 			//Método público que muestra los atributos del Objeto
-			//El nombre de un método debería comenzar on un verbo, o ser un verbo. 
-			public void muestra_coche() {
+			//El nombre de un método debería comenzar con un verbo, o ser un verbo. 
+			public void muestraCoche() {
 				System.out.println(Vehiculo5.ELEMENTO + " de Clase Vehiculo5"); 
 				System.out.println("Vehiculo de matricula "+ get_matricula());
 				System.out.println("Vehiculo de marca "+ get_marca());
@@ -348,20 +355,21 @@ public class Leccion_4 {
 				
 		//Instanciamos Clase Vehiculo5 y llamamos al método que nos muestra sus atributos 
 		Vehiculo5 v7 = new Vehiculo5("777ABC", "Mercedes", "A220D", 44000, false, false);
-		v7.muestra_coche();
+		v7.muestraCoche();
 		
 		Vehiculo5 v9 = new Vehiculo5("1234ABC", "BMW", "330i", 66000);
-		v9.muestra_coche();
+		v9.muestraCoche();
 		
 		//Demostració de que la instanciación de Clase genera la referencia al Objeto más que el Objeto en sí
 		Vehiculo5 v8; //Instanciamos la Clase para generar la referencia al Objeto
 		v8 = v7; //Igualamos la referencia del nuevo Objeto a uno ya existente (perdemos el original) 
 		System.out.println(v7);
 		System.out.println(v8);
-		v8.muestra_coche();
+		v8.muestraCoche();
 		
+		//Hemos dicho que la instanciación de una Class genera un Obj y retorna una referencia a ese Obj
 		//Si machacamos la referencia a un Objeto, perdemos la posibilidad de acceder a ese Objeto
-		//La JVM tiene un proceso que libera memoria de Objetos inalcanzable. 
+		//La JVM tiene un proceso que libera memoria de los Obj inalcanzable. 
 		//Recordamos Objetos v5 y v6
 		
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v5.get_matricula());
