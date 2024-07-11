@@ -3,8 +3,14 @@ package leccion_13_Ejercicio;
 import java.time.LocalDate;
 
 public class Reserva {
-			
-		//Variables estáticas y privadas, variables de la Clase, comunes para todas las instancias Reserva, ocultas fuera de la Clase
+		
+		// Atributos de Instancia private;  particulares para cada instancia de Reserva
+		private String LocataReserva = null; //Localizador de cada reserva particular
+		private String titular = null; //Titular de la reserva
+		private LocalDate fechaReserva;  //Fecha de confirmación de la reserva
+		
+		// Variables private static
+		// comunes para todas las instancias Reserva, ocultas fuera de la Class
 		private static int numeroReserva; //Número consecutivo de la reserva
 		static {
 			Reserva.numeroReserva = 0; // Inicialización
@@ -14,22 +20,18 @@ public class Reserva {
 		static {
 			Reserva.localizador = null; // Inicialización
 		}
-	
-		// Atributos de Instancia, particulares para cada instancia de Reserva
-		private String LocataReserva = null; //Localizador de cada reserva particular
-		private String titular = null; //Titular de la reserva
-		private LocalDate fechaReserva;  //Fecha de confirmación de la reserva
-		
-		//Constructor
+				
+		// Constructor único 
 		Reserva(String titular, String fecha) {
 					
-			this.LocataReserva = generaLocalizador(); 
+			this.LocataReserva = Reserva.generaLocalizador(); 
 			this.titular = titular; 
 			this.fechaReserva = LocalDate.parse(fecha); 
-			//this.LocataReserva = LocalizadorReserva.generaLocalizador(); //demostración del problema
 		}
-		
-		//Métodos estáticos públicos, se pueden invocar fuera de la clase
+				
+		//// Métodos static
+				
+		//Métodos static public, se pueden invocar fuera de la clase
 		public static int muestraNumeroReservas() {
 			
 			return Reserva.numeroReserva; 
@@ -40,8 +42,8 @@ public class Reserva {
 			return Reserva.localizador; 
 		}
 				
-		//Métodos privados, ocultos fuera de la clase 
-		private String generaLocalizador() {
+		//Métodos static private, ocultos fuera de la clase 
+		private static String generaLocalizador() {
 			
 			LocalDate hoy = LocalDate.now(); // Fecha actual
 			int anyo = hoy.getYear(); //Obtenemos el año
@@ -54,8 +56,9 @@ public class Reserva {
 			return Reserva.localizador; //Se retorna el valor		
 		}
 		
+		//// Métodos públicos
 		
-		//Métodos públicos
+		// Muestra la reserva
 		public void muestraReserva() {
 			System.out.println("*********************************");
 			System.out.println("Localizador : " + this.LocataReserva); 
@@ -63,6 +66,6 @@ public class Reserva {
 			System.out.println("Fecha Reserva :" +this.fechaReserva); 
 		} 
 
-	} // class Reserva
+} // class Reserva
 
 
