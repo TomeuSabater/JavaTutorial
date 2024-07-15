@@ -28,6 +28,7 @@ class Leccion_12_Ejercicio {
 		
 		// Static Nested Class: is associated with its outer class. 
 		//		And like static class methods, a static nested class cannot refer directly to instance variables or methods defined in its enclosing class
+		//		(BSB: Funciona como una Static Class pero la definimos como subclase para una mejor arquitectura) 
 		
 		
 		// Class LocalizadorReserva será una Static Nested Class por lo que no tendrá acceso a los elementos de la class Reserva

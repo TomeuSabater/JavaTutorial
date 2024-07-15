@@ -6,12 +6,12 @@ public class Leccion_14 {
 	
 	// Local Class (Caso especial de una Inner Class) 
 	
-	// Hasta el momento, hemos visto una Nested Class que es una Class que está dentro de una Class contenedora.
+	// Hasta el momento, hemos visto las Nested Class (Inner / Static) que es una Class dentro de una Class contenedora.
 	// La Nested Class es un elemento más de la Class contenedora, y le podemos aplicar control de acceso y visibilidad; static, private, public, etc.  
 
-	// Local classes are similar to inner classes because they cannot define or declare any static members.
-	// You cannot declare static initializers or member interfaces in a local class. 
-	// A local class can have static members provided that they are constant variables
+	// Local Classes are similar to Inner Classes because they cannot define or declare any static members.
+	// You cannot declare static initializers or member interfaces in a Local Class. 
+	// A Local Class can have static members provided that they are constant variables
 		
 	public static void main(String[] args) {
 		
