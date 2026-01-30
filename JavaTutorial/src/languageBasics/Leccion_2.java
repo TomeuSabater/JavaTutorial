@@ -9,9 +9,10 @@ public class Leccion_2 {
 		// ESTRUCTURAS DE CONTROL; If, If Else, If Else If
 		// ESTRUCTURA DE REPETICION: Do While
 		// OPERACIONES DE CAPTURA DE NÚMEROS POR ENTRADA DE USUARIO
-				
+
+		
 		//Estructuras de Repeticion DO WHILE
-		// Es un bucle que se repite mientras se cumpla una condición
+		// bucle que se repite mientras se cumpla una condición
 		
 		/* Sintaxis::
 		 * do {
@@ -33,7 +34,6 @@ public class Leccion_2 {
 			System.out.println("Como mínimo me ejecuto una vez");
 			break;
 		} while (true);
-		
 		
 		 
 		//Veamos ejemplo de cómo romper la iteración  

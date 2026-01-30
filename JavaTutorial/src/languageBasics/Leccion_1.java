@@ -55,6 +55,7 @@ public class Leccion_1 {
 		System.out.println("v_nif = " + v_nif);
 			
 		//Constantes, valor fijo inmutable que se asigna en momento de creación
+		//Las buenas prácticas requiren que se usen MAYÚSCULAS
 		final int C_NUM = 5;
 		final boolean C_VERDADERO = true;
 		final char C_LAX = 'X'; 
@@ -62,7 +63,7 @@ public class Leccion_1 {
 		final float PI = 3.1421f;  
 		
 		// C_NUM = 3; Muestra un error, una CTE no puede alterar su contenido
-		// C_VERDADERO = false; Muestra un error. 
+		// C_VERDADERO = false; Muestra un error por el mismo motivo
 		
 		System.out.println("C_NUM = " + C_NUM); 
 		System.out.println("C_VERDADERO = " + C_VERDADERO); 
@@ -93,11 +94,11 @@ public class Leccion_1 {
 	    int myInt2 = (int) myDouble2; // Manual casting: double to int
 	    	    
 	    System.out.println(myDouble2);   // Outputs 9.78
-	    System.out.println(myInt2);      // Outputs 9
+	    System.out.println(myInt2);      // Outputs 9 -- Pérdida de precisión
 	    
 	    System.out.println("Real Life Casting to calculate the tax");
-	    int net = 520;
-	    byte iva = 21; 
+	    int net = 520; // net price
+	    byte iva = 21; // tax 
 	    
 	    float impuesto = (float)(net * iva) / 100.0f;
 	    System.out.println("Impuesto = " + impuesto); 
@@ -105,21 +106,22 @@ public class Leccion_1 {
 		
 		// *********************************** TIPOS DE DATOS COMPLEJOS (Arrays)
 		
-				
 		//Tipos de datos complejos ARRAYS 
-		//Al ser un objeto se utiliza la instanciación para definirlos
+	    //Un "array" en Java es un objeto (se verán objetos posteriormente)
+		//Al ser un objeto se deberá manejar como tal, y no estamos aún familiarizados en objetos
 		
 		int[] a_enteros; // Paso 1: Definimos un array de enteros, sin definir cuántos elementos entero contiene
-		a_enteros = new int[C_NUM];  //Paso 2: Definimos cuántos elementos contiene, usamos la CTE C_NUM 
+		a_enteros = new int[C_NUM];  //Paso 2: Definimos cuántos elementos contiene, usamos la CTE C_NUM
+		
 		boolean[] a_booleanos = new boolean[C_NUM]; //Definición en un paso. Vector de booleanos de NUM posiciones
-		char a_caracteres[] = new char[C_NUM]; //Vector de caracters de NUM posiciones. Ejemplo en 1 paso y corchetes después nombre. 
-		String a_cadenas[] = new String[C_NUM]; //Vector de cadenas de caracteres de NUM posiciones. Ejemplo en 1 paso y corchetes después nombre. 
+		
+		char a_caracteres[] = new char[C_NUM]; //Vector de caracteres de NUM posiciones. Ejemplo en 1 paso, y corchetes después nombre. 
+		String a_cadenas[] = new String[C_NUM]; //Vector de cadenas de caracteres de NUM posiciones. Ejemplo en 1 paso, y corchetes después nombre. 
 		
 		int[][] m_enteros = new int[C_NUM][C_NUM]; //Matriz de dos dimensiones de enteros de NUMxNUM posciones
 		boolean m_booleanos[][] = new boolean[C_NUM][C_NUM]; //Matriz de dos dimensione de booleanos de NUMxNUM. Corchetes después nombre
 		char[][][] m_caracteres = new char[C_NUM][C_NUM][C_NUM]; // Matriz de tres dimensiones de caracters de NUMxNUMxNUM 
 
-		
 		
 		// *********************************** OPERACIONES BÁSICAS
 		
@@ -139,10 +141,9 @@ public class Leccion_1 {
 		System.out.println("soy v_int y valgo :" + v_int);
 		
 		//La asignación de derecha a izquiera se resuelve en el compilador / interprete mediante variables temporales. 
-		//La siguiente secuencia de instrucciones
+		//La siguiente secuencia de instrucciones:
 		v_int = 0;
 		v_int = v_int + 1; // Él es igual a Él + 1. 
-		
         //Internamente se resuelve de esta manera
 		v_int = 0;
 		int temporal = 0; //Variable que define el compilador / interprete
@@ -151,7 +152,7 @@ public class Leccion_1 {
 		
 		//Otro ejemplo con asignación compleja
 		//Siempre se calcula el valor mediante operaciones temporales y luego se asigna. 		
-		//Revisar microcódigo de máquina de Von Neumann
+		//Revisar microcódigo de máquina de 'Von Neumann'
 		v_int = 1;
 		v_int = v_int + v_int + v_int + v_int; 
 		System.out.println("soy v_entero y ahora valgo: " + v_int);
@@ -191,20 +192,21 @@ public class Leccion_1 {
 		
 		
 		//Se recomienda no complicar innecesariamente este tipo de operaciones
+		//Es mucho mejor tener un código sencillo y legible
+		//De todas maneras, el compilador/intérprete acaba desgranando la instrucción
 		v_int = 0;
 		v_int = v_int++;
 		System.out.println("soy v_int y valgo:" + v_int);
-		
 		//Para entenderlo mejor, podemos decir que el compilador hace esta secuencia: 
 		v_int = 0;
 		temporal = v_int;
 		v_int++;
 		v_int = temporal;
-		System.out.println("soy v_entero y valgo:" + v_int + "soy temporal y valgo:" + temporal);
+		System.out.println("soy v_entero y valgo: " + v_int + " soy temporal y valgo: " + temporal);
 		
 		//En este caso no hay mucha complicación
 		v_int = 0;
-		v_int = ++v_int;
+		v_int = ++v_int; //primero incrementa y luego asigna
 		System.out.println("soy v_int y valgo:" + v_int);
 	
 		//Ejemplo de cómo complicar innecesariamente el código con este tipo de operacioes
@@ -214,12 +216,12 @@ public class Leccion_1 {
 			
 		v_int = 0;
 		v_int = (++v_int) + (++v_int) + (++v_int); //Evitar este tipo de operaciones (1) + (2) + (3)
-		System.out.println("Soy v_entero chulo porras y valgo: " + v_int);
+		System.out.println("Soy v_entero chulo-porras y valgo: " + v_int);
 		
 
-		//Las operaciones x++, ++x, --x, etc. es altamenterecomendables 
-		//que sean sencillas, de todas maneras, si existe un optimizador de código
-		//acabará reorganizándolo. No escatiméis en usar más pasos si queda más legible 
+		//Las operaciones x++, ++x, --x, etc. es altamente recomendables que sean sencillas, 
+		//de todas maneras, si existe un optimizador de código, acabará reorganizándolo. 
+		//No escatiméis en usar más pasos si queda más legible 
 	   
 		
 		// *********************************** ESCTRUCTURAS DE CONTROL: FOR
@@ -262,7 +264,7 @@ public class Leccion_1 {
 
 		//Aprovechamos la estructura de control del for
 		v_byte = 0;
-	    for (;v_byte<=100;) {
+	    for (;v_byte <= 100;) {
 			System.out.println(v_byte++);
 	    }
 		
@@ -325,7 +327,7 @@ public class Leccion_1 {
 	  a_enteros[v_byte] = v_byte++;
 	  a_enteros[v_byte] = v_byte++;
 	  a_enteros[v_byte] = v_byte++;
-	  a_enteros[v_byte] = v_byte++; 
+	  a_enteros[v_byte] = v_byte; 
 	  
 	  v_byte = 0;
 	  System.out.println("a_enteros[" + v_byte + "] = " +  a_enteros[v_byte++]);
@@ -359,6 +361,8 @@ public class Leccion_1 {
 	  }
 	  
 	  //Podemos saber la longitud de un array
+	  //recordar que un array en Java es un objeto, tiene operciones 'particulares'
+	  
 	  System.out.println("Soy a_enteros y tengo " + a_enteros.length + " posiciones"); 
 	  
 	  //Rellenamos aprovechando la estructura del for y su longitud
@@ -375,7 +379,7 @@ public class Leccion_1 {
 	  }
 	  
 	  //Recorrer un Array es una operación muy común en programación
-	  //JAVA tiene una for "especial" para recorrer un array (extraer sus valores en orden ascendente)
+	  //Java tiene una for "especial" para recorrer un array (extraer sus valores en orden ascendente)
 	  
 	  for (int variable : a_enteros) {
 		  System.out.println(variable);

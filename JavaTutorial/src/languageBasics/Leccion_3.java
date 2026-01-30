@@ -11,10 +11,11 @@ public class Leccion_3 {
 		// ESTRUCTURAS DE DATOS COMPLEJAS: ARRAYS MULTIDIMENSIONALES
 		// ESTRUCTURAS DE CONTROL; SWITCH, BREAK, CONTINUE
 
-		final byte C_NUM = 4; //Constante de uso general durante la lección 
+		final byte C_NUM = 4; //Constante de uso general para los ejemplos 
 		
 		//Veamos como definimos un array multidimensional
 		//Recordamos como definiamos un array unidimensional, o vector
+		//Recordar que un array en Java es un objeto
 		int[] a_enteros = new int[C_NUM]; //Definimos un array unidimensional de CNUM posiciones de enteros
 		
 		//Para definir un array n-dimensional usamos la misma notación
