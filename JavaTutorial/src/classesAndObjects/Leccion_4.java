@@ -17,13 +17,13 @@ public class Leccion_4 {
 		// Palabra reservada "this"
 				
 		//Podemos ver una CLASE es un tipo de dato complejo. 
-		//Y un OBJETO como un elemento que se crea a partir de la CLASE
+		//Y un OBJETO como un elemento que se crea a partir de la CLASE.
 		
 		//Tengo la CLASE que es como un molde para fabricar elementos, como coches, o figuras de plastelina
 		//Con una CLASE o molde creo OBJETOS que serán los coches, o las figura de plastelina, tantos como quiera
 		//EL creador de elementos es la CLASE y cada elementos es un OBJETO de esa CLASE
 		//El molde de la plastelina es la CLASE y cada figura de plastelina es el OBJETO
-		//Hay una CLASE, pero puede haber muchos OBJETOS de esa CLASE 1:n
+		//Hay una CLASE, pero puede haber muchos OBJETOS de esa CLASE 0:n
 		
 		//Redefinimos ahora aplicando terminología correcta de Programación Orientada a Objetos (POO)
 		//Un Objeto es una "instancia" de una Clase. 
@@ -50,10 +50,11 @@ public class Leccion_4 {
 		//pero todavía no hemos generado (instanciado) ningún Objeto de esa Clase
 		//Para generar un Objeto, "instanciamos" la Clase
 		
-		Circulo circulo1 = new Circulo(); //circulo1 es el identificador del Objeto, no es el Objeto. 
-		Circulo circulo2 = new Circulo(); //circulo2 es el identificador del Objeto, no es el Objeto. 
+		Circulo circulo1 = new Circulo(); //circulo1 es el identificador del Objeto, no es el Objeto.
+		Circulo circulo2;
+		circulo2 = new Circulo(); //circulo2 es el identificador del Objeto, no es el Objeto. 
 		
-		//Ahora tenemos dos objetos generados con el molde Circulo. 
+		//Hemos creado dos objetos generados con el molde Circulo. 
 		//Hemos "instanciado" la Class Circulo para generar dos Objetos circulo1 y circulo2
 		
 		//Asignamos valores a los atributos de los Objetos
@@ -72,7 +73,10 @@ public class Leccion_4 {
 		System.out.println("Figura: " + Circulo.FIGURA + " circulo1.x = " + circulo1.x + " circulo1.y = " + circulo1.y + " circulo1.radio = " + circulo1.radio); 
 		System.out.println("Figura: " + Circulo.FIGURA +" circulo2.x = " + circulo2.x + " circulo2.y = " + circulo2.y + " circulo2.radio = " + circulo2.radio); 
 
-		//System.out.println("Figura:" + circulo1.FIGURA); //No es un error pero se desaconseja porque FIGURA es variable de la Class 
+	
+		
+		// System.out.println("Figura:" + circulo1.FIGURA); //No es un error pero se desaconseja porque FIGURA es variable de la Class 
+
 		
 		//ELEMENTOS DE UNA CLASE
 		//Definimos la información que almacena un Objeto mediante sus atributos. 
@@ -92,8 +96,9 @@ public class Leccion_4 {
 		Vehiculo v1 = new Vehiculo(); // v1 es el identificador del Objeto 
 		Vehiculo v2 = new Vehiculo(); // v2 es el identificador del Objeto 
 		
-		System.out.println("Identificador de v1 = " + v1); 
-		System.out.println("Identificador de v2 = " + v2); 
+		System.out.println("Identificador de v1 = " + v1); // Muestra la direcció de memoria donde se aloja el objeto v1
+		System.out.println("Identificador de v2 = " + v2); // Muestra la direcció de memoria donde se aloja el objeto v2
+		
 		
 		//Hemos visto que el Objeto puede tener "atributos" 
 		//Veamos cómo los empleamos para definir su "estado"
@@ -133,7 +138,9 @@ public class Leccion_4 {
 		
 		//Instanciamos la Class Vehiculo2 y llamamos al método constructor
 		Vehiculo2 v3 = new Vehiculo2("1234JXC", "Ford", "Fiesta", 14000, false, true);
-		Vehiculo2 v4 = new Vehiculo2("4321PRX", "Renault", "Megane", 20000, true, false);
+		
+		Vehiculo2 v4; 
+		v4 = new Vehiculo2("4321PRX", "Renault", "Megane", 20000, true, false);
 		
 		//Ahora tenemos dos Objetos Vehiculo2; v3 y v4, cuyos atributos son diferentes
 		//Es como crear dos Objetos con un molde de plastelina
@@ -203,6 +210,7 @@ public class Leccion_4 {
 			
 			// Solo damos la posibilidad de modificar el precio
 			// Al ser los atributos private, no es posible el acceso desde fuera de la Class 
+			// solamente mediante los métodos que oferte la Class
 			public void set_precio(int precio) { // Modifica el precio
 				this.precio = precio;
 			}
@@ -228,8 +236,14 @@ public class Leccion_4 {
 		v5.set_precio(24000);
 		System.out.println("y ahora vale "+ v5.get_precio());
 	
-		//v5.precio = 25000; // No genera un error porque estamos dentro de la Class Leccion_4, ver Leccion_4_Ejercicio.java
+		//observar lo siguiente que es debido a la visibilidad de los atributos
+		//recordar que estamos definiendo la Class Vehiculo3 'dentro' de la Class Leccion_4
+		//y podemos acceder a los atributos de forma jerárquica
+		//para ver un ejemplo más real de la visibilidad 'private' ver Leccion_4_Ejercicio.java
+		v5.precio = 25000; // No genera un error porque estamos dentro del fichero Class Leccion_4
+		System.out.println("y ahora vale "+ v5.get_precio());
 		
+	
 		//Mostramos los valores para v6
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v6.get_matricula());
 		System.out.println("es marca "+ v6.get_marca());		
@@ -267,12 +281,12 @@ public class Leccion_4 {
 				boolean electrico,
 				boolean hibrido) {
 					//Utilizamos los Setter
-					set_matricula(matricula); 
-					set_marca(marca);
-					set_modelo(modelo); 
-					set_precio(precio); 
-					set_electrico(electrico);
-					set_hibrido(hibrido); 
+					this.set_matricula(matricula); 
+					this.set_marca(marca);
+					this.set_modelo(modelo); 
+					this.set_precio(precio); 
+					this.set_electrico(electrico);
+					this.set_hibrido(hibrido); 
 			}
 			
 			//En Java podemos duplicar los métodos (incluído el constructor), se denomina Sobrecarca
@@ -287,14 +301,13 @@ public class Leccion_4 {
 					String modelo,
 					int precio) {
 						//Utilizamos los Setter
-						set_matricula(matricula); 
-						set_marca(marca);
-						set_modelo(modelo); 
-						set_precio(precio); 
-						set_electrico(false);
-						set_hibrido(false); 
+						this.set_matricula(matricula); 
+						this.set_marca(marca);
+						this.set_modelo(modelo); 
+						this.set_precio(precio); 
+						this.set_electrico(false); // El constructor no require este parámetro
+						this.set_hibrido(false); // El constructor no requiere este parámetro
 				}
-			
 			
 			//Métodos Get y Set para la gestión de atributos
 			
@@ -321,7 +334,7 @@ public class Leccion_4 {
 			//Setters: matricula, marca, modelo, precio, electrico, hibrido
 			//Al no devolver ningún valor, los métodos son de tipo void
 			public void set_matricula(String matricula) {
-				this.matricula = matricula; 
+				this.matricula = matricula.toUpperCase(); 
 			}
 			public void set_marca(String marca) {
 				this.marca = marca; 
@@ -341,7 +354,7 @@ public class Leccion_4 {
 						
 			//Método público que muestra los atributos del Objeto
 			//El nombre de un método debería comenzar con un verbo, o ser un verbo. 
-			public void muestraCoche() {
+			public void muestraVehiculo() {
 				System.out.println(Vehiculo5.ELEMENTO + " de Clase Vehiculo5"); 
 				System.out.println("Vehiculo de matricula "+ get_matricula());
 				System.out.println("Vehiculo de marca "+ get_marca());
@@ -355,17 +368,17 @@ public class Leccion_4 {
 				
 		//Instanciamos Clase Vehiculo5 y llamamos al método que nos muestra sus atributos 
 		Vehiculo5 v7 = new Vehiculo5("777ABC", "Mercedes", "A220D", 44000, false, false);
-		v7.muestraCoche();
+		v7.muestraVehiculo();
 		
 		Vehiculo5 v9 = new Vehiculo5("1234ABC", "BMW", "330i", 66000);
-		v9.muestraCoche();
+		v9.muestraVehiculo();
 		
 		//Demostració de que la instanciación de Clase genera la referencia al Objeto más que el Objeto en sí
 		Vehiculo5 v8; //Instanciamos la Clase para generar la referencia al Objeto
 		v8 = v7; //Igualamos la referencia del nuevo Objeto a uno ya existente (perdemos el original) 
 		System.out.println(v7);
 		System.out.println(v8);
-		v8.muestraCoche();
+		v8.muestraVehiculo();
 		
 		//Hemos dicho que la instanciación de una Class genera un Obj y retorna una referencia a ese Obj
 		//Si machacamos la referencia a un Objeto, perdemos la posibilidad de acceder a ese Objeto
@@ -377,6 +390,7 @@ public class Leccion_4 {
 		v5 = v6; //Acabamos de perder el Objeto v5 puesto que hemos machacado su referencia
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v5.get_matricula());
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v6.get_matricula());
+
 		
 	} // public static void main
 	

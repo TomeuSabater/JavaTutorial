@@ -75,7 +75,7 @@ public class Vehiculo5 {
 	//Setters: matricula, marca, modelo, precio, electrico, hibrido
 	//Al no devolver ningún valor, los métodos son de tipo void
 	public void set_matricula(String matricula) {
-		this.matricula = matricula; 
+		this.matricula = matricula.toUpperCase(); 
 	}
 	public void set_marca(String marca) {
 		this.marca = marca; 
