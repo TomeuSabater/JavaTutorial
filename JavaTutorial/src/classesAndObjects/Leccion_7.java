@@ -44,15 +44,15 @@ class Leccion_7 {
 			//Nombre método es un verbo descriptivo, palabra compuesta en mayúsculas
 			public void movePoint(int dX, int dY) {
 				
-				this.x += dX; 
-				this.y += dY; 
+				this.x += dX; //Incremento delta X
+				this.y += dY; //Incremente delta Y 
 			}
 			
 			//Mostramos el Punto
 			//Nombre método es un verbo descriptivo, palabra compuesta en mayúsculas
 			public void showPoint() {
 				
-				System.out.println(Point.FIGURA);
+				System.out.println(this.FIGURA);
 				System.out.println("X = " + this.x);
 				System.out.println("Y = " + this.y);
 			}
@@ -69,7 +69,8 @@ class Leccion_7 {
 			private int alto; //Define la altura
 			private int ancho; //Define la anchura
 			private Point origen; //Posición en el plano del vértice origen del rectángulo, es un Obj
-			private int area; //Area del rectángulo 
+									//Realmente no es el Obj Point, es la referencia (puntero) al Obj Point
+			private int area; //Área del rectángulo 
 		
 			
 			//Métodos constructores x 5, Sobrecargamos el Constructor
@@ -90,7 +91,6 @@ class Leccion_7 {
 			}
 			
 			public Rectangle(int w, int h) { //Solo altura y anchura
-				
 				this.ancho = w; 
 				this.alto = h; 
 				this.origen = new Point(0,0);
@@ -98,7 +98,6 @@ class Leccion_7 {
 			}
 			
 			public Rectangle(Point p) { //Solo punto de origen
-				
 				this(p,0,0); // Llamamos al constructor "predilecto"
 			}
 						
@@ -127,15 +126,16 @@ class Leccion_7 {
 				} 
 				*/ 
 				//Es evidente que aplicando refactorización obtendríamos:
-				// return (this.alto * this.ancho);
+				//	el operador ternario es un ejemplo
+				// 	bien codificado bastaría con : return (this.alto * this.ancho);
 			}
 			
 			// Desplaza el rectángulo
 			public void moveRectangle(int dX, int dY) {  
 				
-				this.origen.movePoint(dX, dY);
+				this.origen.movePoint(dX, dY); //Invocamos el método movePoint del Obj 'origen'
 				return; //Aún siendo un método "void" es posible añadir la cláusula return para indicar la finalización del método  
-				//this.origen.movePoint(dX*2, dY*2); // Código inaccesible, el return fuerza la salida del método
+				//this.origen.movePoint(dX*2, dY*2); // Este código sería inaccesible, el return fuerza la salida del método
 			}
 			
 			// Muestra el rectángulo
@@ -153,7 +153,7 @@ class Leccion_7 {
 		
 		
 		//Creamos un Objeto p1 a partir de la Clase Point 
-		//Recordamos que "p1" no es el Obj, es la variable que identifica el Obj, su referencia
+		//Recordamos que "p1" no es el Obj, es la variable que identifica el Obj; su referencia
 		
 		Point p1; //Declaración, la variable p1 es de type Class Point; Referenciará a un Obj de tipo Point
 		p1 = new Point(3,4); //Instanciación e Inicialización, 
@@ -205,15 +205,21 @@ class Leccion_7 {
 		r2.showRectangle();
 		
 		
-		//Cosas que Java permite y no son muy aconsejables, más adelante veremos las Anonymous Class y las Lambda Expression que formalizan este tipo de expresiones. 
+		//Cosas que Java permite y no son muy aconsejables, 
+		//	más adelante veremos las Anonymous Class y las Lambda Expression que formalizan este tipo de expresiones. 
 		new Rectangle(1,1).showRectangle(); //Instanciamos un Objeto de tipo Rectángulo, lo mostramos pero no guardamos su referencia
 											//Al tener un Objeto sin referencia, la JVM liberará los recursos que utiliza de manera inmediata
-		int area = new Rectangle(2,3).getArea(); //Instanciamos un Objeto de tipo Rectángulo, podría servir para tener una herramienta para calcular el área de un Rectángulo
+		int area = new Rectangle(2,3).getArea(); //Instanciamos un Objeto de tipo Rectángulo, 
+												// podría servir para tener una herramienta para calcular el área de un rectángulo
+												// sin necesidad de almacenar el Obj rectángulo 
 		System.out.println("Area = " + area); 
 		
-		//Cuando un Objeto es inalcanzable, no tenemos ninguna referencia al mismo, la JVM automáticamente se encarga de destruirlo (eliminar los recursos que utiliza)
-		//The Java runtime environment deletes objects when it determines that they are no longer being used. This process is called "Garbage Collection".
-		//Una manera de "destruir" un Objeto de manera explícita es mediante la asignación del valor "null" a todas las variables que lo refrencian. 
+		//Cuando un Objeto es inalcanzable, no tenemos ninguna referencia al mismo, 
+		//	la JVM automáticamente se encarga de destruirlo (eliminar los recursos que utiliza)
+		//The Java runtime environment deletes objects when it determines that they are no longer being used. 
+		//This process is called "Garbage Collection".
+		//Una manera de "destruir" un Objeto de manera explícita es mediante la asignación del valor "null" 
+		//	a todas las variables que lo refrencian. Veamos un ejemplo
 		
 		p1 = null; //Todavía hay una referencia a p1 dentro de r1
 		p2 = null; 
@@ -223,25 +229,28 @@ class Leccion_7 {
 		System.out.println("Objetos destruidos"); 
 		
 		
-		//Un método puede recibir un Obj como parámetro y también devolver un Obj
+		//Un método puede recibir un Obj como parámetro y también puede devolver un Obj
 		//Ejemplo; Creamos una Class Utiles para que nos proporcione métodos que gestionan Obj
 		//De la Class Utiles que definimos no nos interesará tanto los Obj como sus métodos
-		//El Obj que instanciamos de la Class se puede ver como un contenedor de métodos genéricos
+		//El Obj que instanciamos se puede ver como un 'contenedor' de métodos genéricos
 		
-		class Utiles { 	// Esta Class no tiene constructor (es implícito), la definimos como un "contenedor" de métodos
-						// En próxima lecciones veremos las Static Class, de las que podemos invocar sus métodos sin instanciar la Class
+		class Utiles { 	// Esta Class no tiene constructor (es implícito), 
+						// 	la definimos como una manera de tener un "contenedor" de métodos
+						// En próxima lecciones veremos las Static Class, 
+						//	de las que podemos invocar sus métodos sin necesidad de instanciar la Class
 						
-			//Método que calcula el área del rectángulo que define el Obj de la Class Point
-			//Coordenadas origen (0,0), vertice opuesto definido por el Obj
+			//Método que calcula el área de un rectángulo definido por el Obj de la Class Point
+			//Coordenadas origen siempre son (0,0), vertice opuesto es el definido por el Obj Point
 			public int areaPunto(Point a) { // Recibe la referencia a un Obj de Class Point
 				
 				return Math.abs(a.x * a.y); //Valor absoluto de base * altura
 			}
 			
+			
 			//Método que genera un nuevo Punto a partir de la resta de dos Puntos
 			public Point restaPuntos(Point a, Point b) {
 				
-				return new Point((a.x - b.x), (a.y - b.y));
+				return new Point((a.x - b.x), (a.y - b.y)); // Retorna un Obj (la referencia al Obj)
 			}
 			
 		} //class Utiles
@@ -255,8 +264,8 @@ class Leccion_7 {
 		pt1.showPoint();
 		System.out.println("Area = " + ut.areaPunto(pt1)); //Area que define el Punto pt1
 		pt2.showPoint();
-		System.out.println("Area = " + ut.areaPunto(pt2)); //Area que define el Punto pt2
-	
+		System.out.println("Area = " + ut.areaPunto(pt2)); //Area que define el Punto pt2	
+		
 		Point pt3 = ut.restaPuntos(pt1, pt2); //Punto resultante de la resta del Punto pt1 y Punto pt2
 		pt3.showPoint();
 		System.out.println("Area = " + ut.areaPunto(pt3)); //Area que define el nuevo Punto pt3

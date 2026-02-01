@@ -152,6 +152,16 @@ public class Leccion_5 {
 				change_speed(value); //invocamos el método privado
 			}
 			
+			//Método públic que oferta la operación de frenado
+			public void apply_brake(int intensity) {
+				//Debe ser siempre un valor negativo
+				if (intensity >0) {
+					intensity *= -1;
+				} 
+				change_speed(intensity); // invocamos al método privado
+			}
+			
+			
 			//Método público para mostrar valores, utilizaremos el de la Super Clase
 			public void show_bicyle() {
 				
@@ -182,6 +192,10 @@ public class Leccion_5 {
 		
 		//Disminuimos marchas, sobrepasa límite
 		bici_plus_1.change_gear(-3);
+		bici_plus_1.show_bicyle();
+		
+		//Frenamos
+		bici_plus_1.apply_brake(5);
 		bici_plus_1.show_bicyle();
 		
 		// bici_plus_1.change_speed(4); // Esta llamada es posible porque estamos en misma public class Leccion_5

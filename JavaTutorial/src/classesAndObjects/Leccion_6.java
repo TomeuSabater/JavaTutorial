@@ -55,7 +55,7 @@ public class Leccion_6 {
 				return (PI * (radio * radio)); 
 			}
 			
-			//Métodos públicos
+			//Métodos públicos, accesibles universalmente
 			public int getX() {
 				return this.x; 
 			}
@@ -102,12 +102,11 @@ public class Leccion_6 {
 		class UtilidadesCirculo {
 			//Esta Class nos servirá para agrupar métodos con utilidades para el manejo de Obj Circulo
 			//No tenemos constructor UtilidadesCirculo() porque el objetivo es tener los métodos de la Class
-			//	Java tiene otras herramientas para conseguir esto, las static Class no hace falta instanciarlas
+			//	Java tiene otras herramientas para conseguir este comportamiento, las static Class que no hace falta instanciarlas
 			//	lo que nos permitiría invocar sus métodos directamente (se verá posteriormente) 
 						
 			public void desplazaCirculo(int deltaX, int deltaY, Circulo ci) {
 			//Método público que desplaza un deltaX, deltaY la posición del Círculo ci
-						
 		
 				//Lo hacemos sencillo para entenderlo
 				int x = ci.getX(); //Obtengo valor de X
@@ -120,7 +119,8 @@ public class Leccion_6 {
 				//Lo hacemos ahora más Javero o Javaloya 
 				ci.setX(ci.getX() + deltaX); //Llama a los métodos de Circulo
 				ci.setY(ci.getY() + deltaY); //Llama a los métodos de Circulo
-				ci = null; //Se pasan los parámetros por valor, c1 no es afectado. Java VM liberará automáticamente los recursos de ci, hacerlo es redundante
+				ci = null; //Se pasan los parámetros por valor, c1 no es afectado. 
+							// Java VM liberará automáticamente los recursos de ci, hacerlo es redundante
 			} //Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci (que es una ref al Obj no el Obj en sí), c1 no afectado
 			
 		} // class UtilidadesCirculo

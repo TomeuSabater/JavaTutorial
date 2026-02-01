@@ -8,7 +8,8 @@ public class Leccion_9_Ejercicio {
 				
 		// EJERCICIO CLASES Y OBJETOS. 
 
-		// Se trata de diseñar una Class Reserva aplicando la mayoría de los conceptos vistos hasta el momento
+		// Se trata de diseñar una Class "Reserva" aplicando la mayoría de los conceptos vistos hasta el momento
+		//
 		// La Class Reserva tiene como atributos comunes:
 		//		Número de reserva; compuesto por "Tipo/Año/Número"; 
 		//			Tipo; HTL si es de Hotel, VUE si es un vuelo, TRL si es un traslado
@@ -18,31 +19,36 @@ public class Leccion_9_Ejercicio {
 		//		Pax; máximo 4 Ejemplo; [Bartolomé Sabater, Juan Pérez, Pep Gonella, Pepito Perez]
 		//		Fecha de Inicio/Llegada y Fecha de Fin/Salida; Ejemplo: 01-Agosto-2024, 05-Agosto-2024
 		// 		Precio sin Impuestos y Precios con Impuestos (IVA 21%); Ejemplo: 1.000, 1.210
+		// 
 		// Atributos particulares:
 		//		Si es HTL: 
 		//			Dirección; Dirección postal del hotel
 		//			Tipo de Habitación: [S]imple, [D]oble, [T]riple
 		// 		Si es VUE:
-		//			A/P de salida: Código 3 letras aeropuerto de salida, Eje: PMI
-		//			A/P de llegada: Código 3 letras aeropuerto de llegada, Eje: MAD
+		//			A/P de salida: Código 3 letras aeropuerto de salida, Ej: PMI, BCN, CUN, HAV, etc. 
+		//			A/P de llegada: Código 3 letras aeropuerto de llegada, Ej: MAD, SVQ, JFK, ATL, etc. 
 		//		Si es TRL:
 		//			Recogida: Lugar de Recogida, es una dirección postal
 		//			Destino: Lugar de Destino, es una dirección postal 
+		// 
 		// Tiene que haber un método constructor
-		// Tiene que haber Getters y Setters para cada Atributo
+		// Tiene que haber Getters y Setters para cada atributo de instancia
 		// Tiene que haber un método que muestra el contenido de la reserva
-		// Típicamente, habría 5 reservas: 2 x vuelo, 2 x traslado, 1 x  hotel 
+		// Típicamente, habría 5 reservas: 2 x vuelo (ida/vuelta), 2 x traslado (a/p -> hotel, hotel -> a/p), 1 x  hotel 
 		// Los pasajeros toman un Vuelo desde el A/P origen al A/P destino (reserva 1), a la llegada toman un Traslado cuyo destino es el Hotel (reserva 2), 
 		// una vez finalizada la estancia en el Hotel (reserva 3) toman un Traslado hasta el A/P destino (reserva 4) donde un Vuelo los devuelve al A/P origen (reserva 5) 
+		// 
 		// Nota: En la realidad, existen más elementos, por ejemplo el seguro de viaje y entradas a museos, parques temáticos y otras atracciones, 
 		//		todo ello se almacena en un único expediente, no trataremos esta estructura por el momento, nos limitamos a Reservas independientes. 
 
 		
-		
 		// Se muestra una aproximación (no tiene todas las Sub Class) a una posible Solución:  
 		
-		// Diseñaremos una Super Class Reserva que contendrá los elementos comunes y 3 Sub Class para HTL, VUE y TRL cada una con los particulares
+		// Diseñaremos una Super Class Reserva que contendrá los elementos comunes 
+		//	y 3 Sub Class, para HTL, VUE y TRL cada una con los elemento que les sea particular
+		// Nota: Sería adecuado tener el diagrama de Clases antes de empezar
 	
+		
 		// Super Class Reserva 
 		class Reserva {
 			

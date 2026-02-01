@@ -16,66 +16,120 @@ public class Leccion_8 {
 					
 		
 		// Control de acceso a los atributos y métodos de una Class
-		// El nivel de acceso determina si puede accederse a un atributo o invocar un método de otra Class
+		// El nivel de acceso determina si se puede acceder a un atributo o invocar un método de un Obj desde otro Obj
+		// Access level modifiers determine whether other classes can use a particular field or invoke a particular method.
 		
-		// Dos niveles de acceso:
+		// Hay dos niveles de acceso:
 		// Top Level: public or package-private (sin nivel explícito)
 		
 		// Member Level: public, private, protected o package-private (sin nivel explícito) 
 		
-		// Una Clase puede ser public, y será visible por todo, si no tiene nivel tiene uno implícito: package-private y es visible solamente dentro de su propio package 
-		// Packages son nombres de grupos de Classes relacionadas
+		// Una Class puede ser "public", y será visible por todo, si no tiene nivel tiene uno implícito: 
+		//	package-private y es visible solamente dentro de su propio Package 
+		// Un Packages es una agrupación de Class relacionadas
 		
-		// En Member Level, se puede user public o sin nivel (package-private), con el mismo resultado que Top Level. 
+		// En Member Level, se puede usar public o sin nivel (package-private), con el mismo resultado que Top Level. 
 		// En Member Level hay dos niveles de acceso más: private y protected. 
-		// Private significa que solo es accesible en su propia clase. 
-		// Protected significa que solo puede ser accedido en su propio Package (como package-private) y además, por las Sub Clases de su Clase en otros Package. 
+		// El calificativo "private" significa que solo es accesible en su propia clase. 
+		// El calificativo "protected" significa que solo puede ser accedido en su propio Package (como package-private) y además, 
+		//	por las Sub Clases de su Clase en otros Package. 
 		
 		// Ver cuadro resumen en https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
 		
-		// Las variables de tipo "static" son compartidas por todos los Obj por lo que se consideran variables de la Class y no del Obj, y se puede acceder a ellos sin instanciar la Class 
-		// Los métodos de tipo "static", al ser métodos considerados de la Class y no del Obj, se pueden invocar sin instanciar la Class (sin crear un Ojbeto) 
-		// Un uso muy común, pero no el único, de los métodos static es acceder a las variables static
+		// Las variables de tipo "static" son compartidas por todos los Obj por lo que se consideran variables de la Class y no del Obj, 
+		//	y se puede acceder a ellas sin instanciar la Class 
+		// Los métodos de tipo "static", al ser métodos considerados de la Class y no del Obj, se pueden invocar sin instanciar la Class 
+		//	esto es, sin crear un Obj 
+		// Un uso muy común y de sentido común, pero no el único, de los métodos "static" es acceder a las variables "static"
 		
-		// La inicialización de las Variables de Instancia de una Class (cada Obj tendrá los suyos) es sencilla y pude hacerse en la definición de la Class o en el constructor 
-		// Para inicializar una variables static (Class variable), podemos usar los "static initialization blocks". 
+		// Recordamos que la inicialización de las variables de instancia de una Class (cada Obj tendrá los suyos) 
+		//	es sencilla y pude hacerse en la propia definición de la Class (valor inicial) o en el constructor 
+		// Para inicializar una variables "static" (Class variable), podemos usar los "static initialization blocks". 
 		
 		
+		//Veamos ejemplos de todo lo anterior
+		//Creamos una Class que contendrá un atributo "static"; será una variable de la Class, 
+		//	entonces todos los Obj creados la comparten, es la misma 
+	
 		
-		//Creamos una Class que contendrá un atributo static; será una variable de la Clase, todos los Obj creados la comparten 
-
+		class Bicycle {
+			
+			//constantes
+			static final String ELEMENTO = "Bicycle";
+			
+			//Atributos de la Class, serán el mismo para todos los Obj
+			private static int serialBike = 0;
+			
+			//Artibutos del Obj, variables de instancia, cada Obj tendrá sus propias variables
+			private String nombreBike; 
+			private int precio = 0; 
+			private int numSerialBike; 
+			
+			//Método constructor
+			public Bicycle(String nombre, int precio) {
+				
+				this.nombreBike = nombre;
+				this.precio = precio;
+				this.numSerialBike = ++Bicycle.serialBike; //Asigna siguiente número de serie
+			}
+			
+			//Métodos públicos
+			public void showBike() {
+				
+				System.out.println(Bicycle.ELEMENTO); 
+				System.out.println("Serial Number = " + this.numSerialBike);
+				System.out.println("Bike name = " + this.nombreBike);
+				System.out.println("Precio = " + this.precio + "€");
+			} 
+			
+		}
+		
+		Bicycle b1 = new Bicycle("Orbea", 1500);
+		b1.showBike();
+		
+		Bicycle b2 = new Bicycle("BH", 1700);
+		b2.showBike();
+		
+		//Veamos ese número de serie
+		System.out.println(Bicycle.serialBike);
+		
+	
+		//Hacemos un ejemplo un poco más complejo
+		
 		class Booking {
 			
 			//Constantes
 			static final String ELEMENTO = "Booking"; 	// Al ser "static" todos los Obj la comparten, al ser "final" es una cte. 
 														// es lógico añadir "static" a "final", no tiene sentido que cada Obj tenga su propia cte. 
 			
-			//Abributos del Objeto, Variables del Obj, cada Obj tendrá sus propias variables. 
-			private String nombre; 
-			private int precio = 0; // Inicialización
-			private int numReserva; 
-		
-			//Atributos de la Class, todos los Obj comparten la misma variable y solo existe una instancia de la misma
+			//Atributos de la Class, variables static, todos los Obj comparten la misma y solo existe una instancia de la misma
 			private static int numActualReservas = Booking.iniNumActualReservas(); //Contador de Reservas, 
 																					// Se inicializa invocando un método static 
 																					// al ser static, el método se invoca con la Class no con el Obj
 			
-			// Métodos static, permiten su invocación sin instanciar la Class, sin crear ningún Obj
+			//Abributos del Objeto, Variables del Obj, variables de instancia, cada Obj tendrá sus propias variables. 
+			private String nombre; 
+			private int precio = 0; // Inicialización de la variable
+			private int numReserva; // Tendrá un valor dependiente de la static numActualReservas	
+			
+			
+			// Métodos static, permiten su invocación sin instanciar la Class; sin crear ningún Obj
 			
 			// Static initialization block, inicializamos la variable static
 			private static int iniNumActualReservas() {
 			
-					return 2024; //inicializa el número actual de reservas
+					return 2026; //inicializa el número actual de reservas
 			}
 			
-			//Retorna una variable "static",
+			//Método static que retorna una variable "static",
 			public static int getnumActualReservas() {
 				
-				return Booking.numActualReservas; 	//  es bueno acompañarla con nombre de su Class
+				return Booking.numActualReservas; 	//Es recomendado acompañarla con nombre de su Class
 				// return numActualReservas; 		//Obviamente esta sintaxis también funciona, pero no es la recomendada
 			}	
 			
-			// Constructor
+			
+			// Método constructor, ofertamos solamente uno 
 			public Booking (String nombre, int precio) {
 				
 				this.nombre = nombre; 
@@ -108,19 +162,23 @@ public class Leccion_8 {
 		bk2.showBooking();
 		
 		//Indagamos el número actual de reservas
+		//	saber cuántas reservas hay hasta el momento
 		System.out.println("Número actual de reservas :" + Booking.getnumActualReservas()); 
 		
 		//Indagamos sobre el elemento
 		System.out.println("Elemento es : " + Booking.ELEMENTO); 
 		
-		//Aquí es posible reinicializar la static variable numActualReservas
+		//Aquí SI es posible reinicializar la static variable numActualReservas a su valor inicial
 		//posteriormente veremos cómo podemos usar una static sin posibilidad de reinicialización 
 		Booking.numActualReservas = Booking.iniNumActualReservas(); 
 		System.out.println("Número actual de reservas :" + Booking.getnumActualReservas()); 
 		
+		// Booking.numActualReservas = 0; // Esto, obviamente también sería posible.  
 		//En la siguiente lección (Leccion_9_Ejercicio) veremos una amplicación de este ejemplo
-		//En la siguiente lección (lección_10_Ejercicio) vermos cómo aplicar los niveles de acceso para que, por ejemplo, la variable static no se pueda reinicializar
-		
+		//En la siguiente lección (lección_10_Ejercicio) vermos cómo aplicar los niveles de acceso para que, 
+		//	por ejemplo, la variable static no se pueda reinicializar
+
+	
 	} // void main
 
-} // public class Leccion_8 
+} // public class Leccion_8 --> Pasar a Lección_9_Ejercicio.java y Lección_10_Ejercicio.java
