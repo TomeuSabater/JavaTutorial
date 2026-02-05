@@ -145,7 +145,7 @@ public class Leccion_3 {
 		
 		//Veamos un ejemplo
 		
-				
+
 		Scanner entrada = new Scanner(System.in);
 		int v_entrada; //Variable con valor aportado por usuario 
 		

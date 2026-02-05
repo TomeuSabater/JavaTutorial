@@ -13,7 +13,7 @@ public class ReservaHTL extends Reserva{
 	
 	private static int numReservaHtl; // Número consecutivo de reservas de tipo HTL
 	static {
-		ReservaHTL.numReservaHtl = 0; //Inicialización
+		ReservaHTL.numReservaHtl = 0; //Inicialización (En entorno real leería de la DDBB) 
 	}
 				
 	//// Atributos o Variables de Instancia del Obj ReservaHTL

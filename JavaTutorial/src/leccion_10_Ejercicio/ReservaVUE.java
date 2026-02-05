@@ -45,7 +45,7 @@ public class ReservaVUE extends Reserva{
 		return ReservaVUE.numReservaVue; 
 	}
 	
-	//Genera el número de reserva para la reserva de vuelo 
+	//Genera el número de reserva para la reserva de Vuelo 
 	private static String generaNuevoNumeroReserva() {
 		
 		LocalDate hoy = LocalDate.now(); // Fecha actual
@@ -69,4 +69,4 @@ public class ReservaVUE extends Reserva{
 		
 	} // muestraReserva
 
-} // class ReservaVUE 
+} // class ReservaVUE --> Pasar a Leccion_10_Ejercicio para un ejemplo 'completo' 

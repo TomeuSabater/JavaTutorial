@@ -11,7 +11,7 @@ public class Reserva {
 	
 	//// Atributos o Variables de la Class Reserva
 	
-	// Número consecutivo de Reservas Totales
+	// Número consecutivo de Reservas TOTALES
 	private static int numReserva; // private para eliminar su visibilidad
 	static {
 		Reserva.numReserva = 0; //Inicialización

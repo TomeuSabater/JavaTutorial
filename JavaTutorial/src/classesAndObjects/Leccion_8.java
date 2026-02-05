@@ -13,7 +13,6 @@ public class Leccion_8 {
 		// Class Variables / Class Métodos : static (static fields o class variables, y métodos static invocables sin instanciar la Clase) 
 		// Constantes: static final (propiedades de static además de final que indica que su valor nunca cambiará) 
 		// Inicialización de: Variables / Atributos, Class variables.  
-					
 		
 		// Control de acceso a los atributos y métodos de una Class
 		// El nivel de acceso determina si se puede acceder a un atributo o invocar un método de un Obj desde otro Obj
@@ -116,6 +115,8 @@ public class Leccion_8 {
 			// Métodos static, permiten su invocación sin instanciar la Class; sin crear ningún Obj
 			
 			// Static initialization block, inicializamos la variable static
+			// La inicialización de una static admite un bloque de código 
+			// La inicialización de una static también admite una llamada a un método static
 			private static int iniNumActualReservas() {
 			
 					return 2026; //inicializa el número actual de reservas
@@ -181,4 +182,4 @@ public class Leccion_8 {
 	
 	} // void main
 
-} // public class Leccion_8 --> Pasar a Lección_9_Ejercicio.java y Lección_10_Ejercicio.java
+} // public class Leccion_8 --> Pasar a Lección_9_Ejercicio.java, Lección_10_Ejercicio.java y Leccion_10_Ejercicio_bis.java

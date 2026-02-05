@@ -7,6 +7,8 @@ public class Leccion_9_Ejercicio {
 	public static void main(String[] args) {
 				
 		// EJERCICIO CLASES Y OBJETOS. 
+		
+		// En leccion_10_Ejercicio está resuelto con estructura correcta de Package
 
 		// Se trata de diseñar una Class "Reserva" aplicando la mayoría de los conceptos vistos hasta el momento
 		//
@@ -60,7 +62,7 @@ public class Leccion_9_Ejercicio {
 			// Atributos o Variables de Instancia
 			
 			// Número de la Reserva (De cada una de las reservas)
-			protected String numeroReserva = null; //Se rellenará en la sub clase, no puede ser private 
+			protected String numeroReserva = null; //Se rellenará en cada sub clase, no puede ser private 
 			
 			// Pax, máximo de 4
 			private String[] pax = new String[Reserva.MAX_NUM_PAX];
@@ -117,7 +119,7 @@ public class Leccion_9_Ejercicio {
 			// Muestra Pax
 			public void muestraPax() {
 				
-				byte contador = 0; 
+				byte contador = 0; /// Orden del pasajero 
 				for (String pasajero : this.pax) {
 				  System.out.println("Pasajero " + ++contador + " : " + pasajero);
 				}
@@ -135,42 +137,47 @@ public class Leccion_9_Ejercicio {
 			
 		} // Class Reserva 
 		
-		//Creamos una Super Reserva y probamos los construido hasta ahora
-		//No deberíamos tener ninguna Super Reservas, la instanciamos por motivos de test
-		Reserva r1;
-		r1 = new Reserva("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", 1000);
+		//Creamos una Super Reserva para probar lo definido hasta el momento
+		//Realmente, no deberíamos tener ninguna Super Reservas, la instanciamos por motivos de test
+		Reserva r1 = new Reserva("Tomeu Sabater", null, null, null, "2026-02-01", "2026-02-03", 1000);
 		r1.muestraReserva(); 
-			
-		
+
 		// Creamos ahora las 3 x Class para cada una de las Reservas Particulares
 		
-		// Class Reserva de Hotel
+		// Class Reserva de Hotel especializa Class Reserva
 		class ReservaHTL extends Reserva {
 			
 			// Ctes particulares de la Class ReservaHTL
-			private static final String ELEMENTO = "Reserva Hotel"; // Identifica el elemento
+			private static final String ELEMENTO = "Reserva de Hotel"; // Identifica el elemento
 			private static final String TIPO_RESERVA = "HTL"; //Tipo de Reserva
 			
 			// Atributos de la Class ReservaHTL
+			// mismo atributo y valor para todos los Obj
+			// 
 			private static int numReservaHtl; 
 			static {
 				ReservaHTL.numReservaHtl = 0; 
 			}
 						
 			// Atributos o Variables de Instancia del Obj ReservaHTL
+			// cada Obj tendrá un atributo con su valor particular 
 			private String direccionHtl = null; // Dirección Postal del Hotel
 			private char tipoHab = '\0';  	//Tipo de Habitación: Simple, Doble, Triple
 											//Posteriormente veremos los tipo enum
 			
 			// Método constructor
-			public ReservaHTL(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, String direccion, char habitacion, int neto) {
+			public ReservaHTL(String pax1, String pax2, String pax3, String pax4, 
+								String fInicio, String fFin, 
+								String direccion, 
+								char habitacion, 
+								int neto) {
 				
 				// Llamamos al constructor de la Super Class Reserva 
 				super(pax1, pax2, pax3, pax4, fInicio, fFin, neto);
 				
-				//Asignamos valores particuales para ReservaHTL
-				this.direccionHtl = direccion; 
-				this.tipoHab = habitacion; 
+				//Asignamos valores a los atributos particuales de ReservaHTL
+				this.direccionHtl = direccion; // Dirección Hotel 
+				this.tipoHab = habitacion; // Tipo de habitación 
 				
 				//Asignamos número de reserva
 				this.numeroReserva = generaNuevoNumeroReserva(); 
@@ -188,15 +195,14 @@ public class Leccion_9_Ejercicio {
 			
 			//Genera el número de reserva para la reserva de hotel 
 			//Sería adecuado que fuera un método static
-			private String generaNuevoNumeroReserva() {
+			private static String generaNuevoNumeroReserva() {
 				
-				String numero = null;
 				LocalDate hoy = LocalDate.now(); // Fecha actual
 				int anyo = hoy.getYear(); //Obtenemos el año
 				String sanyo = String.valueOf(anyo); //Transformamos año en String
 				String numeroHlt = String.valueOf(++ReservaHTL.numReservaHtl); 
 				
-				numero = ReservaHTL.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt; 
+				String numero = ReservaHTL.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt; 
 				return numero; 
 			} // generaNuevoNumeroReserva()
 			
@@ -242,7 +248,8 @@ public class Leccion_9_Ejercicio {
 		//Para aplicar correctamente el nivel de protección debemos separar cada Class en ficheros separados
 		//Realmente, estamos anidando la Super Class y las Sub Class dentro de la Clas Leccion_9 y los niveles de protección de actúan como deseamos
 		//Lo haremos correctamente en la Lección_10_Ejercicio, junto con las Sub Class para ReservaVUE y ReservaTRL
-		
+
+
 	} // public static void main
 
-} // Leccion_9_Ejercicio
+} // Leccion_9_Ejercicio. Pasar a Leccion_10_Ejercicio.java donde está estructurado en un Package

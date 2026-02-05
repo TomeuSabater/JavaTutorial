@@ -39,13 +39,13 @@ public class ReservaTRL extends Reserva{
 	
 	//// Métodos Static
 	
-	// Devuelve el número actual de Reservas de Hotel
+	// Devuelve el número actual de Reservas de Traslado
 	public static int numReservasTraslado() {
 		
 		return ReservaTRL.numReservaTrl; 
 	}
 		
-	//Genera el número de reserva para la reserva de hotel 
+	//Genera el número de reserva para la reserva de Traslado 
 	private static String generaNuevoNumeroReserva() {
 		
 		LocalDate hoy = LocalDate.now(); // Fecha actual
