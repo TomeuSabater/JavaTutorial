@@ -153,7 +153,7 @@ public class Leccion_9_Ejercicio {
 			
 			// Atributos de la Class ReservaHTL
 			// mismo atributo y valor para todos los Obj
-			// 
+			// Se inicializa con un bloque de código, no es posible volver a inicializarlo 
 			private static int numReservaHtl; 
 			static {
 				ReservaHTL.numReservaHtl = 0; 
@@ -164,6 +164,16 @@ public class Leccion_9_Ejercicio {
 			private String direccionHtl = null; // Dirección Postal del Hotel
 			private char tipoHab = '\0';  	//Tipo de Habitación: Simple, Doble, Triple
 											//Posteriormente veremos los tipo enum
+			
+			
+			// Métodos static que gestionan variables static
+			
+			// Devuelve el número actual de Reservas de Hotel
+			public static int numReservasHotel() {
+				
+				return ReservaHTL.numReservaHtl; 
+			}		
+			
 			
 			// Método constructor
 			public ReservaHTL(String pax1, String pax2, String pax3, String pax4, 
@@ -183,18 +193,11 @@ public class Leccion_9_Ejercicio {
 				this.numeroReserva = generaNuevoNumeroReserva(); 
 			}
 			
-			// Métodos static
-			
-			// Devuelve el número actual de Reservas de Hotel
-			public static int numReservasHotel() {
-				
-				return ReservaHTL.numReservaHtl; 
-			}
 			
 			// Métodos privados
 			
 			//Genera el número de reserva para la reserva de hotel 
-			//Sería adecuado que fuera un método static
+			//Sería más adecuado que fuera un método static
 			private static String generaNuevoNumeroReserva() {
 				
 				LocalDate hoy = LocalDate.now(); // Fecha actual
@@ -241,14 +244,14 @@ public class Leccion_9_Ejercicio {
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo " + ReservaHTL.ELEMENTO); 
 
 		//Intentamos alterar el numReservasHotel
-		ReservaHTL.numReservaHtl++; 
+		ReservaHTL.numReservaHtl++; // Es posible, se explica motivo más abajo
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo " + ReservaHTL.ELEMENTO); 
 		
-		//Hemos podido alterar el valor porque estamos dentro de la misma class Leccion_9_Ejercicio
+		//No podemos reinicializar el valor de numReservaHtl una vez inicializado
+		//Si hemos podido alterar el valor porque estamos dentro de la misma class Leccion_9_Ejercicio
 		//Para aplicar correctamente el nivel de protección debemos separar cada Class en ficheros separados
-		//Realmente, estamos anidando la Super Class y las Sub Class dentro de la Clas Leccion_9 y los niveles de protección de actúan como deseamos
+		//Realmente, estamos anidando la Super Class y las Sub Class dentro de la Clas Leccion_9 y los niveles de protección no actúan como deseamos
 		//Lo haremos correctamente en la Lección_10_Ejercicio, junto con las Sub Class para ReservaVUE y ReservaTRL
-
 
 	} // public static void main
 

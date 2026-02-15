@@ -7,7 +7,7 @@ public class Leccion_11 {
 	public static void main(String[] args) {
 
 		// Introducción_VI a CLASES Y OBJETOS. 
-		// Preparació para Nested Class; Inner Class / Static Class
+		// Preparació para Nested Class; Inner Class / Static Nested Class
 		
 		
 		// La Class LocalizadorReserva será un "contenedor" de variables y métodos static

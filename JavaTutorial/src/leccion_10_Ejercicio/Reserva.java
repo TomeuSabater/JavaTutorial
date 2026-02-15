@@ -9,11 +9,10 @@ public class Reserva {
 	private static final byte MAX_NUM_PAX = 4; // Numero máximo de pasajeros
 	private static final byte IVA = 21; // Impuestos aplicados
 	
-
 	//// Atributos o Variables de Instancia
 	
 	// Localizador de la Reserva (Código único para cada reserva)
-	// Todas las Reservas tendrán este dato, por tanto, lo definimos en la Super Class Reserva
+	// Todas las Reservas tendrán este dato; lo definimos en la Super Class Reserva
 	protected String numeroParticularReserva = null; //Se rellenará en la sub clase, no puede ser private 
 	
 	// Pax, máximo de 4

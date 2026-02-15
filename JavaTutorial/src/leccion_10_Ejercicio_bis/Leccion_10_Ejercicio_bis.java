@@ -7,8 +7,10 @@ public class Leccion_10_Ejercicio_bis {
 			// Mejoras sobre leccion_10_Ejercicio.java:
 	
 			// 		Se añade Número TOTAL de reservas
+			//			Existe un número parcial de reserva para cada tipo de reserva
+			//			y también existirá un número total a nivel de reserva general
 			// 		Se añaden bloques de código de inicialización de variables
-			// 		Los pax se implementan mediante una Class Cliente, hay un cliente principal o titular
+			// 		Los pax se implementan mediante una Nested Class Cliente
 
 			// Se trata de diseñar una Class Reserva aplicando la mayoría de los conceptos vistos hasta el momento
 			// La Class Reserva tiene como atributos comunes:
@@ -18,7 +20,8 @@ public class Leccion_10_Ejercicio_bis {
 			//			Año; Año en curso (del momento de la reserva, no de la fecha de consumo) 
 			//			Número Parcial; Es un número consecutivo del tipo de reserva
 			//			Ejemplos: "001/HTL/2024/0001", "002/HTL/2024/0002", "003/VUE/2024/001", "004/TRL/2024/0001",...
-			//		Pax; máximo 4 Ejemplo; [Bartolomé Sabater, Juan Pérez, Pep Gonella, Pepito Perez]
+			//		Pax; máximo 4 donde cada Pax es un Obj con los siguiente atributos
+			//			Passaporte, Nombre, Apellido1, Apellido2 (opcional), Fecha_nacimiento
 			//		Fecha de Inicio/Llegada y Fecha de Fin/Salida; Ejemplo: 01-Agosto-2024, 05-Agosto-2024
 			// 		Precio sin Impuestos y Precios con Impuestos (IVA 21%); Ejemplo: 1.000, 1.210
 			// Atributos particulares:
@@ -54,55 +57,78 @@ public class Leccion_10_Ejercicio_bis {
 		System.out.println("Reservas de tipo TRL = " + ReservaTRL.numReservasTraslado()); 
 		
 		
+
+		
 		//// Hacemos algunas pruebas con ReservaHTL
 		
 		// Creamos una primera Reserva de Hotel
-		ReservaHTL r2;
-		r2 = new ReservaHTL("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", "Padre Ventura", 'D', 1000); 
-		r2.muestraReserva(); 
+		ReservaHTL r1;
+		r1 = new ReservaHTL("43.026.095-C","Tomeu", "Sabater", null, "1966-03-18",
+							"41.234.567-B", "Isabel", "Pantoja", null, "1965-05-27", 
+							null, null, null, null, null,
+							null, null, null, null, null,
+							"2024-07-01", "2024-07-03", "Padre Ventura", 'D', 1000); 
+		
+		r1.muestraReserva(); 
 				
 		//Comprobamos cuántas reservas totales hay y de Hotel
 		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo HTL"); 
-				
+		
 		//Creamos una segunda Reserva de Hotel
-		ReservaHTL r3;
-		r3 = new ReservaHTL("Juan Pérez","Benito Boniato", null, null, "2024-08-15", "2024-09-17", "Juan Maragall", 'S', 3000); 
-		r3.muestraReserva(); 
+		ReservaHTL r2;
+		r2 = new ReservaHTL("43.325.695-V", "Juan", "Pérez", null, "1975-05-01", 
+							null, null, null, null, null,
+							null, null, null, null, null,
+							null, null, null, null, null,
+							"2024-08-15", "2024-09-17", "Juan Maragall", 'S', 3000); 
+		r2.muestraReserva(); 
 				
 		//Comprobamos cuántas reservas de Hotel hay
 		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo HTL"); 
 		
+		
 		//Intentamos alterar el numReserva y/o el numReservaHtl
-		//System.out.println(Reserva.generaNumTotalReservas()); // No funciona, es un método privado. 
-		//Reserva.numReserva++ // No funciona, es una private static, no tiene visibilidad 
-		//ReservaHTL.numReservaHtl++; // Genera un error, es una static de tipo private, no tiene visibilidad
+		// Reserva.numReserva++; // No funciona, es una private static, no tiene visibilidad
+		// ReservaHTL.numReservaHtl++; // Genera un error, es una static de tipo private, no tiene visibilidad
 		//String numero = ReservaHTL.generaNuevoNumeroReserva(); // Genera un error, este método static de tipo private no tiene visibilidad
 	
-		
 		//// Hacemos algunas pruebas con ReservaVUE
 		
 		// Creamos una primera Reserva de Vuelo
-		ReservaVUE r4;
-		r4 = new ReservaVUE("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", "PMI", "MAD", 1000); 
-		r4.muestraReserva(); 
+		ReservaVUE r3;
+		r3 = new ReservaVUE("123.456.789-A", "Benito", "Boniato", null, "1989-12-12",
+							null, null, null, null, null, 
+							null, null, null, null, null, 
+							null, null, null, null, null, 
+							"2024-07-01", "2024-07-03", "PMI", "MAD", 1000); 
+		r3.muestraReserva(); 
 		
-		//Comprobamos cuántas reservas de Vuelo hay
+		//Comprobamos cuántas reservas Totales y de Vuelo hay
 		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaVUE.numReservasVuelo() + " Reservas de tipo VUE"); 
 		
 		//// Hacemos algunas pruebas con ReservaTRL
 		
 		// Creamos una primera Reserva de Traslado
-		ReservaTRL r5;
-		r5 = new ReservaTRL("Tomeu Sabater", null, null, null, "2024-07-01", "2024-07-03", "Palma Centro", "A/P PMI", 1000); 
-		r5.muestraReserva(); 
+		ReservaTRL r4;
+		r4 = new ReservaTRL("43.026.095-C","Tomeu", "Sabater", null, "1966-03-18",
+							"41.234.567-B", "Isabel", "Pantoja", null, "1965-05-27", 
+							null, null, null, null, null,
+							null, null, null, null, null,
+							"2024-07-01", "2024-07-03", "Palma Centro", "A/P PMI", 1000); 
+		r4.muestraReserva(); 
 		
 		//Comprobamos cuántas reservas de Traslado hay
 		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
 		System.out.println("Actualmente hay " + ReservaTRL.numReservasTraslado() + " Reservas de tipo TRL"); 
 
+		//Finalmente
+		System.out.println("Actualmente hay " + Reserva.numReservas() + " Reservas totales"); 
+		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo HTL"); 
+		System.out.println("Actualmente hay " + ReservaVUE.numReservasVuelo() + " Reservas de tipo VUE"); 
+		System.out.println("Actualmente hay " + ReservaTRL.numReservasTraslado() + " Reservas de tipo TRL"); 
 
 	} // public static void main
 	
@@ -111,5 +137,7 @@ public class Leccion_10_Ejercicio_bis {
 	// Al invocarse únicamente con el constructor, es necesario la generación de una reserva para alterar su valor
 	// También podemos probar con Nested Class, es decir, Una Class dentro de otra Class
 	
-
+	// Los pax son una Nested Class, pero hay que crearlo cada vez. 
+	// sería mucho mejor crear un Pax independiente de la Class Reserva y pasárselo
+	
 } // class Leccion_10_Ejercicio_bis

@@ -70,6 +70,7 @@ public class Leccion_8 {
 				this.nombreBike = nombre;
 				this.precio = precio;
 				this.numSerialBike = ++Bicycle.serialBike; //Asigna siguiente número de serie
+															// La manera correcta es class_name.static_variable
 			}
 			
 			//Métodos públicos
@@ -90,7 +91,7 @@ public class Leccion_8 {
 		b2.showBike();
 		
 		//Veamos ese número de serie
-		System.out.println(Bicycle.serialBike);
+		System.out.println(Bicycle.serialBike); // Class_name.stactic_variable
 		
 	
 		//Hacemos un ejemplo un poco más complejo
@@ -136,7 +137,7 @@ public class Leccion_8 {
 				this.nombre = nombre; 
 				this.precio = precio;
 				this.numReserva = ++Booking.numActualReservas; 	//Asigna número de reserva y actualiza contador
-																// Al ser una "static", pertenece a la Class y es única
+																// Al ser una "static", el contador pertenece a la Class y es compartido
 			}
 			
 			// Métodos públicos 

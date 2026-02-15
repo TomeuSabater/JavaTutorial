@@ -9,7 +9,7 @@ public class Leccion_10_Ejercicio {
 			//		Número de reserva; compuesto por "Tipo/Año/NúmeroParcial"; 
 			//			Tipo; HTL si es de Hotel, VUE si es un vuelo, TRL si es un traslado
 			//			Año; Año en curso (del momento de la reserva, no de la fecha de consumo) 
-			//			Número Parcial; Es un número consecutivo del tipo de reserva
+			//			Número Parcial; Es un número consecutivo del tipo de reserva (no hay contador total en este ejemplo)
 			//			Ejemplos: "HTL/2024/0001", "HTL/2024/0002", "VUE/2024/001", "TRL/2024/0001",...
 			//		Pax; máximo 4 Ejemplo; [Bartolomé Sabater, Juan Pérez, Pep Gonella, Pepito Perez]
 			//		Fecha de Inicio/Llegada y Fecha de Fin/Salida; Ejemplo: 01-Agosto-2024, 05-Agosto-2024
@@ -33,7 +33,7 @@ public class Leccion_10_Ejercicio {
 			// Nota: En la realidad, existen más elementos, por ejemplo el seguro de viaje y entradas a museos, parques temáticos y otras atracciones, 
 			//		todo ello se almacena en un único expediente, no trataremos esta estructura por el momento, nos limitamos a Reservas independientes. 
 						
-			// Se muestra una posible Solución:  
+			// Se muestra una posible Solución:   
 
 	public static void main(String[] args) {
 		
@@ -69,8 +69,8 @@ public class Leccion_10_Ejercicio {
 		System.out.println("Actualmente hay " + ReservaHTL.numReservasHotel() + " Reservas de tipo HTL"); 
 		
 		//Intentamos alterar el numReservasHotel
-		// ReservaHTL.numReservaHtl++; --> Genera un error, es una static de tipo private, no es accesible 
-		// String numero = ReservaHTL.generaNuevoNumeroReserva(); --> Genera un error, este método static de tipo private no es accesible
+		// ReservaHTL.numReservaHtl++; --> Genera un error, es una static de tipo private, es inaccesible exteriormente
+		// String numero = ReservaHTL.generaNuevoNumeroReserva(); --> Genera un error, este método static de tipo private; es inaccesible exteriormente
 		
 		//// Hacemos algunas pruebas con ReservaVUE
 		
@@ -96,5 +96,6 @@ public class Leccion_10_Ejercicio {
 	
 	// En el lección_10_Ejercicio_bis se construye una solución donde cohexisten el Número Particular de la Reserva (único para cada tipo de reserva)
 	// y el Número Total de la Reserva (único para todas las reservas independientemente de su tipo)
+	// y se aplica el concepto de Clase Anidada para los pax de una reserva 
 
 } // class Leccion_10_Ejercicio

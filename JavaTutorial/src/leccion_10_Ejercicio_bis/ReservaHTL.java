@@ -22,23 +22,6 @@ public class ReservaHTL extends Reserva{
 	private String direccionHtl = null; // Dirección Postal del Hotel
 	private char tipoHab = '\0';  //Tipo de Habitación: Simple, Doble, Triple
 
-	
-	//// Métodos Constructores
-	
-	// Método constructor único
-	public ReservaHTL(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, String direccion, char habitacion, int neto) {
-		
-		// Llamamos al constructor de la Super Clase 
-		super(pax1, pax2, pax3, pax4, fInicio, fFin, neto);
-		
-		//Asignamos valores particulares para ReservaHTL
-		this.direccionHtl = direccion; 
-		this.tipoHab = habitacion; 
-		
-		//Asignamos número de reserva
-		this.numeroParticularReserva = this.numeroParticularReserva + ReservaHTL.generaNuevoNumeroReserva(); 
-	}
-	
 	//// Métodos Static
 	
 	//Genera el número particular de reserva para las reserva de HTL 
@@ -60,6 +43,31 @@ public class ReservaHTL extends Reserva{
 		
 		return ReservaHTL.numReservaHtl; 
 	}
+		
+	//// Métodos Constructores
+	
+	// Método constructor único
+	public ReservaHTL(String c1_passport, String c1_nom1, String c1_ap1, String c1_ap2, String c1_fechaNac,
+					String c2_passport, String c2_nom, String c2_ap1, String c2_ap2,  String c2_fechaNac, 
+					String c3_passport, String c3_nom, String c3_ap1, String c3_ap2,  String c3_fechaNac, 
+					String c4_passport, String c4_nom, String c4_ap1, String c4_ap2,  String c4_fechaNac, 
+					String fInicio, String fFin, String direccion, char habitacion, int neto) {
+		
+		// Llamamos al constructor de la Super Clase 
+		super(c1_passport, c1_nom1, c1_ap1, c1_ap2, c1_fechaNac,
+				c2_passport, c2_nom, c2_ap1, c2_ap2, c2_fechaNac, 
+				c3_passport, c3_nom, c3_ap1, c3_ap2, c3_fechaNac, 
+				c4_passport, c4_nom, c4_ap1, c4_ap2, c4_fechaNac, 
+				fInicio, fFin, neto);
+		
+		//Asignamos valores particulares para ReservaHTL
+		this.direccionHtl = direccion; 
+		this.tipoHab = habitacion; 
+		
+		//Construimos el número de la reserva; Concatenación de Strings
+		this.numeroParticularReserva = this.numeroParticularReserva + ReservaHTL.generaNuevoNumeroReserva(); 
+	}
+	
 		
 	// Métodos públicos
 	

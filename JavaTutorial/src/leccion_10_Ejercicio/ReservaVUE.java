@@ -21,6 +21,29 @@ public class ReservaVUE extends Reserva{
 	private String apSalida = null; // A/P de salida: Código 3 letras aeropuerto de salida, Eje: PMI
 	private String apLlegada = null; //A/P de llegada: Código 3 letras aeropuerto de llegada, Eje: MAD
 
+	
+	//// Métodos Static
+	
+
+	//Genera el número de reserva para la reserva de Vuelo 
+	private static String generaNuevoNumeroReserva() {
+		
+		LocalDate hoy = LocalDate.now(); // Fecha actual
+		int anyo = hoy.getYear(); //Obtenemos el año
+		String sanyo = String.valueOf(anyo); //Transformamos año en String
+		String numeroVue = String.valueOf(++ReservaVUE.numReservaVue); // Número único consecutivo
+		
+		return (ReservaVUE.TIPO_RESERVA + "/" + sanyo + "/" + numeroVue); 
+	} // generaNuevoNumeroReserva()
+	
+	
+	// Devuelve el número actual de Reservas de Vuelo
+	public static int numReservasVuelo() {
+		
+		return ReservaVUE.numReservaVue; 
+	}
+	
+	
 	//// Métodos Constructores
 	
 	// Método constructor único
@@ -37,24 +60,6 @@ public class ReservaVUE extends Reserva{
 		this.numeroParticularReserva = ReservaVUE.generaNuevoNumeroReserva(); 
 	}
 	
-	//// Métodos Static
-	
-	// Devuelve el número actual de Reservas de Vuelo
-	public static int numReservasVuelo() {
-		
-		return ReservaVUE.numReservaVue; 
-	}
-	
-	//Genera el número de reserva para la reserva de Vuelo 
-	private static String generaNuevoNumeroReserva() {
-		
-		LocalDate hoy = LocalDate.now(); // Fecha actual
-		int anyo = hoy.getYear(); //Obtenemos el año
-		String sanyo = String.valueOf(anyo); //Transformamos año en String
-		String numeroVue = String.valueOf(++ReservaVUE.numReservaVue); // Número único consecutivo
-		
-		return (ReservaVUE.TIPO_RESERVA + "/" + sanyo + "/" + numeroVue); 
-	} // generaNuevoNumeroReserva()
 	
 	//// Métodos públicos
 	
@@ -69,4 +74,4 @@ public class ReservaVUE extends Reserva{
 		
 	} // muestraReserva
 
-} // class ReservaVUE --> Pasar a Leccion_10_Ejercicio para un ejemplo 'completo' 
+} // class ReservaVUE 

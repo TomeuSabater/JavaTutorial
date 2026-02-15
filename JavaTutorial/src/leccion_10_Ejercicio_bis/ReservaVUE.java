@@ -25,10 +25,18 @@ public class ReservaVUE extends Reserva{
 	//// Métodos Constructores
 	
 	// Método constructor único
-	public ReservaVUE(String pax1, String pax2, String pax3, String pax4, String fInicio, String fFin, String Ap1, String Ap2, int neto) {
+	public ReservaVUE(String c1_passport, String c1_nom1, String c1_ap1, String c1_ap2, String c1_fechaNac,
+			String c2_passport, String c2_nom, String c2_ap1, String c2_ap2, String c2_fechaNac, 
+			String c3_passport, String c3_nom, String c3_ap1, String c3_ap2, String c3_fechaNac, 
+			String c4_passport, String c4_nom, String c4_ap1, String c4_ap2, String c4_fechaNac,							
+			String fInicio, String fFin, String Ap1, String Ap2, int neto) {
 		
 		// Llamamos al constructor de la Super Clase 
-		super(pax1, pax2, pax3, pax4, fInicio, fFin, neto);
+		super(c1_passport, c1_nom1, c1_ap1, c1_ap2, c1_fechaNac,
+				c2_passport, c2_nom, c2_ap1, c2_ap2, c2_fechaNac, 
+				c3_passport, c3_nom, c3_ap1, c3_ap2, c3_fechaNac, 
+				c4_passport, c4_nom, c4_ap1, c4_ap2, c4_fechaNac, 
+				fInicio, fFin, neto);
 		
 		//Asignamos valores particulares para ReservaHTL
 		this.apSalida = Ap1; 

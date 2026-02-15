@@ -11,7 +11,7 @@ public class ReservaTRL extends Reserva{
 	
 	//// Atributos o Variables de la Clase 
 	
-	private static int numReservaTrl; // Número consecutivo de reservas de tipo HTL
+	private static int numReservaTrl; // Número consecutivo de reservas de tipo TRL
 	static {
 		ReservaTRL.numReservaTrl = 0; //Inicialización
 	}
@@ -20,6 +20,30 @@ public class ReservaTRL extends Reserva{
 	
 	private String RecogidaTrl = null; // Lugar de recogida
 	private String DestinoTrl = null;  // Lugar de destino
+	
+	//// Métodos Static
+	
+
+	//Genera el número de reserva para la reserva de Traslado 
+	private static String generaNuevoNumeroReserva() {
+		
+		LocalDate hoy = LocalDate.now(); // Fecha actual
+		int anyo = hoy.getYear(); //Obtenemos el año
+		String sanyo = String.valueOf(anyo); //Transformamos año en String
+		String numeroTrl = String.valueOf(++ReservaTRL.numReservaTrl); // Número único consecutivo
+		
+		return (ReservaTRL.TIPO_RESERVA + "/" + sanyo + "/" + numeroTrl); 
+
+	} // generaNuevoNumeroReserva()
+		
+	
+	// Devuelve el número actual de Reservas de Traslado
+	// oferta la posibilidad de consultar este valor private static 
+	public static int numReservasTraslado() {
+		
+		return ReservaTRL.numReservaTrl; 
+	}
+		
 	
 	//// Métodos Constructores
 	
@@ -37,25 +61,6 @@ public class ReservaTRL extends Reserva{
 		this.numeroParticularReserva = ReservaTRL.generaNuevoNumeroReserva(); 
 	}
 	
-	//// Métodos Static
-	
-	// Devuelve el número actual de Reservas de Traslado
-	public static int numReservasTraslado() {
-		
-		return ReservaTRL.numReservaTrl; 
-	}
-		
-	//Genera el número de reserva para la reserva de Traslado 
-	private static String generaNuevoNumeroReserva() {
-		
-		LocalDate hoy = LocalDate.now(); // Fecha actual
-		int anyo = hoy.getYear(); //Obtenemos el año
-		String sanyo = String.valueOf(anyo); //Transformamos año en String
-		String numeroTrl = String.valueOf(++ReservaTRL.numReservaTrl); // Número único consecutivo
-		
-		return (ReservaTRL.TIPO_RESERVA + "/" + sanyo + "/" + numeroTrl); 
-
-	} // generaNuevoNumeroReserva()
 	
 	// Métodos públicos
 	
