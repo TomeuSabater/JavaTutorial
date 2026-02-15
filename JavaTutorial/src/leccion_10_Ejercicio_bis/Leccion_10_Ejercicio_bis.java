@@ -4,10 +4,11 @@ public class Leccion_10_Ejercicio_bis {
 	
 	// EJERCICIO CLASES Y OBJETOS. 
 	
-			// Mejora sobre leccion_10_Ejercicio.java
+			// Mejoras sobre leccion_10_Ejercicio.java:
 	
-			// Se añade Número TOTAL de reservas
-			// Se añaden bloques de código de inicialización de variables
+			// 		Se añade Número TOTAL de reservas
+			// 		Se añaden bloques de código de inicialización de variables
+			// 		Los pax se implementan mediante una Class Cliente, hay un cliente principal o titular
 
 			// Se trata de diseñar una Class Reserva aplicando la mayoría de los conceptos vistos hasta el momento
 			// La Class Reserva tiene como atributos comunes:

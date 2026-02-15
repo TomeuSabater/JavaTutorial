@@ -2,6 +2,7 @@ package leccion_10_Ejercicio_bis;
 
 import java.time.LocalDate;
 
+// Class Reserva de HOTEL
 public class ReservaHTL extends Reserva{
 	
 	//// Ctes de la Class ReservaHTL

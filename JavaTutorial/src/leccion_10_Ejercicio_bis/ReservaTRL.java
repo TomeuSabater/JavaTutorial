@@ -2,6 +2,7 @@ package leccion_10_Ejercicio_bis;
 
 import java.time.LocalDate;
 
+//Class Reserva de TRASLADO
 public class ReservaTRL extends Reserva{
 	
 	////Ctes de la Class ReservaTRL
