@@ -166,14 +166,11 @@ public class Tutorial_1 {
 		for(;;System.out.println("no me canso de decir")) {
 			System.out.println("hola");
 		}
-
 		
 		for(byte i = 0;;) {
 			System.out.println(i++);
 		}
-		
-
-		
+				
 		for(byte i = 0;;i++) {
 			System.out.println(i);
 		}
@@ -272,7 +269,9 @@ public class Tutorial_1 {
 			System.out.println(indice); 
 		}
 		
+		// ************ aquí para viernes
 
+		
 	}
 
 }

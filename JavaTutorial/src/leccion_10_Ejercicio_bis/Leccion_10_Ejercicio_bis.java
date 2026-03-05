@@ -140,4 +140,4 @@ public class Leccion_10_Ejercicio_bis {
 	// Los pax son una Nested Class, pero hay que crearlo cada vez. 
 	// sería mucho mejor crear un Pax independiente de la Class Reserva y pasárselo
 	
-} // class Leccion_10_Ejercicio_bis
+} // class Leccion_10_Ejercicio_bis -> Pasar a Leccion_11.java para antesala de Nested Class; Inner Class / Static Nested Class
