@@ -132,7 +132,7 @@ public class Leccion_2 {
 		
 		
 		//else if llevado al extremo
-		//Pedimos número al usaurio y 
+		//Pedimos número al usuario y 
 		//Si es uno mostramos "es un uno"
 		//Si es dos mostramos "es un dos"
 		//Si es tres mostramos "es un tres"

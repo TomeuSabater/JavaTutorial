@@ -4,10 +4,10 @@ public class Tutorial_1 {
 
 	public static void main(String[] args) {
 		
-		// Tipos de datos en JAVA; Simples, y complejos (arrays)
+		// Tipos de datos en JAVA; Simples, y compuestos (arrays)
 		// Casting
 		// Operaciones básicas; Asignación, ++x, --x, x++, x--
-		// Estructura de repetición: for 
+		// Estructura de repetición: for (for específico de java) 
 		
 		// ************************* TIPOS DATOS
 		
@@ -156,7 +156,7 @@ public class Tutorial_1 {
 
 		// ***************** Estructuras de control FOR 
 		
-		// for(incializacion; control; accion de cada iteracion) {}
+		// for(incializacion; control; accion de cada iteración) {}
 		
 		// for(;;) {}
 		
@@ -269,9 +269,19 @@ public class Tutorial_1 {
 			System.out.println(indice); 
 		}
 		
-		// ************ aquí para viernes
-
+		// boolean[] a_boolean = new boolean[C_NUM]; 
+		for (boolean variable : a_boolean) {
+			
+			System.out.println(variable);
+		}
 		
+		// Strings customizado
+		String[] dias_semana = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }; 
+
+		for (String variable : dias_semana) {
+			System.out.println(variable);
+			if (variable == "Viernes") break; 
+		}
 	}
 
 }
