@@ -7,7 +7,7 @@ public class Leccion_4 {
 		
 		// Introducción_I a CLASES Y OBJETOS. 
 		
-		// Definición de Clases, Instanciación de Objetos
+		// Definición de Clases, Instanciación de Clases (Objetos)
 		// Constantes y Atributos de la Class/Objeto
 		// Métodos Constructores, Getters y Setters
 		// Constructor implícito
@@ -16,46 +16,52 @@ public class Leccion_4 {
 		// Sobrecarga de métodos
 		// Palabra reservada "this"
 				
-		//Podemos ver una CLASE es un tipo de dato complejo. 
-		//Y un OBJETO como un elemento que se crea a partir de la CLASE.
+		//Podemos ver una CLASS como un tipo de dato complejo. 
+		//Y un OBJECT como un elemento que se crea a partir de la CLASS.
 		
-		//Tengo la CLASE que es como un molde para fabricar elementos, como coches, o figuras de plastelina
-		//Con una CLASE o molde creo OBJETOS que serán los coches, o las figura de plastelina, tantos como quiera
-		//EL creador de elementos es la CLASE y cada elementos es un OBJETO de esa CLASE
-		//El molde de la plastelina es la CLASE y cada figura de plastelina es el OBJETO
-		//Hay una CLASE, pero puede haber muchos OBJETOS de esa CLASE 0:n
+		//Tengo la CLASS que es como un molde para fabricar elementos, como coches, o figuras de plastelina
+		//Con una CLASS o molde creo OBJECTS que serán los coches, o las figura de plastelina, tantos como quiera
+		//EL creador de elementos es la CLASS y cada elementos es un OBJECT de esa CLASS
+		//El molde de la plastelina es la CLASS y cada figura de plastelina es el OBJECT
+		//Hay una CLASS, pero puede haber muchos OBJECTS de esa CLASS (0:n)
 		
-		//Redefinimos ahora aplicando terminología correcta de Programación Orientada a Objetos (POO)
+		//Redefinimos con la terminología correcta de Programación Orientada a Objetos (POO)
 		//Un Objeto es una "instancia" de una Clase. 
 		//Un Objeto tiene una "identidad", un "estado" y un "comportamiento".
-		//La "identidad" se define mediante su identificador.
-		//Su "estado" se define por el valor de sus atributos.
-		//Su "comportamiento" queda determinado por el comportamiento de la clase a la que pertenece
+		//	La "identidad" se define mediante su identificador.
+		//	Su "estado" se define por el valor de sus atributos.
+		//	Su "comportamiento" queda determinado por el comportamiento de la clase a la que pertenece
 		//Actuamos con los objetos medinate lo "metodos" que publica
 		
-		// CLASES; Recordar, son como moldes para definir objetos
+		
+		// Veamos las CLASS
+		// Recordar, son como moldes para definir objetos
 		
 		class Circulo { //Por convención, el nombre de la Clase comienza en mayúsculas
 			
-			//Constantes de la Clase
-			static final String FIGURA = "Circulo"; //Static: Variable de la Class, misma para todos los objetos, Final: Es una cte.  
+			//Variables y constantes de la Class
+			static final String FIGURA = "Circulo"; //Combinamos static con final
+													// static; es una variable de la Class, misma para todos los objetos 
+													// final: es una cte.  
 		
-			//Atributos de la Clase, variables de Instancia
+			//Atributos de la Clase; variables de Instancia
 			int x; // Atributo. Posición x en el plano. Variable de Instancia. Idependiente en cada Objeto, cada Obj tiene la suya. 
 			int y; // Atributo. Posición y en el plano. Variable de Instancia. Idependiente en cada Objeto, cada Obj tiene la suya. 
 			int radio; //Atributo. Radio del círculo. Variable de Insancia. Idependiente en cada Objeto, cada Obj tiene la suya. 
 		}
 		
-		//Ahora hemos definido la Clase Circulo (o el molde)
-		//pero todavía no hemos generado (instanciado) ningún Objeto de esa Clase
+		//Ahora hemos definido la Class Circulo (o el molde)
+		//	pero todavía no hemos generado (instanciado) ningún Objeto de esa Clase
 		//Para generar un Objeto, "instanciamos" la Clase
 		
-		Circulo circulo1 = new Circulo(); //circulo1 es el identificador del Objeto, no es el Objeto.
-		Circulo circulo2;
-		circulo2 = new Circulo(); //circulo2 es el identificador del Objeto, no es el Objeto. 
+		// Se puede instanciar de dos maneras:
+		Circulo circulo1;
+			circulo1 = new Circulo(); //circulo1 es el identificador del Objeto, no es el Objeto.
+		
+		Circulo circulo2 = new Circulo(); //circulo2 es el identificador del Objeto, no es el Objeto. 
 		
 		//Hemos creado dos objetos generados con el molde Circulo. 
-		//Hemos "instanciado" la Class Circulo para generar dos Objetos circulo1 y circulo2
+		//	formalmente Hemos "instanciado" la Class Circulo para generar dos Objetos circulo1 y circulo2
 		
 		//Asignamos valores a los atributos de los Objetos
 		//Recordamos que al ser variables de instancia, son independientes para cada objeto 
@@ -72,11 +78,7 @@ public class Leccion_4 {
 		//Podemos mostrar los atributos de cada objeto
 		System.out.println("Figura: " + Circulo.FIGURA + " circulo1.x = " + circulo1.x + " circulo1.y = " + circulo1.y + " circulo1.radio = " + circulo1.radio); 
 		System.out.println("Figura: " + Circulo.FIGURA +" circulo2.x = " + circulo2.x + " circulo2.y = " + circulo2.y + " circulo2.radio = " + circulo2.radio); 
-
-	
-		
-		// System.out.println("Figura:" + circulo1.FIGURA); //No es un error pero se desaconseja porque FIGURA es variable de la Class 
-
+		System.out.println("Figura:" + circulo1.FIGURA); //No es un error pero se desaconseja porque FIGURA es variable de la Class 
 		
 		//ELEMENTOS DE UNA CLASE
 		//Definimos la información que almacena un Objeto mediante sus atributos. 
@@ -84,39 +86,40 @@ public class Leccion_4 {
 		class Vehiculo {
 			
 			//Atributos del Objeto, variables de instancia (cada Obj tendrá los suyos)
-			String matricula; 
-			String marca;
-			String modelo;
-			int precio;
-			boolean electrico;
-			boolean hibrido;
+			String matricula; // Matrícula del vehículo
+			String marca; // Marca del vehículo
+			String modelo; // Modelo del vehículo
+			int precio; // precio, en €
+			boolean electrico; // Indica si es un eléctrico
+			boolean hibrido; // Indica si es un híbrido 
 		}
 		
 		//Instanciamos la clase Vehiculo para crear Objetos
 		Vehiculo v1 = new Vehiculo(); // v1 es el identificador del Objeto 
 		Vehiculo v2 = new Vehiculo(); // v2 es el identificador del Objeto 
 		
+		//Veamos qué es realmente v1 y v2
 		System.out.println("Identificador de v1 = " + v1); // Muestra la direcció de memoria donde se aloja el objeto v1
 		System.out.println("Identificador de v2 = " + v2); // Muestra la direcció de memoria donde se aloja el objeto v2
-		
-		
-		//Hemos visto que el Objeto puede tener "atributos" 
+				
+		//Hemos visto que el Objeto puede tener "atributos"
+		//	o variables de instancia
 		//Veamos cómo los empleamos para definir su "estado"
 		
 		class Vehiculo2 {
 			
 			//Atributos del Objeto, variables de Instancia (particulares de cada Objeto) 
-			String matricula;
-			String marca;
-			String modelo;
-			int precio;
-			boolean electrico;
-			boolean hibrido;
+			String matricula; // Matrícula del vehículo
+			String marca; // Marca del vehículo
+			String modelo; // Modelo del vehículo
+			int precio; // precio, en €
+			boolean electrico; // Indica si es un eléctrico
+			boolean hibrido; // Indica si es un híbrido 
 			
-			//Metodo constructor, tiene mismo nombre que la Classs y se llama para crear el objeto
+			//Metodo constructor; mismo nombre que la Class y se invoca para crear (instanciar) el Obj
 			//Se puede utilizar para asignar valores iniciales a los atributos del Obj mediante parámetros, pero no es obligatorio
 			//El constructor no retorna ningún valor, puede haber más de un constructor mediante sobrecarga
-			//Si no se define un constructor Java define uno implícitamente, caso de Circulo() y Vehículo() no lo hemos definido explícitamente
+			//Si no se define un constructor Java define uno implícitamente; Circulo() y Vehículo() no los hemos definido explícitamente
 			public Vehiculo2 (String matricula,
 				String marca,
 				String modelo,
@@ -137,6 +140,7 @@ public class Leccion_4 {
 		} //class Vehiculo2
 		
 		//Instanciamos la Class Vehiculo2 y llamamos al método constructor
+		//Podemos llamarlo de dos maneras, en la instanciación o posteriormente
 		Vehiculo2 v3 = new Vehiculo2("1234JXC", "Ford", "Fiesta", 14000, false, true);
 		
 		Vehiculo2 v4; 
@@ -152,6 +156,7 @@ public class Leccion_4 {
 		//get (getter) --> Consultar valores
 		//set (setter) --> Modificar su estado (inicializado con el constructor)
 		
+		// Mejoramos la Class Vehiculo
 		class Vehiculo3 {
 			
 			//Cte de la Clase. static: variable de la Class (cada Obj la comparte), final : es una cte. 
@@ -159,8 +164,8 @@ public class Leccion_4 {
 			
 			//Atributos del Obj, particulares a cada Obj de la Class
 			//Esta vez los definimos como privados (private), solo serán accesibles desde la propia Class
-			//o indirectamente mediante métodos públicos que oferte la Class 
-			private String matricula;
+			// o indirectamente mediante métodos públicos que oferte la Class 
+			private String matricula; 
 			private String marca;
 			private String modelo;
 			private int precio;
@@ -189,6 +194,7 @@ public class Leccion_4 {
 			//	Métodos Set (Setter) para obtener/leer los valores de los atributos
 			//Si un método no devuelve ningún valor, entonces es de tipo "void"
 			
+			// Getters() : Extracción de valores
 			public String get_matricula() {
 				return this.matricula;
 			}
@@ -208,11 +214,20 @@ public class Leccion_4 {
 				return this.hibrido;
 			}
 			
+			// Setters(): Asignación (modificación) valores
 			// Solo damos la posibilidad de modificar el precio
 			// Al ser los atributos private, no es posible el acceso desde fuera de la Class 
-			// solamente mediante los métodos que oferte la Class
+			// 	solamente mediante los métodos que oferte la Class
 			public void set_precio(int precio) { // Modifica el precio
 				this.precio = precio;
+			}
+			
+			// Ofrecemos un segundo método para modificar el precio
+			//	este segundo método devuelve el precio realmente asignado
+			//	sería necesario cuando el precio se manipula por el Obj. 
+			public int set_precio_check(int precio) {
+				this.set_precio(precio);
+				return this.get_precio(); 
 			}
 		} //class Vehiculo3 
 		
@@ -233,17 +248,15 @@ public class Leccion_4 {
 			System.out.println("es combustión");
 		}
 		//Cambiamos el precio de v5, es el único atributo modificable
-		v5.set_precio(24000);
-		System.out.println("y ahora vale "+ v5.get_precio());
+		System.out.println("y ahora vale "+ v5.set_precio_check(24000));
 	
-		//observar lo siguiente que es debido a la visibilidad de los atributos
-		//recordar que estamos definiendo la Class Vehiculo3 'dentro' de la Class Leccion_4
-		//y podemos acceder a los atributos de forma jerárquica
-		//para ver un ejemplo más real de la visibilidad 'private' ver Leccion_4_Ejercicio.java
+		//Observar lo siguiente que es debido a la visibilidad de los atributos
+		//	recordar que estamos definiendo la Class Vehiculo3 'dentro' de la Class Leccion_4
+		//	y podemos acceder a los atributos de forma jerárquica
+		//Para ver un ejemplo más real de la visibilidad 'private' ver Leccion_4_Ejercicio.java
 		v5.precio = 25000; // No genera un error porque estamos dentro del fichero Class Leccion_4
 		System.out.println("y ahora vale "+ v5.get_precio());
 		
-	
 		//Mostramos los valores para v6
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v6.get_matricula());
 		System.out.println("es marca "+ v6.get_marca());		
@@ -257,8 +270,8 @@ public class Leccion_4 {
 			System.out.println("es combustión");
 		}
 
-		//Vamos a mejorar nuestra clase con más métodos
-		//y utilizaremos los getter y setter
+		//Seguimos mejorando nuestra Class con más métodos
+		//	y utilizaremos los getter y setter existentes
 		
 		class Vehiculo5 {
 			
@@ -273,7 +286,7 @@ public class Leccion_4 {
 			private boolean electrico;
 			private boolean hibrido;
 			
-			//Método Constructor
+			//Método Constructor 1
 			public Vehiculo5 (String matricula,
 				String marca,
 				String modelo,
@@ -289,7 +302,8 @@ public class Leccion_4 {
 					this.set_hibrido(hibrido); 
 			}
 			
-			//En Java podemos duplicar los métodos (incluído el constructor), se denomina Sobrecarca
+			//Sobrecarda (mismo nombre para métodos diferentes) 
+			//En Java podemos duplicar los métodos (incluído el constructor); Sobrecarca
 			//Es necesario que tengan una "firma" diferente
 			//La "firma" está compuesta por nombre_método y lista_parámetros
 			//Cambiando lista_parámetros tenemos una firma diferente
@@ -305,8 +319,8 @@ public class Leccion_4 {
 						this.set_marca(marca);
 						this.set_modelo(modelo); 
 						this.set_precio(precio); 
-						this.set_electrico(false); // El constructor no require este parámetro
-						this.set_hibrido(false); // El constructor no requiere este parámetro
+						this.set_electrico(false); // El constructor 1 no require este parámetro
+						this.set_hibrido(false); // El constructor 1 no requiere este parámetro
 				}
 			
 			//Métodos Get y Set para la gestión de atributos
@@ -366,23 +380,24 @@ public class Leccion_4 {
 			
 		} //class Vehiculo5
 				
-		//Instanciamos Clase Vehiculo5 y llamamos al método que nos muestra sus atributos 
+		//Instanciamos Class Vehiculo5 y llamamos al método que nos muestra sus atributos 
 		Vehiculo5 v7 = new Vehiculo5("777ABC", "Mercedes", "A220D", 44000, false, false);
 		v7.muestraVehiculo();
 		
 		Vehiculo5 v9 = new Vehiculo5("1234ABC", "BMW", "330i", 66000);
 		v9.muestraVehiculo();
 		
-		//Demostració de que la instanciación de Clase genera la referencia al Objeto más que el Objeto en sí
-		Vehiculo5 v8; //Instanciamos la Clase para generar la referencia al Objeto
-		v8 = v7; //Igualamos la referencia del nuevo Objeto a uno ya existente (perdemos el original) 
+		
+		//Demostració de que la instanciación de Class genera la referencia al Obj más que el Obj en sí
+		Vehiculo5 v8; //Instanciamos la Class para generar la referencia al Obj
+		v8 = v7; //Igualamos la referencia del nuevo Obj a uno ya existente (perdemos el original) 
 		System.out.println(v7);
 		System.out.println(v8);
 		v8.muestraVehiculo();
 		
 		//Hemos dicho que la instanciación de una Class genera un Obj y retorna una referencia a ese Obj
-		//Si machacamos la referencia a un Objeto, perdemos la posibilidad de acceder a ese Objeto
-		//La JVM tiene un proceso que libera memoria de los Obj inalcanzable. 
+		//Si machacamos la referencia a un Obj, perdemos la posibilidad de acceder a ese Obj
+		//La JVM (JRE) tiene un proceso que libera la memoria de los Obj inalcanzable. 
 		//Recordamos Objetos v5 y v6
 		
 		System.out.println(Vehiculo3.ELEMENTO + " de matricula "+ v5.get_matricula());

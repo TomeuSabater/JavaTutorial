@@ -22,7 +22,7 @@ public class Leccion_4_Ejercicio {
 		v7.muestraCoche();
 		
 		//Sí es posible acceder a las variables de tipo static (porque en la Class no se han declarado como "private")
-		System.out.println("Tipo elemento = " + Vehiculo5.ELEMENTO); 
+		System.out.println("Tipo elemento = " + Vehiculo5.ELEMENTO); // Es la manera más correcta de acceder a una static 
 		System.out.println("Tipo elemento = " + v7.ELEMENTO); // Es ok, pero se desaconseja esta manera de acceder a un atributo de la Class 
 		
 	} // public static void main
