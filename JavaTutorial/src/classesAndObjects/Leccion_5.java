@@ -23,27 +23,33 @@ public class Leccion_5 {
 			//Atributos privados, o variables de Instancia, uno para cada Obj que definamos 
 			private String brand; // Marca
 			private String model; // Modelo
-			private boolean ebike = false; // Asignamos un valor por defecto
+			private boolean ebike; // Indica si es una e-bike
 					
-			//Método constructor, mismo nombre que la Class, y usaremos los setters
+			//Métodos constructores, mismo nombre que la Class, y usaremos los setters
 			//Dar el nombre del atributo al parámetro se denomina 'Shadowing'
 			//Al poder dificultar el código, solamente se suele usar en constructores o setters
 			public Bicycle (String brand, String model, boolean ebike) {
 				
 				// El constructor llama a los setters, tenemos centralizada la asignación
-				set_brand(brand); 
-				set_model(model);
-				set_ebike(ebike); 
+				setBrand(brand); 
+				setModel(model);
+				setEbike(ebike); 
 			}
 			
+			public Bicycle (String brand, String model) {
+				// El constructor llama al constructor general
+				this(brand, model, false);
+			}
+			
+			
 			//Setters públicos, uno para cada atributo 
-			public void set_brand(String brand) {
+			public void setBrand(String brand) {
 				this.brand = brand.toUpperCase(); 
 			}
-			public void set_model(String model) {
+			public void setModel(String model) {
 				this.model = model.toUpperCase(); 
 			}
-			public void set_ebike(boolean ebike) {
+			public void setEbike(boolean ebike) {
 				this.ebike = ebike; 
 			}
 			
@@ -60,12 +66,12 @@ public class Leccion_5 {
 				} else {
 					return "muscular";
 				}
-
-			}
+			} 
 			
 			//Método genéricos públicos 
-			public void show_bicycle() {
-				
+			
+			public void showBicycle() {
+				// Muestra el Obj Bicycle
 				System.out.println(Bicycle.ELEMENTO + " Details *******");
 				System.out.println("Brand : " + get_brand());
 				System.out.println("Model : " + get_model());
@@ -79,10 +85,12 @@ public class Leccion_5 {
 		Bicycle bici2 = new Bicycle("Lapierre", "Overvolt", true); 
 		
 		//Mostramos sus atributos
-		bici1.show_bicycle();
-		bici2.show_bicycle(); 
+		bici1.showBicycle();
+		bici2.showBicycle(); 
 		
-		//Queremos mejorar la Clase Bicyce
+		/*
+				
+		//Queremos mejorar la Clase Bicycle
 		//Pero para ello, no tocaremos su código, sino que aplicaremos el concepto de herencia (Inheritance) 
 		//Definiremos una nueva Class BicyclePlus que extenderá (mejorará/refinará) la Class Bicycle 
 		//Bicycle será la Super Class de una nueva Class BicyclePlus que la extenderá esta Super Class 
@@ -165,7 +173,7 @@ public class Leccion_5 {
 			//Método público para mostrar valores, utilizaremos el de la Super Clase
 			public void show_bicyle() {
 				
-				super.show_bicycle(); //Utilizamos el método de la Super Class
+				super.showBicycle(); //Utilizamos el método de la Super Class
 				//Además, mostramos los atributos de la Class
 				System.out.println("Cadence : " + get_cadence());
 				System.out.println("Gear : " + get_gear());
@@ -199,6 +207,9 @@ public class Leccion_5 {
 		bici_plus_1.show_bicyle();
 		
 		// bici_plus_1.change_speed(4); // Esta llamada es posible porque estamos en misma public class Leccion_5
+
+*/
+
 
 	} //main
 }//class Leccion_5
