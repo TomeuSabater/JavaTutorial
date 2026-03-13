@@ -9,7 +9,7 @@ public class Leccion_5 {
 		// Shadowing en Constructores y Setters
 		// Control en instanciación de clases
 		// Concepto de Herencia (Inheritance)
-		// Métodos Publicos/Privados 
+		// Variables de Instancia Publicos/Privados 
 
 		
 		// Creamos una Class para una Bicicleta
@@ -55,6 +55,7 @@ public class Leccion_5 {
 			public Bicycle (String brand, String model) {
 				
 				// El constructor llama al constructor general
+				// debe ser la primera instruccion
 				this(brand, model, false); // pasamos el parámetro ebike = false
 			}
 					
