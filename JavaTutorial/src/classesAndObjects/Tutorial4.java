@@ -77,6 +77,7 @@ public class Tutorial4 {
 			public Vehiculo (String marca, String modelo, int precio,
 					boolean electrico, boolean hibrido) {
 		
+				
 				this.setMatricula(" "); // No tenemos matrícula todavía
 				this.setMarca(marca);
 				this.setModelo(modelo);
