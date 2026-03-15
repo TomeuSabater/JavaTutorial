@@ -109,7 +109,8 @@ public class Leccion_5 {
 		// Intentamos instancia la Class sin valores obligatorios
 		// Bicycle bici3 = new Bicycle(" ", null); 
 		
-		Bicycle bici3 = new Bicycle("BH","Lynx"); 
+		Bicycle bici3 = new Bicycle("BH","Lynx");
+		bici3.showBicycle();
 				
 				
 		//Queremos mejorar la Class Bicycle
@@ -240,7 +241,8 @@ public class Leccion_5 {
 		bici_plus_1.applyBrake(5);
 		bici_plus_1.showBicyle();
 		
-		// bici_plus_1.change_speed(4); // Esta llamada es posible porque estamos en misma public class Leccion_5
+		// Esta llamada es posible porque estamos en misma public class Leccion_5
+		// bici_plus_1.change_speed(4); 
 
 	} //main
 
