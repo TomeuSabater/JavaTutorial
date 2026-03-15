@@ -16,12 +16,12 @@ public class Leccion_6 {
 		// However, the values of the object's fields of the objects passed can be
 		// changed in the method
 
-		// Paso por valor: Se pasa el 'valor de'
+		// Paso por valor: Se pasa el 'valor de':
 		// 'Copia del dato, el dato original permanece inalterado, se crea nueva
 		// variable copia de la original
-		// Paso por referencia: Se pasa la 'referencia de'
-		// No es una copia del dato, es el dato, es la variable (la dirección de memoria
-		// de la variable)
+		// Paso por referencia: Se pasa la 'referencia de':
+		// No es una copia del dato, es el dato,
+		// es la variable (la dirección de memoria de la variable)
 
 		// No obstante, en Java (y en otros lenguajes como Python) se pasa por valor una
 		// referencia
