@@ -30,9 +30,9 @@ public class Leccion_6 {
 		// Es importante entender que en Java, los parámetros se pasan por valor, nunca
 		// por referencia
 		// Es importante enteder que cuando pasamos por valor un Obj, pasamos por valor
-		// la referencia (puntero) al Obj, nunca el Obj en sí
-		// y al pasar por valor una referencia (puntero) a un Obj creamos una nueva
-		// referencia (puntero) que apunta al mismo Obj.
+		// la referencia (puntero) al Obj, nunca el Obj en sí y al pasar por valor
+		// una referencia (puntero) a un Obj creamos una nueva referencia (puntero) que
+		// apunta al mismo Obj.
 		// Entonces, aún pasando por valor un Obj, en Java estamos pasando el mismo Obj,
 		// porque pasamos su referencia por valor, no el Obj en sí.
 		// parece un contrasentido, se denomina paso por valor-referencia, y se consigue
@@ -61,7 +61,7 @@ public class Leccion_6 {
 
 			// Atributos de la Clase. Los definimos private
 			// Se recomienda escribirlos en lowerCamelCase
-			// Se evitará el uso de "_"
+			// Se evitará el uso de "_" (totalmente desaconsejado en Java excepto en CTES)
 			private int posicionX; // Posición x en el plano. Nombre de atributo en minúscula, siguientes palabra
 									// en mayúscula
 			private int posicionY; // Posición y en el plano. Nombre de atributo en minúscula, siguientes palabra
@@ -74,6 +74,7 @@ public class Leccion_6 {
 			// Constructor
 			public Circulo(int x, int y, int r) {
 
+				// Llamamos a setters
 				setPuntoX(x);
 				setPuntoY(y);
 				setRadio(r);
@@ -85,12 +86,11 @@ public class Leccion_6 {
 			// verbo.
 
 			private float calculaArea(int radio) { // Nombre método es un verbo, comienza minúscula, si compuesta
-													// primera
-													// palabra mayúscula
+													// primera palabra mayúscula
 				return (VALOR_PI * (radio * radio));
 			}
 
-			// Métodos públicos, accesibles universalmente
+			// Métodos públicos; accesibles universalmente
 
 			// Getters
 
@@ -122,7 +122,8 @@ public class Leccion_6 {
 
 			public void setRadio(int valorR) {
 				this.radioCirculo = valorR;
-				this.areaCirculo = calculaArea(this.radioCirculo); // Totalmente asociado al atributo 'radio'.
+				// Area está asociado al atributo 'radio'.
+				this.areaCirculo = calculaArea(this.radioCirculo);
 			}
 
 			// Método al que pasamos por valor la referencia (identificador) del Objeto
@@ -152,11 +153,11 @@ public class Leccion_6 {
 			// No tenemos constructor en UtilidadesCirculo() porque el objetivo es tener los
 			// métodos de la Class, en absoluto instancia esta Class que agrupa métodos
 			// OBSERVACIÓN: Java ya tiene herramientas para conseguir este comportamiento,
-			// las static Class
-			// que no hace falta instanciarlas; lo que nos permitiría invocar sus métodos
-			// directamente
+			// las static Class que no hace falta instanciarlas; lo que nos permitiría
+			// invocar sus métodos directamente
 			// (el concepto de static Class se verá posteriormente),
-			// centrémonos ahora en una Class que oferta utilidades (mediante métodos)
+
+			// Centrémonos ahora en una Class que oferta utilidades (mediante métodos)
 
 			public void desplazaCirculo(int deltaX, int deltaY, Circulo ci) {
 				// Método público que desplaza un deltaX & deltaY la posición del Círculo ci
@@ -176,7 +177,7 @@ public class Leccion_6 {
 				ci.setPuntoY(ci.getPuntoY() + deltaY); // Llama a los métodos de Circulo
 				ci = null; // OMG; Tranquilo, se pasan los parámetros por valor, c1 no es afectado.
 							// Java VM liberará automáticamente los recursos de ci,
-							// no obstante, hacerlo es redundante
+							// hacerlo explícitamente es redundante, no necesario
 			} // Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci
 				// "ci" es una ref al Obj no el Obj en sí, "c1" no afectado, y el Obj en sí
 				// tampoco
