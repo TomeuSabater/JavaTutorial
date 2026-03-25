@@ -47,7 +47,7 @@ public class Tutorial_5 {
 				this(brand, model, false);
 			}
 
-			// Setters
+			// Setters, públicos
 
 			public void setBrand(String brand) {
 
@@ -81,12 +81,13 @@ public class Tutorial_5 {
 				if (ebike) {
 					return ("Es una ebike");
 				} else {
-					return "Ee una muscular";
+					return "Es una muscular";
 				}
 			}
 
 			public void showBike() {
 
+				System.out.println(Bicycle.ELEMENTO + " Detalles : ");
 				System.out.println(this.getBrand());
 				System.out.println(this.getModel());
 				System.out.println(this.getEbike());
@@ -94,11 +95,17 @@ public class Tutorial_5 {
 
 		} // Bicycle
 
+		Bicycle bici1 = new Bicycle("Orbea", "Rallón", true);
+		Bicycle bici2 = new Bicycle("Mondraker", "Summum");
+
+		bici1.showBike();
+		bici2.showBike();
+
 		class BicyclePlus extends Bicycle {
 
 			static final int NUM_GEARS = 6; // Número de marchas es CTE
 
-			// Variables de instancia
+			// Variables de instancia de BicyclePlus
 			private int cadence = 0; // Ritmo de pedaleo
 			private float speed = 0; // Velocidad
 			private int gear = 1; // Marcha que lleva en un momento dado
@@ -112,7 +119,6 @@ public class Tutorial_5 {
 			}
 
 			// Getters
-
 			public int getCadence() {
 				return this.cadence;
 			}
@@ -125,7 +131,7 @@ public class Tutorial_5 {
 				return this.gear;
 			}
 
-			//
+			// Setters -- NO ME INTERESA PUBLICAR la asignación de variables de instancia
 
 			private void changeSpeed(int value) {
 
@@ -136,7 +142,30 @@ public class Tutorial_5 {
 			public void changeCadence(int value) {
 
 				this.cadence += value;
-				changeSpeed(value);
+				this.changeSpeed(value);
+			}
+
+			public void changeGear(int value) {
+
+				// Controlamos el máximo y mínimo de marchas
+				if ((this.gear + value) > BicyclePlus.NUM_GEARS) {
+					// Ya era la marcha más alta
+					this.gear = BicyclePlus.NUM_GEARS;
+				} else if ((this.gear + value) < 1) {
+					this.gear = 1;
+				} else {
+					this.gear += value;
+				}
+				this.changeSpeed(value);
+			}
+
+			public void applyBrake(int intensity) {
+
+				// Debe ser siempre un valor negativo
+				if (intensity > 0) {
+					intensity *= -1; // Lo pasamos a negativo
+				}
+				this.changeSpeed(intensity);
 			}
 
 			// Métodos genéricos públicos
@@ -149,14 +178,16 @@ public class Tutorial_5 {
 			}
 		} // BicyclePlus
 
-		Bicycle bici1 = new Bicycle("Mondraker", "Crafty", true);
+		Bicycle bici11 = new Bicycle("Mondraker", "Crafty", true);
 		bici1.showBike();
 
-		Bicycle bici2 = new Bicycle("Orbea", "Rallón");
+		Bicycle bici22 = new Bicycle("Orbea", "Rallón");
 		bici2.showBike();
 
 		BicyclePlus bici3 = new BicyclePlus("BH", "Siempre hace parche", true);
 		bici3.showBike();
+
+		bici3.changeSpeed(1);
 
 	}
 
