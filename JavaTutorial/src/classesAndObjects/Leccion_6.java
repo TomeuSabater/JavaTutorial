@@ -72,12 +72,12 @@ public class Leccion_6 {
 										// mayúscula
 
 			// Constructor
-			public Circulo(int x, int y, int r) {
+			public Circulo(int valorX, int valorY, int valorR) {
 
 				// Llamamos a setters
-				setPuntoX(x);
-				setPuntoY(y);
-				setRadio(r);
+				setPuntoX(valorX);
+				setPuntoY(valorY);
+				setRadio(valorR);
 			}
 
 			// Métodos privados, solo accesible desde el interior de la Class
@@ -163,35 +163,39 @@ public class Leccion_6 {
 				// Método público que desplaza un deltaX & deltaY la posición del Círculo ci
 
 				// Lo hacemos sencillo para entenderlo
-				int x = ci.getPuntoX(); // Obtengo valor de puntoX
-				int y = ci.getPuntoY(); // Obtengo valor de puntoY
+				int puntoX = ci.getPuntoX(); // Obtengo valor de puntoX
+				int puntoY = ci.getPuntoY(); // Obtengo valor de puntoY
 
-				x += deltaX; // Incremento (x = x + deltaX)
-				y += deltaY; // Incremento (y = y + deltaY)
+				puntoX += deltaX; // Incremento (puntoX = puntoX + deltaX)
+				puntoY += deltaY; // Incremento (puntoY = puntoY + deltaY)
 
-				ci.setPuntoX(x); // Asigno nuevo valor X
-				ci.setPuntoY(y); // Asigno nuevo valor Y
+				ci.setPuntoX(puntoX); // Asigno nuevo valorX
+				ci.setPuntoY(puntoY); // Asigno nuevo valorY
 
 				// Lo hacemos ahora más Javero o Javaloya (Javaloyero)
-				ci.setPuntoX(ci.getPuntoX() + deltaX); // Llama a los métodos de Circulo
-				ci.setPuntoY(ci.getPuntoY() + deltaY); // Llama a los métodos de Circulo
+				// ci.setPuntoX(ci.getPuntoX() + deltaX); // Llama a los métodos de Circulo
+				// ci.setPuntoY(ci.getPuntoY() + deltaY); // Llama a los métodos de Circulo
+
 				ci = null; // OMG; Tranquilo, se pasan los parámetros por valor, c1 no es afectado.
 							// Java VM liberará automáticamente los recursos de ci,
 							// hacerlo explícitamente es redundante, no necesario
-			} // Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci
+			} // Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci,
+				// etc.
 				// "ci" es una ref al Obj no el Obj en sí, "c1" no afectado, y el Obj en sí
 				// tampoco
 
 		} // class UtilidadesCirculo
 
 		// Defimimos un círculo
-		Circulo c1 = new Circulo(3, 2, 5); // Instanciamos
-		c1.muestraCirculo(c1); // Lo mostramos
+		Circulo circulo1 = new Circulo(3, 2, 5); // Instanciamos
+		circulo1.muestraCirculo(circulo1); // Lo mostramos
 
 		// Desplazamos el círculo
-		UtilidadesCirculo Utils = new UtilidadesCirculo();
-		Utils.desplazaCirculo(+1, -3, c1);
-		c1.muestraCirculo(c1);
+		// Inicialmente instanciamos la Class Utils para poder acceder al método
+		UtilidadesCirculo utilidades = new UtilidadesCirculo();
+		// Una vez tenemos el Obj Utils
+		utilidades.desplazaCirculo(+1, -3, circulo1);
+		circulo1.muestraCirculo(circulo1);
 
 	} // public static void main
 

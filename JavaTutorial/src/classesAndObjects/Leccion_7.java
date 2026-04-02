@@ -27,15 +27,15 @@ class Leccion_7 {
 			// Variables de Class, y Ctes.
 			static final String ELEMENTO = "PuntoXY";
 
-			// Variables de Instancia, privados
+			// Variables de Instancia, privadas
 			private int posicionX = 0;
 			private int posicionY = 0;
 
 			// Constructor
 			public Point(int valorX, int valorY) {
 
-				this.posicionX = valorX;
-				this.posicionY = valorY;
+				this.posicionX = valorX; // Obviamos setter
+				this.posicionY = valorY; // Obviamos setter
 			}
 
 			// Métodos públicos
@@ -52,7 +52,8 @@ class Leccion_7 {
 			// Nombre método es un verbo descriptivo, palabra compuesta en mayúsculas
 			public void showPoint() {
 
-				System.out.println(Point.ELEMENTO);
+				System.out.println(Point.ELEMENTO); // Se acompaña del nombre de la Class
+				System.out.println(this); // Se muestra la referencia de este Obj
 				System.out.println("Posición X = " + this.posicionX);
 				System.out.println("Posición Y = " + this.posicionY);
 			}
@@ -69,39 +70,45 @@ class Leccion_7 {
 			private int valorAlto; // Define la altura
 			private int valorAncho; // Define la anchura
 			private Point puntoOrigen; // Posición en el plano del vértice origen del rectángulo, es un Obj
-										// Realmente no es el Obj Point, es la referencia (puntero) al Obj Point
+										// Recordar que no es el Obj Point, es la referencia (puntero) al Obj Point
 			private int valorArea; // Área del rectángulo
 
-			// Métodos constructores x 5, Sobrecargamos el Constructor
+			// Métodos constructores x 5, Sobrecargamos el Constructor 5 veces
 
 			// Constructor "predilecto"; punto origen, alto y ancho
-			// El resto de constructores se basarán en este
-			public Rectangle(Point p, int w, int h) { // Origen, altura y anchura
-				this.valorAncho = w;
-				this.valorAlto = h;
-				this.puntoOrigen = p;
-				this.valorArea = getArea();
+			// y el resto de constructores se basarán en este
+			public Rectangle(Point punto, int ancho, int alto) { // Origen, anchura y altura
+
+				// Obviamos setters, es un ejemplo teórico
+				this.valorAncho = ancho;
+				this.valorAlto = alto;
+				this.puntoOrigen = punto;
+				this.valorArea = getArea(); // Invocamos un método para calculo área
 			}
 
-			public Rectangle() { // Sin valores
+			public Rectangle(int alto, int ancho) { // Solo altura y anchura
+
+				// Obviamos setters, es un ejemplo práctico
+				this.valorAncho = ancho;
+				this.valorAlto = alto;
+				this.puntoOrigen = new Point(0, 0); // Instanciamos Class para Obj puntoOrigen
+				this.valorArea = getArea(); // Invocamos un método para calculo área
+			}
+
+			public Rectangle() { // Sin ningún valor
+
 				this(0, 0); // Llamamos a otro constructor
 							// El "this" para llamar a otro constructor debe ser la primera instrucción
-							// No se pueden "encadenar" constructores
-			}
-
-			public Rectangle(int w, int h) { // Solo altura y anchura
-				this.valorAncho = w;
-				this.valorAlto = h;
-				this.puntoOrigen = new Point(0, 0);
-				this.valorArea = getArea();
 			}
 
 			public Rectangle(Point p) { // Solo punto de origen
+
 				this(p, 1, 1); // Llamamos al constructor "predilecto"
 			}
 
-			public Rectangle(int x, int y, int w, int h) { // coordenadas origen, alto y ancho
-				this(new Point(x, y), w, h); // Llamamos al constructor "predilecto"
+			public Rectangle(int valorX, int valorY, int ancho, int alto) { // coordenadas origen, alto y ancho
+
+				this(new Point(valorX, valorY), ancho, alto); // Llamamos al constructor "predilecto"
 			}
 
 			// Métodos públicos
@@ -121,15 +128,14 @@ class Leccion_7 {
 				// } else {
 				// return (this.alto * this.ancho);
 				// }
-				// Es evidente que aplicando refactorización obtendríamos:
-				// el operador ternario. Es un ejemplo
-				// bien codificado bastaría con : return (this.alto * this.ancho);
+				// Es un ejemplo ya que bien codificado bastaría con :
+				// return (this.alto * this.ancho);
 			}
 
 			// Desplaza el rectángulo
-			public void moveRectangle(int dX, int dY) {
+			public void moveRectangle(int deltaX, int deltaY) {
 
-				this.puntoOrigen.movePoint(dX, dY); // Invocamos el método movePoint del Obj 'origen'
+				this.puntoOrigen.movePoint(deltaX, deltaY); // Invocamos el método movePoint del Obj 'origen'
 				return; // Aún siendo un método "void" es posible añadir la cláusula return para indicar
 						// la finalización del método
 				// this.origen.movePoint(dX*2, dY*2); // Este código sería inaccesible, el
@@ -140,7 +146,8 @@ class Leccion_7 {
 			public void showRectangle() {
 
 				System.out.println(Rectangle.ELEMENTO);
-				this.puntoOrigen.showPoint();
+				System.out.println(this); // Se muestra la referencia de este Obj
+				this.puntoOrigen.showPoint(); // Mostramos los valores del Obj punto Origen
 				System.out.println("Ancho = " + this.valorAncho);
 				System.out.println("Alto = " + this.valorAlto);
 				System.out.println("Área = " + this.valorArea);
@@ -158,75 +165,101 @@ class Leccion_7 {
 						// tipo Point
 		punto1 = new Point(3, 4); // Instanciación e Inicialización,
 									// "new" instancia la Class (crea el Obj) y devuelve una referencia al Obj que
-									// se almacena en la variable "p1"
+									// se almacena en la variable "punto1"
 									// en la creación "new" se invoca automáticamente al método constructor para
-									// inicializar el Obj recién creado
+									// inicializar el Obj recién creado. Este Obj es accesible desde el cuerpo
+									// principal del programa
 
 		// Obviamente se puede hacer todo junto; Declaración, instanciación e
 		// inicialización
-		// La variable p2 es de type Class Point; Referenciará a un Obj de tipo Point
-		Point punto2 = new Point(1, 1);
+		// La variable punto2 es de type Class Point; Referenciará a un Obj de tipo
+		// Point
+		Point punto2 = new Point(1, 1); // Accesible desde el cuerpo principal del programa
 
-		// Llamadas a métodos de los Objetos
+		// Llamadas a métodos de los Objetos recién creados
 		punto1.showPoint();
+		System.out.println();
 		punto2.showPoint();
+		System.out.println();
+
+		// Llamamos al método que "mueve" el Obj Point
+		punto1.movePoint(-1, 2); // Movemos a nueva posición (2,6)
+		punto2.movePoint(2, 3); // Movemos a nueva posición (3,4)
+
+		// Comprobamos nuevos valores
+		punto1.showPoint();
+		System.out.println();
+		punto2.showPoint();
+		System.out.println();
 
 		// Creamos un Obj de Class Rectangle que tiene como origen el Obj de Class Point
-		// recién creado
-		Rectangle rectangulo1; // Declaración de variable r1; es una variable de tipo Class Rectangle
-		rectangulo1 = new Rectangle(punto1, 5, 8); // Instanciación ("new") de la Class Rectangle que crea el Obj con
-													// referencia r1
-		// e inicialización del mismo mediante llamada a su constructor
+		// recién creado "punto1"
+		Rectangle rectangulo1; // Obj de tipo Class Rectangle
+		rectangulo1 = new Rectangle(punto1, 5, 8); // Instanciación con llama al constructor
 
-		// Obviamente, se puede hacer todo junto
-		Rectangle rectangulo3 = new Rectangle(punto2, 3, 5); // Declaración, instanciación, inicialización. Obj de Class
-																// Rectangle,
-		// referenciado por r3.
+		// El Obj rectangulo1 tiene como origen a Obj punto1
+		// El Obj punto1 existe fuera del Obj rectangulo1
+		// punto1 NO está encapsulado en rectangulo1
 
-		// Llamadas a métodos de los Obj recién creados
+		// Veamos los valores del Obj rectangulo1
 		rectangulo1.showRectangle();
-		rectangulo3.showRectangle();
 
-		// Ahora mismo tenemos un Obj de Class Point al que, y mediante p1, podemos
+		// Podemos "manipular" el Obj punto1 desde fuera del Obj rectangulo1
+		// e indirectamente estamos manipulando el Obj rectangulo1
+		// Si movemos punto1 también movemos el punto origen del rectangulo1
+		punto1.movePoint(1, 1);
+		System.out.println();
+		punto1.showPoint();
+		System.out.println();
+		rectangulo1.showRectangle(); // También he movido el Obj rectangulo1
+		System.out.println();
+
+		// Ahora mismo tenemos un Obj punto1 de Class Point al que podemos
 		// referenciarlo desde dentro/fuera del rectángulo
 		// Es el mismo Obj
 
-		// Movemos el punto "p1" y también moveremos el punto "origen" del Rectángulo,
-		// porque son el mismo Objeto
-		punto1.movePoint(1, 1);
+		// Si muevo el Obj rectangulo1 también muevo el Obj punto1
+		rectangulo1.moveRectangle(-1, -1); // Lo devuelvo a su posición original
 		punto1.showPoint();
-		rectangulo1.showRectangle();
+		System.out.println();
+		rectangulo1.showRectangle(); // También se ha movido
+		System.out.println();
 
-		// Movemos el punto "origen" del rectángulo y también movemos el punto "punto1",
-		// son
-		// el mismo Objeto
-		rectangulo1.moveRectangle(-1, -1);
-		rectangulo1.showRectangle();
-		punto1.showPoint();
+		// Si destruyo el Obj rectangulo1 el Obj punto1 sigue existiendo
+		rectangulo1 = null; // Matamos el Obj rectangulo1
+		// rectangulo1.showRectangle(); // Es inalcanzable, error de runtime
+		punto1.showPoint(); // Sin problema, sigue existiendo
+		System.out.println();
 
-		// Creamos un Rectángulo sin tener su punto de "origen"
+		// Creamos un Rectángulo sin proporcionar el Obj puntoOrigen
 		Rectangle rectangulo2 = new Rectangle(1, 2, 3, 4);
 		rectangulo2.showRectangle();
+		System.out.println();
 
-		// En este caso, el punto "origen" del rectángulo r2 es inaccesible desde el
-		// exterior
-		// No tenemos su referencia ni tenemos un getOrigen() que nos la devuelva
-		// No podemos invocar movePoint() desde fuera del Objeto r2 porque no tenemos la
-		// referencia de "origen" desde fuera de r2
+		// En este caso, el Obj puntoOrigen del Obj rectangulo2 es inaccesible desde el
+		// exterior. No tenemos su referencia ni tenemos un método tipo getPuntoOrigen()
+		// que nos lo devuelva.
+		// No podemos invocar movePoint() desde fuera del Obj rectangulo2
+		// porque no tenemos la referencia del Obj puntoOrigen desde fuera del ObJ
+		// rectangulo2
+		// Diremos que el Obj puntoOrigen está encapusulado en el Obj rectangulo2
+
+		// Vamos a manipularlo
 		rectangulo2.moveRectangle(+1, +1);
 		rectangulo2.showRectangle();
+		System.out.println();
 
 		// Cosas que Java permite y no son muy aconsejables,
 		// más adelante veremos las Anonymous Class y las Lambda Expression que
 		// formalizan este tipo de expresiones.
-		new Rectangle(1, 1).showRectangle(); // Instanciamos un Objeto de tipo Rectángulo, lo mostramos pero no
-												// guardamos su referencia
-												// Al tener un Objeto sin referencia, la JVM liberará los recursos que
-												// utiliza de manera inmediata
-		int area = new Rectangle(2, 3).getArea(); // Instanciamos un Objeto de tipo Rectángulo,
-													// podría servir para tener una herramienta para calcular el área de
-													// un rectángulo sin necesidad de almacenar el Obj rectángulo
+
+		new Rectangle(1, 1).showRectangle(); // Instanciamos un Objeto, llamamos a un método, pero no guardamos su
+												// referencia. Un Obj sin referencia la JVM libera los recursos.
+
+		int area = new Rectangle(2, 3).getArea(); // Calculamos el área de un rectángulo sin instanciarlo
+		System.out.println();
 		System.out.println("Area = " + area);
+		System.out.println();
 
 		// Cuando un Objeto es inalcanzable, no tenemos ninguna referencia al mismo,
 		// la JVM automáticamente se encarga de destruirlo (eliminar los recursos que
@@ -237,43 +270,38 @@ class Leccion_7 {
 		// asignación del valor "null" a todas las variables que lo refrencian.
 		// Veamos un ejemplo:
 
-		punto1 = null; // Todavía hay una referencia a punto1 dentro de rectangulo1
-		punto2 = null;
-		rectangulo1 = null; // Indiréctamente, elimina la referencia a p1, queda sin ninguna referencia
-		rectangulo2 = null;
-		rectangulo3 = null;
+		punto1 = null; // Todavía había una referencia a punto1 dentro de rectangulo1
+		rectangulo2 = null; // Indiréctamente, elimina la referencia a puntoOrigen
 		System.out.println("Objetos destruidos");
+		System.out.println();
 
 		// Un método puede recibir un Obj como parámetro y también puede devolver un Obj
-		// Ejemplo; Creamos una Class Utiles para que nos proporcione métodos que
-		// gestionan Obj
-		// De la Class Utiles que definimos no nos interesará tanto los Obj como sus
-		// métodos
+		// Ejemplo; Definimos una Class Utiles para que nos proporcione métodos que
+		// gestionan Obj de la Class Point.
+		// De la Class Utiles que definimos no nos interesará tanto los Obj instanciados
+		// como sus métodos.
 		// El Obj que instanciamos se puede ver como un 'contenedor' de métodos
 		// genéricos
 
-		class Utiles { // Esta Class no tiene constructor (es implícito),
-						// la definimos como una manera de tener un "contenedor" de métodos
-						// En próxima lecciones veremos las Static Class,
-						// de las que podemos invocar sus métodos sin necesidad de instanciar la Class
+		class Utiles {// Esta Class no tiene constructor (es implícito),
+			// la definimos como una manera de tener un "contenedor" de métodos
+			// En próxima lecciones veremos las Static Class, de las que podemos invocar sus
+			// métodos sin necesidad de instanciar la Class
 
-			// Método que calcula el área de un rectángulo definido por el Obj de la Class
-			// Point
-			// Coordenadas origen siempre son (0,0), vertice opuesto es el definido por el
-			// Obj Point
 			public int areaPunto(Point puntoA) { // Recibe la referencia a un Obj de Class Point
+				// Método que calcula el área del rectángulo definido por el Obj Point donde el
+				// vértice opuesto es (0.0)
 
 				return Math.abs(puntoA.posicionX * puntoA.posicionY); // Valor absoluto de base * altura
+																		// Class Point no tiene getPosicionX(),
+																		// getPosicionY()
 			}
 
-			// Método que genera un nuevo Punto a partir de la resta de dos Puntos
 			public Point restaPuntos(Point puntoA, Point puntoB) {
+				// Método que genera un nuevo Punto a partir de la resta de dos Obj Point
+				// devuelve un Obj Point
 
-				return new Point((puntoA.posicionX - puntoB.posicionX), (puntoA.posicionY - puntoB.posicionY)); // Retorna
-																												// un
-																												// Obj
-																												// (la
-				// referencia al Obj)
+				return new Point((puntoA.posicionX - puntoB.posicionX), (puntoA.posicionY - puntoB.posicionY));
 			}
 
 		} // class Utiles
@@ -281,16 +309,17 @@ class Leccion_7 {
 		// Ejemplos de uso de los métodos de la Clase Utiles
 
 		Utiles utilities = new Utiles(); // Objeto Utiles, del que usaremos sus métodos,
-		Point puntito1 = new Point(2, 2); // Obj Punto
-		Point puntito2 = new Point(4, 4); // Obj Punto
+		Point puntito1 = new Point(2, 2); // Obj Point
+		Point puntito2 = new Point(4, 4); // Obj Point
 
 		puntito1.showPoint();
-		System.out.println("Area = " + utilities.areaPunto(puntito1)); // Area que define el Punto pt1
+		System.out.println("Area = " + utilities.areaPunto(puntito1)); // Area que define puntito1
+		System.out.println();
 		puntito2.showPoint();
-		System.out.println("Area = " + utilities.areaPunto(puntito2)); // Area que define el Punto pt2
+		System.out.println("Area = " + utilities.areaPunto(puntito2)); // Area que define puntito2
 
-		Point puntito3 = utilities.restaPuntos(puntito1, puntito2); // Punto resultante de la resta del Punto pt1 y
-																	// Punto pt2
+		Point puntito3 = utilities.restaPuntos(puntito1, puntito2); // Punto resultante de la resta de puntito1 y
+																	// puntito2
 		puntito3.showPoint();
 		System.out.println("Area = " + utilities.areaPunto(puntito3)); // Area que define el nuevo Punto pt3
 
