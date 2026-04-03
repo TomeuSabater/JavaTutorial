@@ -122,8 +122,6 @@ public class Leccion_10_Ejercicio {
 	// En el lección_10_Ejercicio_bis se construye una solución donde cohexisten el
 	// Número Particular de la Reserva (único para cada tipo de reserva)
 	// y el Número Total de la Reserva (único para todas las reservas, con
-	// independientemente de su tipo)
-	// y se aplica el concepto de Clase Anidada (Inner Class) para los Pax de una
-	// reserva
+	// independencia de su tipo)
 
 } // class Leccion_10_Ejercicio. Pasar a Leccion_10_Ejercicio_bis.java

@@ -12,7 +12,7 @@ public class Pasajero {
 	private static final String ELEMENTO = "Cliente"; // Identifica el elemento
 	private static final byte MIN_ADULT_YEARS = 18; // Fija edad mínima para Adultos, podría ser una Cte para cada país
 
-	//// Atributos o Variables de Instancia
+	//// Atributos o variables de instancia, variables de Obj Pasajero
 
 	private String passport = null; // Pasaporte o DNI
 
@@ -35,23 +35,7 @@ public class Pasajero {
 
 	} // Constructor
 
-	//// Métodos privados
-
-	// Determina si el pax es mayor de edad
-	// Se opta por no almacenar edad al ser un dato dinámico
-	// en su lugar se ofrece método que proporciona esta info
-	private boolean esAdulto() {
-
-		// Si el pax es mayor de edad en el momento consulta devuelve 'true'
-		// Si no es mayor de edad en el momento de la consulta devuelve 'false'
-
-		long anyos = ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now());
-		return (anyos >= Pasajero.MIN_ADULT_YEARS) ? true : false;
-
-		// En una sola instrucción no quedaría claro:
-		// return (ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now()) >=
-		// Cliente.ADULT) ? true : false;
-	} // esAdulto()
+	//// Métodos públicos
 
 	public void muestraPax() {
 		// Vuelca los datos del pax
@@ -63,4 +47,21 @@ public class Pasajero {
 		System.out.println("Apellido2 : " + this.apellido2);
 	}
 
-} // public class Cliente
+	//// Métodos privados
+
+	// Determina si el pax es mayor de edad
+	// Se opta por no almacenar edad al ser un dato dinámico
+	// en su lugar se ofrece método que proporciona esta info
+	private boolean esAdulto() {
+		// Si el pax es mayor de edad en el momento consulta devuelve 'true'
+		// Si no es mayor de edad en el momento de la consulta devuelve 'false'
+
+		long anyos = ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now());
+		return (anyos >= Pasajero.MIN_ADULT_YEARS) ? true : false;
+
+		// En una sola instrucción no quedaría claro:
+		// return (ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now()) >=
+		// Cliente.ADULT) ? true : false;
+	} // esAdulto()
+
+} // public class Pasajero

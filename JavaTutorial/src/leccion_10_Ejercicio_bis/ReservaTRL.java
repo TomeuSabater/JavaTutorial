@@ -10,38 +10,17 @@ public class ReservaTRL extends Reserva {
 	private static final String ELEMENTO = "Reserva Traslado"; // Identifica el elemento
 	private static final String TIPO_RESERVA = "TRL"; // Tipo de Reserva
 
-	//// Atributos o Variables de la Clase
+	//// Atributos o variables de la Class
 
 	private static int numReservaTrl; // Número consecutivo de reservas de tipo TRL
 	static {
 		ReservaTRL.numReservaTrl = 0; // Inicialización
 	}
 
-	//// Atributos o variables de instancia del Obj ReservaTRL
+	//// Atributos o variables de instancia de los Obj ReservaTRL
 
 	private String recogidaTrl = null; // Lugar de recogida
 	private String destinoTrl = null; // Lugar de destino
-
-	//// Métodos Static
-
-	// Devuelve el número actual de Reservas de Traslado
-	public static int numReservasTraslado() {
-
-		return ReservaTRL.numReservaTrl;
-	}
-
-	// Genera el número de reserva para la reserva de traslado
-	// Obviamente es una static que no toca variables de instancia
-	private static String generaNuevoNumeroReserva() {
-
-		LocalDate hoy = LocalDate.now(); // Fecha actual
-		int anyo = hoy.getYear(); // Obtenemos el año
-		String sanyo = String.valueOf(anyo); // Transformamos año en String
-		String numeroTrl = String.valueOf(++ReservaTRL.numReservaTrl); // Número único consecutivo para el tipo de
-																		// reserva
-
-		return ("/" + ReservaTRL.TIPO_RESERVA + "/" + sanyo + "/" + numeroTrl);
-	} // generaNuevoNumeroReserva()
 
 	//// Métodos Constructores
 
@@ -65,10 +44,10 @@ public class ReservaTRL extends Reserva {
 		this.numeroParticularReserva = this.numeroParticularReserva + ReservaTRL.generaNuevoNumeroReserva();
 	}
 
-	// Métodos públicos
+	//// Métodos públicos
 
-	// Mostrar Reserva
 	public void muestraReserva() {
+		// Mostrar Reserva
 
 		super.muestraReserva(); // Llamamos al método de la Super Class
 		System.out.println(ReservaTRL.ELEMENTO);
@@ -77,5 +56,26 @@ public class ReservaTRL extends Reserva {
 		System.out.println("Tipo Habitación : " + this.destinoTrl);
 
 	} // muestraReserva
+
+	//// Métodos Static
+
+	public static int numReservasTraslado() {
+		// Devuelve el número actual de Reservas de Traslado
+
+		return ReservaTRL.numReservaTrl;
+	}
+
+	private static String generaNuevoNumeroReserva() {
+		// Genera el número de reserva para la reserva de traslado
+		// Obviamente es una static que no toca variables de instancia
+
+		LocalDate hoy = LocalDate.now(); // Fecha actual
+		int anyo = hoy.getYear(); // Obtenemos el año
+		String sanyo = String.valueOf(anyo); // Transformamos año en String
+		String numeroTrl = String.valueOf(++ReservaTRL.numReservaTrl); // Número único consecutivo para el tipo de
+																		// reserva
+
+		return ("/" + ReservaTRL.TIPO_RESERVA + "/" + sanyo + "/" + numeroTrl);
+	} // generaNuevoNumeroReserva()
 
 } // public class ReservaTRL

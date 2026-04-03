@@ -10,17 +10,17 @@ public class ReservaVUE extends Reserva {
 	private static final String ELEMENTO = "Reserva Vuelo"; // Identifica el elemento
 	private static final String TIPO_RESERVA = "VUE"; // Tipo de Reserva
 
-	//// Atributos o Variables de la Clase
+	//// Atributos o variables de la Clase
 
 	private static int numReservaVue; // Número consecutivo de reservas de tipo VUE
 	static {
 		ReservaVUE.numReservaVue = 0; // Inicialización
 	}
 
-	//// Atributos o Variables de Instancia del Objeto ReservaVUE
+	//// Atributos o variables de instancia de los Obj ReservaVUE
 
-	private String apSalida;
-	{ // A/P de salida: Código 3 letras aeropuerto de salida, Eje: PMI
+	private String apSalida; // A/P de salida: Código 3 letras aeropuerto de salida, Eje: PMI
+	{
 		apSalida = "PMI";
 	};
 	private String apLlegada = null; // A/P de llegada: Código 3 letras aeropuerto de llegada, Eje: MAD
@@ -40,32 +40,12 @@ public class ReservaVUE extends Reserva {
 				fInicio, fFin, neto);
 
 		// Asignamos valores particulares para ReservaHTL
-		this.apSalida = (Ap1 != null) ? Ap1 : this.apSalida;
+		this.apSalida = (Ap1 != null) ? Ap1 : this.apSalida; // No es buena práctica
 		this.apLlegada = Ap2;
 
 		// Asignamos número de reserva
 		this.numeroParticularReserva = this.numeroParticularReserva + ReservaVUE.generaNuevoNumeroReserva();
 	}
-
-	//// Métodos Static
-
-	// Devuelve el número actual de Reservas de Vuelo
-	public static int numReservasVuelo() {
-
-		return ReservaVUE.numReservaVue;
-	}
-
-	// Genera el número de reserva para la reserva de vuelo
-	private static String generaNuevoNumeroReserva() {
-
-		LocalDate hoy = LocalDate.now(); // Fecha actual
-		int anyo = hoy.getYear(); // Obtenemos el año
-		String sanyo = String.valueOf(anyo); // Transformamos año en String
-		String numeroHlt = String.valueOf(++ReservaVUE.numReservaVue); // Número único consecutivo para el tipo de
-																		// reserva
-
-		return ("/" + ReservaVUE.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt);
-	} // generaNuevoNumeroReserva()
 
 	//// Métodos públicos
 
@@ -79,5 +59,25 @@ public class ReservaVUE extends Reserva {
 		System.out.println("A/P Llegada : " + this.apLlegada);
 
 	} // muestraReserva
+
+	//// Métodos Static
+
+	public static int numReservasVuelo() {
+		// Devuelve el número actual de Reservas de Vuelo
+
+		return ReservaVUE.numReservaVue;
+	}
+
+	private static String generaNuevoNumeroReserva() {
+		// Genera el número de reserva para la reserva de vuelo
+
+		LocalDate hoy = LocalDate.now(); // Fecha actual
+		int anyo = hoy.getYear(); // Obtenemos el año
+		String sanyo = String.valueOf(anyo); // Transformamos año en String
+		String numeroHlt = String.valueOf(++ReservaVUE.numReservaVue); // Número único consecutivo para el tipo de
+																		// reserva
+
+		return ("/" + ReservaVUE.TIPO_RESERVA + "/" + sanyo + "/" + numeroHlt);
+	} // generaNuevoNumeroReserva()
 
 } // class ReservaVUE
