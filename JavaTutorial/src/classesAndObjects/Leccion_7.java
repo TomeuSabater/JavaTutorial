@@ -11,14 +11,14 @@ class Leccion_7 {
 		// Nested Class (Clases Anidadas)
 		// Ciclo de Vida de un Objeto:
 		// Declaración, Instanciación e Inicialización de Objetos.
-		// Uso del Objeto
-		// Destrucción del Objeto
+		// Uso del Objeto, Destrucción del Objeto
 		// Encapsulación de Objetos
 		// Operador Ternario condición ? valor_si_verdadero : valor_si_falso
 		// Métodos void, return, void con return
 		// Métodos con Obj como parámetros de entrada
 		// Métodos que retornan Obj
 		// Class sin Constructor (como repositorios de métodos)
+		// Creación de Obj para uso de métodos
 		// "This" en Constructores
 
 		class Point {
@@ -326,3 +326,4 @@ class Leccion_7 {
 	} // public static void main
 
 } // public class Leccion_7
+// Pasar a leccion_8

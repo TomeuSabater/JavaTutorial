@@ -200,3 +200,4 @@ public class Leccion_6 {
 	} // public static void main
 
 } // class Leccion_6
+// Pasar a Lección_7.java
