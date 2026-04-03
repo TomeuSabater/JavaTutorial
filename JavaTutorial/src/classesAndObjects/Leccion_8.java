@@ -1,5 +1,7 @@
 package classesAndObjects;
 
+import java.time.LocalDate;
+
 public class Leccion_8 {
 
 	public static void main(String[] args) {
@@ -79,8 +81,10 @@ public class Leccion_8 {
 			private static final String ELEMENTO = "Bicycle";
 
 			// Variables de la Class, que será la misma para todos los Obj
-			// es estática por lo que es accesible y como no es una cte esmodificable por
+			// Es estática por lo que es accesible y como no es una cte esmodificable por
 			// todos los Obj. Si uno la modifica la modifica para todos.
+			// Al ser estática, también es accesible y modificable sin necesidad de
+			// instanciar la Class, es decir, sin la necesidad de un Obj.
 			private static int numTotalBikes = 0; // Contiene el número total de bicicletas
 
 			// Variables del Obj, variables de instancia, cada Obj tendrá sus propias
@@ -136,7 +140,7 @@ public class Leccion_8 {
 
 			// Atributos de la Class, son variables static, todos los Obj comparten la misma
 			// y solo existe una instancia de la misma
-			private static int numActualReservas = Booking.iniNumActualReservas(); // Contador de Reservas,
+			private static int numActualReservas = Booking.initNumActualReservas(); // Contador de Reservas,
 																					// Se puede inicializaz invocando un
 																					// método static.
 																					// Al ser una static, el método se
@@ -154,18 +158,23 @@ public class Leccion_8 {
 			// Static initialization block, inicializamos la variable static
 			// La inicialización de una static admite un bloque de código
 			// La inicialización de una static también admite una llamada a un método static
-			private static int iniNumActualReservas() {
+			private static int initNumActualReservas() {
 
-				return 2026; // inicializa el número actual de reservas
+				// Inicializa el Booking.numActualReservas
+				// Puede ser un bloque de código complejo
+				return (LocalDate.now().getYear());
 			}
 
 			// Método static que retorna una variable "static",
 			// No hace falta instanciar un Obj para invocar este método
+			// Al igual que las variables estáticas, un método estático pertenece a la Class
 			public static int getnumActualReservas() {
 
 				return Booking.numActualReservas; // Es recomendado acompañarla con nombre de su Class
 				// return numActualReservas; //Obviamente esta sintaxis también funciona, pero
 				// no es la recomendada
+				// return this.numActualReservas; // Genera error, porque no es posible
+				// referenciar un Obj desde un método estático, no tiene sentido
 			}
 
 			// Método constructor, ofertamos solamente uno
@@ -195,7 +204,7 @@ public class Leccion_8 {
 		} // public class booking
 
 		// Inicialmente, indagamos el número actual de reservas
-		// Observar que NO se instancia nada
+		// Observar que NO se instancia nada, al ser estática no se es necesario
 		System.out.println("Número Inicial de reservas = " + Booking.getnumActualReservas());
 		// Booking.numActualReservas = 0; // No es posible fuera de la Class porque es
 		// private, siguientes lecciones haremos ejemplos.
@@ -219,7 +228,7 @@ public class Leccion_8 {
 		// valor inicial posteriormente veremos cómo podemos usar una static sin
 		// posibilidad de
 		// reinicialización
-		Booking.numActualReservas = Booking.iniNumActualReservas(); // perfectamete legal
+		Booking.numActualReservas = Booking.initNumActualReservas(); // perfectamete legal
 		System.out.println("Número actual de reservas :" + Booking.getnumActualReservas());
 
 		// Booking.numActualReservas = 0; // Esto, obviamente también sería posible.

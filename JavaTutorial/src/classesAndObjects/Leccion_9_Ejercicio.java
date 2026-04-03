@@ -170,12 +170,18 @@ public class Leccion_9_Ejercicio {
 			// Si fuera una método estático sí sería posible volver a invocarlo
 			private static int numReservaHtl;
 			static {
+				// Podría ser un bloque de código complejo
 				ReservaHTL.numReservaHtl = 0;
 			}
 
 			// Atributos o variables de instancia del Obj ReservaHTL
 			// cada Obj tendrá un atributo con su valor particular
-			private String direccionHtl = null; // Dirección Postal del Hotel
+			private String direccionHtl;
+			{
+				// Podría ser un bloque de código complejo
+				// Alternativa a inicialización en el constructor para una variable de instancia
+				direccionHtl = "Palma de Mallorca"; // Dirección Postal x defecto
+			}
 			private char tipoHab = '\0'; // Tipo de Habitación: Simple, Doble, Triple
 											// Posteriormente veremos los tipo enum
 
@@ -185,6 +191,7 @@ public class Leccion_9_Ejercicio {
 			// es público por tanto acceso universal
 			public static int numReservasHotel() {
 
+				// Gestiona variables de la Class
 				return ReservaHTL.numReservaHtl;
 			}
 
@@ -201,7 +208,7 @@ public class Leccion_9_Ejercicio {
 				this.tipoHab = habitacion; // Tipo de habitación
 
 				// Asignamos número de reserva
-				// llamamos a método estático porque usará variable estática
+				// llamamos a método estático porque usará la variable estática
 				this.numeroReserva = generaNuevoNumeroReserva();
 			}
 
