@@ -52,7 +52,7 @@ public class Leccion_13_ejercicio {
 
 	} // public static void main
 
-} // class Leccion_13_ejercicio
+} // class Leccion_13_ejercicio -> pasar a Leccion_13_bis
 
 // No obstante, necesitamos poder tener una nested Class que no sea static.
 // Imaginar que en nuestra empresa el elemento Pasajero no existe fuera de una Reserva,
@@ -66,8 +66,8 @@ public class Leccion_13_ejercicio {
 
 // Hagamos un ejemplo de todo ello en Leccion_13_bis 
 // Tendremos dos nested Class: 
-// una static nested Class
-// una non-static nested Class o inner Class 
+// - una static nested Class
+// - una non-static nested Class o inner Class 
 // Observación: Así como una static Class no podía tener acceso a ningún elemento 
 // de la outer Class porque no sería capaz de identificar cuál de ellos, la inner Class tiene la restricción
 // de que no puede definir ningún elemento static porque rompería el concepto de static, 
