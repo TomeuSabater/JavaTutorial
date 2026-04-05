@@ -1,4 +1,4 @@
-package leccion_10_Ejercicio_bis;
+package leccion_10_bis;
 
 public class Leccion_10_Ejercicio_bis {
 

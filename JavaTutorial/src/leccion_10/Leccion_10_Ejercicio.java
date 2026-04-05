@@ -1,4 +1,4 @@
-package leccion_10_Ejercicio;
+package leccion_10;
 
 public class Leccion_10_Ejercicio {
 

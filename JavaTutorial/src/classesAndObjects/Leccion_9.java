@@ -2,7 +2,7 @@ package classesAndObjects;
 
 import java.time.LocalDate;
 
-public class Leccion_9_Ejercicio {
+public class Leccion_9 {
 
 	public static void main(String[] args) {
 
@@ -109,7 +109,6 @@ public class Leccion_9_Ejercicio {
 				this.pax[1] = (pasajero2 != null) ? pasajero2.toUpperCase() : pasajero2;
 				this.pax[2] = (pasajero3 != null) ? pasajero3.toUpperCase() : pasajero3;
 				this.pax[3] = (pasajero4 != null) ? pasajero4.toUpperCase() : pasajero4;
-
 			}
 
 			// Calcula Precio Bruto
@@ -284,6 +283,6 @@ public class Leccion_9_Ejercicio {
 
 	} // public static void main
 
-} // Leccion_9_Ejercicio. Pasar a Leccion_10_Ejercicio.java donde está
+} // Leccion_9. Pasar a Leccion_10.java donde está
 	// estructurado en un Package y tenemos las Class ReservaHTL, ReservaVUE,
 	// ReservaTRL y el código del programa principal.
