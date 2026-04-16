@@ -26,6 +26,7 @@ public class Bicycle {
 		this.setEbike(ebike);
 	}
 
+	// Segundo constructyor (sobrecarga) 
 	public Bicycle(String brand, String model) {
 
 		this(brand, model, false);

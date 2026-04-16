@@ -137,28 +137,7 @@ public class Leccion_6 {
 				System.out.println("Área = " + circulito.getArea());
 			} // public void muestraCirculo
 
-		} // class Circulo
-
-		// Definimos una nueva Class cuyo único objetivo será la de ofrecer
-		// utilidades mediante métodos públicos para el manejo del Obj Círculo
-		// Los métodos tendrán como parámetros referencias a Obj Círculo
-		// Circulo 'ci' se pasa por valor, lo que significa que ci es una NUEVA
-		// referencia al mismo Obj Circulo c1
-		// c1 y ci son dos "variables" distintas pero referencian(apuntan) al mismo Obj
-		// Círculo
-
-		class UtilidadesCirculo {
-			// Esta Class nos servirá para agrupar métodos con utilidades para el manejo del
-			// Obj Circulo
-			// No tenemos constructor en UtilidadesCirculo() porque el objetivo es tener los
-			// métodos de la Class, en absoluto instancia esta Class que agrupa métodos
-			// OBSERVACIÓN: Java ya tiene herramientas para conseguir este comportamiento,
-			// las static Class que no hace falta instanciarlas; lo que nos permitiría
-			// invocar sus métodos directamente
-			// (el concepto de static Class se verá posteriormente),
-
-			// Centrémonos ahora en una Class que oferta utilidades (mediante métodos)
-
+					
 			public void desplazaCirculo(int deltaX, int deltaY, Circulo ci) {
 				// Método público que desplaza un deltaX & deltaY la posición del Círculo ci
 
@@ -175,28 +154,30 @@ public class Leccion_6 {
 				// Lo hacemos ahora más Javero o Javaloya (Javaloyero)
 				// ci.setPuntoX(ci.getPuntoX() + deltaX); // Llama a los métodos de Circulo
 				// ci.setPuntoY(ci.getPuntoY() + deltaY); // Llama a los métodos de Circulo
-
 				ci = null; // OMG; Tranquilo, se pasan los parámetros por valor, c1 no es afectado.
 							// Java VM liberará automáticamente los recursos de ci,
 							// hacerlo explícitamente es redundante, no necesario
-			} // Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci,
-				// etc.
-				// "ci" es una ref al Obj no el Obj en sí, "c1" no afectado, y el Obj en sí
-				// tampoco
+			} // Al acabar el método, la JVM liberará recursos locales; deltaX, deltaY, ci,	
+			
+		} // class Circulo
 
-		} // class UtilidadesCirculo
-
+		
 		// Defimimos un círculo
 		Circulo circulo1 = new Circulo(3, 2, 5); // Instanciamos
 		circulo1.muestraCirculo(circulo1); // Lo mostramos
 
 		// Desplazamos el círculo
-		// Inicialmente instanciamos la Class Utils para poder acceder al método
-		UtilidadesCirculo utilidades = new UtilidadesCirculo();
-		// Una vez tenemos el Obj Utils
-		utilidades.desplazaCirculo(+1, -3, circulo1);
+		circulo1.desplazaCirculo(+1, -3, circulo1);
 		circulo1.muestraCirculo(circulo1);
-
+		
+		// Definimos un segundo circulo
+		Circulo circulo2 = new Circulo(4, 3, 2); // Instanciamos
+		circulo2.muestraCirculo(circulo2); // Lo mostramos
+		
+		// Lo movemos y mostramos llamando a métodos del primer circulo
+		circulo1.desplazaCirculo(+1, -3, circulo2); // Llama al método de circulo1
+		circulo1.muestraCirculo(circulo2); // Llama al método de circulo1
+		
 	} // public static void main
 
 } // class Leccion_6

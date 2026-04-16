@@ -283,6 +283,6 @@ public class Leccion_9 {
 
 	} // public static void main
 
-} // Leccion_9. Pasar a Leccion_10.java donde está
+} // Leccion_9.java Pasar a Leccion_10.java donde está
 	// estructurado en un Package y tenemos las Class ReservaHTL, ReservaVUE,
 	// ReservaTRL y el código del programa principal.
