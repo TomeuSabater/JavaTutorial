@@ -175,14 +175,14 @@ public class Leccion_9 {
 
 			// Atributos o variables de instancia del Obj ReservaHTL
 			// cada Obj tendrá un atributo con su valor particular
+			private char tipoHab = '\0'; // Tipo de Habitación: Simple, Doble, Triple
+										// Posteriormente veremos los tipo enum
 			private String direccionHtl;
 			{
 				// Podría ser un bloque de código complejo
 				// Alternativa a inicialización en el constructor para una variable de instancia
-				direccionHtl = "Palma de Mallorca"; // Dirección Postal x defecto
+				this.direccionHtl = "Palma de Mallorca"; // Dirección Postal x defecto
 			}
-			private char tipoHab = '\0'; // Tipo de Habitación: Simple, Doble, Triple
-											// Posteriormente veremos los tipo enum
 
 			// Métodos static que gestionan variables static
 
@@ -208,7 +208,7 @@ public class Leccion_9 {
 
 				// Asignamos número de reserva
 				// llamamos a método estático porque usará la variable estática
-				this.numeroReserva = generaNuevoNumeroReserva();
+				this.numeroReserva = ReservaHTL.generaNuevoNumeroReserva();
 			}
 
 			// Métodos privados
@@ -216,7 +216,7 @@ public class Leccion_9 {
 			// Genera el número de reserva para la reserva de hotel
 			// Es método estático, es común a todos los Obj
 			// Gestiona una variables estática, no usa variables de instancia
-			// Si usara variables de instancia, mejor pasarlas por parámetro
+			// Si usara variables de instancia es mejor pasarlas por parámetro
 			private static String generaNuevoNumeroReserva() {
 
 				// Definimos variables de este método

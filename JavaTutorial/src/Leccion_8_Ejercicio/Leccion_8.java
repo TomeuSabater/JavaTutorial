@@ -1,5 +1,7 @@
 package Leccion_8_Ejercicio;
 
+import java.time.LocalDate;
+
 public class Leccion_8 {
 
 	public static void main(String[] args) {
@@ -46,10 +48,10 @@ public class Leccion_8 {
 			
 			// Variables staticas
 			static final String ELEMENTO = "Booking"; //cte
-			private static int numActualReservas = 0; 
+			private static int numActualReservas = Booking.iniNumActualReservas(); // General a la Class
 			
 			// Variables de instancia 
-			private int numReserva = 0; 
+			private int numReserva = 0; // Particular a cada booking
 			private String nombre; 
 			private int precio = 0; 
 			
@@ -62,6 +64,11 @@ public class Leccion_8 {
 			}
 			
 			// Métodos públicos
+			
+			public int getNumReservaBooking() {
+				return this.numReserva; 
+			}
+			
 			public void showBooking() {
 				System.out.println("Elemento " + Booking.ELEMENTO + " Numero " + Booking.numActualReservas);
 				System.out.println("Nombre " + this.nombre);
@@ -70,17 +77,20 @@ public class Leccion_8 {
 			
 			// Métodos estáticos
 			public static int  getNumActualReserva() {
-				
 				return Booking.numActualReservas; 
 			}
+			
+			private static int iniNumActualReservas() {
+				return(LocalDate.now().getYear()); 
+			}
 		}
+			
 		
-		Booking.getNumActualReserva(); 
+		System.out.println(Booking.getNumActualReserva()); 
 		
 		Booking reserva1 = new Booking("Tomeu Sabater", 1500);
+		reserva1.getNumReservaBooking(); 
 		reserva1.showBooking();
-		
-		
 		
 
 	} // Main 
