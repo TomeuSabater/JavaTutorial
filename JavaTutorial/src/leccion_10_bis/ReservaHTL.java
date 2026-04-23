@@ -53,8 +53,8 @@ public class ReservaHTL extends Reserva {
 	public void muestraReserva() {
 		// Mostrar datos de una Reserva
 
-		super.muestraReserva(); // Llamamos al método de la Super Class
 		System.out.println(ReservaHTL.ELEMENTO);
+		super.muestraReserva(); // Llamamos al método de la Super Class
 		System.out.println("Número de Reserva :" + this.numeroParticularReserva);
 		System.out.println("Dirección : " + this.direccionHtl);
 		System.out.println("Tipo Habitación : " + this.tipoHab);

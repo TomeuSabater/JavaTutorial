@@ -30,11 +30,14 @@ public class EnumExamples {
 			System.out.println("The week ends on " + DayOfWeek.DOMINGO);
 		}
 
-		TypeOfRoom tipoHabitacion = TypeOfRoom.DOBLE_SUPERIOR;
+		TypeOfRoom tipoHabitacion = TypeOfRoom.SIMPLE;
 
 		switch (tipoHabitacion) {
-		case SIMPLE -> System.out.println("Está alojado en una habitación " + TypeOfRoom.SIMPLE);
-		case DOBLE_ESTANDAR, DOBLE_SUPERIOR -> System.out.println("Está alojadon en una habitación " + tipoHabitacion);
+		case SIMPLE -> {
+			System.out.println("Está alojado en una habitación " + TypeOfRoom.SIMPLE);
+			System.out.println("Está alojado en una habitación " + TypeOfRoom.SIMPLE.name());
+		}
+		case DOBLE_ESTANDAR, DOBLE_SUPERIOR -> System.out.println("Está alojadon en una habitación doble " + tipoHabitacion);
 		case TRIPLE -> System.out.println("Está alojado en una habitación doble de tipo" + TypeOfRoom.TRIPLE);
 		default -> System.out.println("Está alojado en una suite de tipo" + tipoHabitacion);
 		}

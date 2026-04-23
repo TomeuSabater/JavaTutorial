@@ -126,7 +126,7 @@ public class Leccion_8 {
 
 		System.out.println("Valor de la 'private static int numTotalBikes' = " + bicicleta1.numTotalBikes); // Awful
 		System.out.println("Valor de la 'private static int numTotalBikes' = " + Bicycle.numTotalBikes); // This is the
-																											// way !!!
+																									// way !!!
 
 		// Hacemos un ejemplo un poco más complejo
 

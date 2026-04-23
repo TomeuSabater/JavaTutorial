@@ -56,8 +56,8 @@ public class Leccion_10_Ejercicio {
 		System.out.println("Reservas de tipo HTL = " + ReservaHTL.numReservasHotel());
 		System.out.println("Reservas de tipo VUE = " + ReservaVUE.numReservasVuelo());
 		System.out.println("Reservas de tipo TRL = " + ReservaTRL.numReservasTraslado());
-		// System.out.println("Reservas de tipo TRL = " + ReservaTRL.numReservaHtl);
-		// System.out.println("Reservas de tipo TRL = " + ReservaTRL.numReservaVue);
+		// System.out.println("Reservas de tipo TRL = " + ReservaHTL.numReservaHtl);
+		// System.out.println("Reservas de tipo TRL = " + ReservaVUE.numReservaVue);
 		// System.out.println("Reservas de tipo TRL = " + ReservaTRL.numReservaTrl);
 
 		//// Hacemos algunas pruebas con la super Class Reserva
