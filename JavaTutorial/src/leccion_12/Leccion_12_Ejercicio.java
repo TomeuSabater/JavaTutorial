@@ -7,7 +7,7 @@ class Leccion_12_Ejercicio {
 		// Introducción_VI a CLASES Y OBJETOS.
 		// Nested Class; Inner Class / Static Nested Class
 
-		// Ejercicio de Clases Anidadas (Nested Class)
+		// Ejercicio de Clases Anidadas (Inner Class / Static Nested Class)
 
 		// Retomamos la Leccion_11 y anidamos La Class LocalizadorReserva dentro de la
 		// Class Reserva

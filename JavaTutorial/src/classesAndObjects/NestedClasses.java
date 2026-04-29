@@ -78,9 +78,13 @@ public class NestedClasses {
 		// No se puede instanciar una Inner Class sin instanciar la contenedora
 		// NestedClasses.InnerClass abc = new NestedClasses.InnerClass(); 
 		
-		// Podemos instanciar una Static Nested Class sin instanciar la contenedora
+		// La gran diferencia entre una 
+		// Inner Class y uns Static Nested Class es que
+		// podemos instanciar una Static Nested Class sin instanciar la Class contenedora
 		NestedClasses.StaticNestedClass abc = new NestedClasses.StaticNestedClass(); 
 		abc.showAccessMembers(); 
+		// NestedClasses.InnerClass abcd = new NestedClasses.InnerClass(); -- No es posible 
+
 
 	} // public static void main
 

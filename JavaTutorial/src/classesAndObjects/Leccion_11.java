@@ -12,10 +12,16 @@ public class Leccion_11 {
 		// Introducción_VI a CLASES Y OBJETOS.
 		// Preparació para Nested Class; Inner Class / Static Nested Class
 
-		// La Class LocalizadorReserva será un "contenedor" de variables y métodos
-		// static esta Class no oferta constructor, no buscamos su instanciación
+		// La Class LocalizadorReserva será un "contenedor" de variables y métodos static 
+		// esta Class no oferta constructor, no buscamos su instanciación
 		// (creación de Obj LocalizadorReserva) su función es la de "agrupar" variables
 		// y métodos static
+		
+		// La Class Pax se encarga de gestionar los pasajeros de una reserva
+		
+		// Como primer paso, definir ambas Class con entidad propia externas
+		// a la Class Reserva, posteriormente las incluiremos 
+		// como Nested Class de la Class Reserva
 				
 		class LocalizadorReserva {
 
@@ -201,24 +207,32 @@ public class Leccion_11 {
 		System.out.println("Número actual de reservas es : " + LocalizadorReserva.muestraNumeroReservas());
 		System.out.println("Localizador actual es : " + LocalizadorReserva.muestraLocalizadorActual());
 
-		// Observamos que la Class LocalizadorReserva solamente es utilizada en la Class
-		// Reserva, y también que podemos invocar al método generaLocalizador()
+		// Observamos que la Class LocalizadorReserva solamente es utilizada en la Class Reserva, 
+		// y también que podemos invocar al método generaLocalizador()
 		// líbremente sin necesidad de crear una nueva reserva.
 		// La Class LocalizadorReserva no tiene sentido sin la Class Reserva
+		
+		// Observar que la Class Pax solamente es utilizada en la Class Reserva
+		// Tampoco tendría sentido fuera de la reserva
 
-		// Lo que proponemos es un Ejercicio en el que se anidará la
-		// Class LocalizadorReserva dentro de la Class Reserva,
+		// Lo que proponemos es un Ejercicio en el que se anidarán la
+		// Class LocalizadorReserva y la Class Pax dentro de la Class Reserva,
 		// uno de los elementos de la Class Reserva, además de sus ctes, atributos,
-		// métodos, etc. será la Class LocalizadorReserva, de esta manera, ocultamos la
-		// Class LocalizadoReserva (y todos sus elementos)
+		// métodos, etc. será la Class LocalizadorReserva, y otro elemento sera la Class Pax
+		// de esta manera, ocultamos estas Class anidadas (y todos sus elementos)
 		// al exterior de la Class Reserva y estructuramos mejor el código.
-		// Por otra parte, será imposible invocar los métodos de la Class
-		// LocalizadorReserva fuera de la Class Reserva, simplemente no serán visibles
-		// No obstante, es posible que necesitemos invocar algunos, como saber el último
-		// número de localizador generado (y será necesario instanciar la reserva) 
+		
+		// Por otra parte, vermos que no nos interesa llamar a métodos de la Class Pax
+		// sin la existencia de la Class Reserva que la contiene. No obstante, sí que nos
+		// puede interesar llamara a métodos de la Class LocalizadorReserva (por ejemplo, 
+		// saber el número de localizador actual) sin quere instanciar la Class Reserva
+		// La diferencia será que:
+		// - la Class Pax será una INNER CLASS
+		// - la Class LocalizadorReserva será un STATIC NESTED CLASS
 
-
+		
 		// Ver la solución en la Leccion_12_Ejercicio
+		// Revisar NestedClasses.java para ejemplo de Inner Class y Static Nested Class
 
 	} // static void main
 
