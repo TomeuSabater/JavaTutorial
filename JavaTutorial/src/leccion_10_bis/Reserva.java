@@ -40,6 +40,7 @@ public class Reserva {
 	
 	//// Begin Nested Class
 	
+	// Inner Class
 	private class Pax {
 		
 		// Ctes (private static) 

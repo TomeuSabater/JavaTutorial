@@ -124,4 +124,4 @@ public class Leccion_10_Ejercicio {
 	// y el Número Total de la Reserva (único para todas las reservas, con
 	// independencia de su tipo)
 
-} // class Leccion_10_Ejercicio. Pasar a Leccion_10_Ejercicio_bis.java
+} // class Leccion_10_Ejercicio. Pasar a Leccion_10_Ejercicio_bis.java donde hay mejora en localizador

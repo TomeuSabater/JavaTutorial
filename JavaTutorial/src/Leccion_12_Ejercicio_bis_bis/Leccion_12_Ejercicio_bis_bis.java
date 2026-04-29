@@ -5,7 +5,10 @@ public class Leccion_12_Ejercicio_bis_bis {
 
 	public static void main(String[] args) {
 
+	// Ejercicio para analizar el comportamiento y diferencia
+	// 	entre una Inner Class y una Static Nested Class
 		
+	
 	System.out.println("Ejercicio para analizar comportamiento de Nested Class: Inner Class & Static Nested Class"); 
 		
 	

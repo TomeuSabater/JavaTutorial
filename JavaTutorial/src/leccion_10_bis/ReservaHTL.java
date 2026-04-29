@@ -34,14 +34,14 @@ public class ReservaHTL extends Reserva {
 			String c4_ap2, String c4_fechaNac, String fInicio, String fFin, String direccion, char tipoHabitacion,
 			int precioNeto) {
 
-		// Llamamos al constructor de la Super Clase
+		// Llamamos al constructor de la Super Class
 		super(p1Passport, p1Nom, p1Ap1, p1Ap2, p1FechaNac, p2Passport, p2Nom, c2_ap1, c2_ap2, c2_fechaNac, c3_passport,
 				p3Nom, c3_ap1, c3_ap2, c3_fechaNac, c4_passport, p4Nom, c4_ap1, c4_ap2, c4_fechaNac, fInicio, fFin,
 				precioNeto);
 
 		// Asignamos valores particulares para ReservaHTL
 		this.direccionHtl = (direccion != null) ? direccion : this.direccionHtl;
-		this.tipoHab = tipoHabitacion;
+		this.tipoHab = tipoHabitacion; // Podría ser un "enum"
 
 		// Construimos el número de la reserva; Concatenación de Strings
 		// Se ha iniciado su confección en la super Class reserva

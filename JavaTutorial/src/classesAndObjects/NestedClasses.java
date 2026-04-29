@@ -19,6 +19,9 @@ public class NestedClasses {
 	private StaticNestedClass objStaticNested; 
 
 	//// Inner Class
+	// Está totalmente ligada a la Class contenedora
+	// Tiene acceso total a los elementos de la Class contenedora
+	// Para crear un Obj debe instanciarse primero la Class contenedora
 	private class InnerClass {
 
 		InnerClass() {
@@ -32,6 +35,11 @@ public class NestedClasses {
 	} // class InnerClass
 
 	//// Static Nested Class
+	// Está "empaquetada" en la contenedora pero no tiene por qué tener una relación directa
+	// No tiene acceso a los elementos de la contenedora (excepto los Static)
+	// Puede crearse un Obj de una Static Nested sin instanciar la contenedora
+	//	Esta última particularidad nos permite usar la una Class contenedora como elemento que 
+	//	empaqueta otras Class para las que no encontramos una ubicación clara como Inner.   
 	private static class StaticNestedClass {
 
 		StaticNestedClass() {
@@ -66,6 +74,13 @@ public class NestedClasses {
 		System.out.println("------------");
 		NestedClasses outerObject = new NestedClasses();
 		outerObject.showNestedClasses();
+		
+		// No se puede instanciar una Inner Class sin instanciar la contenedora
+		// NestedClasses.InnerClass abc = new NestedClasses.InnerClass(); 
+		
+		// Podemos instanciar una Static Nested Class sin instanciar la contenedora
+		NestedClasses.StaticNestedClass abc = new NestedClasses.StaticNestedClass(); 
+		abc.showAccessMembers(); 
 
 	} // public static void main
 

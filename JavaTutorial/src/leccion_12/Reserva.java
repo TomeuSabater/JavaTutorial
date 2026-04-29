@@ -91,7 +91,7 @@ public class Reserva {
 	}
 
 	//// Métodos public y static
-	//// Son necesarios porque el problema está en que necesitarías instancia una
+	//// Son necesarios porque el problema está en que necesitarías instanciar una
 	//// reserva para saber el número de reservas, y necesitamos consultarlo sin
 	//// crear una Reserva
 

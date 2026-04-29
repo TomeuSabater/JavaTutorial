@@ -8,7 +8,7 @@ public class Leccion_10_Ejercicio_bis {
 	// - Se añade Número TOTAL de reservas 
 	// - Sigue existiendo un número parcial de reserva para cada tipo de reserva
 	// - Se añaden bloques de código de inicialización de variables
-	// - Los pax se implementan mediante una Nested Class Pasajero
+	// - Los Pax (pasajeros) se implementan mediante una Nested Class Pasajero
 
 	// Se trata de diseñar una Class Reserva aplicando la mayoría de los conceptos
 	// vistos hasta el momento
@@ -158,3 +158,4 @@ public class Leccion_10_Ejercicio_bis {
 
 } // class Leccion_10_Ejercicio_bis -> Pasar a Leccion_11.java para antesala de
 	// Nested Class; Inner Class / Static Nested Class
+	// Revisar NestedClasses.java -> Ejemplo de Inner y Static Nested

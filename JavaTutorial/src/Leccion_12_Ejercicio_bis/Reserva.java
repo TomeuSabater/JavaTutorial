@@ -3,6 +3,9 @@ package Leccion_12_Ejercicio_bis;
 import java.time.LocalDate;
 
 // Class Reserva contiene dos Nested Class
+//	se hace para comparar las diferencias entre una
+//	Inner Class y una Static Nested Class
+
 // - LocalizadorReservaStatic: Es una Static Nested Class
 // - LocalizadorReservaInner: Es una Inner Class
 
