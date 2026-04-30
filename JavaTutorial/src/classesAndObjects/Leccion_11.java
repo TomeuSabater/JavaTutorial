@@ -36,6 +36,8 @@ public class Leccion_11 {
 
 			// Variables de la Class, variables static
 			
+			static final String ELEMENTO = "LocalizadorReserva"; 
+			
 			private static int numeroReserva; // Número consecutivo de la reserva
 											// necesito este dato para generar los Loc.
 			static {
@@ -43,21 +45,26 @@ public class Leccion_11 {
 				LocalizadorReserva.numeroReserva = 0; // Inicialización
 			}
 			
-			private static String localizador; // Ultimo Localizador generado
-												// necesito este dato para saber qué Loc.
+			private static String lastLocator; // Ultimo Localizador generado
+											// necesitamos este dato para saber
+											// el localizador actual
 			static {
 				// Lo más probable sería su recuperación desde una DDBB
 				// cada vez que se inicia la aplicación (servidor de aplicaciones) 
-				LocalizadorReserva.localizador = null; // Inicialización
+				LocalizadorReserva.lastLocator = null; // Inicialización
 			}
 
+			//// Constructor
+			// No existe, no es necesario
+		
 			//// Métodos de la Class LocalizadorReserva
 
 			// Métodos private
 
-			private static String generaLocalizador() {
+			public static String generaLocalizador() {
 				// Construye un nuevo Localizador
-				// Se debería refinar reseteando valores si es nuevo mes o año
+				// Se debería refinar; reseteando valores si es nuevo mes, año
+				//	si es para HTL, VUE, TRL, etc. 
 
 				LocalDate hoy = LocalDate.now(); // Fecha actual
 				int anyo = hoy.getYear(); // Obtenemos el año
@@ -66,14 +73,14 @@ public class Leccion_11 {
 				String smes = String.valueOf(mes); // Transformamos mes en String
 				String snumeroReserva = String.valueOf(++LocalizadorReserva.numeroReserva); // Número único consecutivo
 
-				LocalizadorReserva.localizador = sanyo + "/" + smes + "/" + snumeroReserva;
-				return LocalizadorReserva.localizador;
+				LocalizadorReserva.lastLocator = sanyo + "/" + smes + "/" + snumeroReserva;
+				return LocalizadorReserva.lastLocator;
 			}
 
 			// Métodos public
 
 			public static int muestraNumeroReservas() {
-				// Muestra el número actual de reservas
+				// Muestra el número actual de la static numeroReserva
 
 				return LocalizadorReserva.numeroReserva;
 			}
@@ -81,7 +88,7 @@ public class Leccion_11 {
 			public static String muestraLocalizadorActual() {
 				// Muestra el localizador actual (último generado)
 
-				return LocalizadorReserva.localizador;
+				return LocalizadorReserva.lastLocator;
 			}
 
 		} // class LocalizadorReserva
@@ -91,7 +98,8 @@ public class Leccion_11 {
 			
 			// Ctes (private static) 
 			private static final String ELEMENTO = "Pasajero"; // Identifica el elemento
-			private static final byte MIN_ADULT_YEARS = 18; // Fija edad mínima para Adultos, podría ser una Cte para cada país
+			private static final byte MIN_ADULT_YEARS = 18; // Fija edad mínima para Adultos, 
+															//podría ser una Cte para cada país
 					
 			//// Atributos o variables de instancia, variables de Obj Pasajero
 
@@ -107,7 +115,8 @@ public class Leccion_11 {
 			
 			//// Constructor único
 
-			public Pax(String passport, String nombre, String apellido1, String apellido2, String fechaNacimiento) {
+			public Pax(String passport, String nombre, String apellido1, String apellido2, 
+					String fechaNacimiento, boolean estitular) {
 
 				this.passport = passport;
 				this.nombre = nombre.toUpperCase();
@@ -122,6 +131,7 @@ public class Leccion_11 {
 
 			public void muestraPax() {
 				// Vuelca los datos del pax
+				
 				System.out.println(Pax.ELEMENTO);
 				System.out.println("Passport cliente :" + this.passport);
 				System.out.println("Cliente adulto :" + this.esAdulto());
@@ -133,10 +143,10 @@ public class Leccion_11 {
 			
 			//// Métodos privados
 
-			// Determina si el Pax es mayor de edad
 			private boolean esAdulto() {
-				// Si el pax es mayor de edad en el momento consulta devuelve 'true'
-				// Si no es mayor de edad en el momento de la consulta devuelve 'false'
+				// Determina si el Pax es mayor de edad
+				// Si el pax es mayor de edad en este momento devuelve 'true'
+				// Si no es mayor de edad en este momento devuelve 'false'
 
 				long anyos = ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now());
 				return (anyos >= Pax.MIN_ADULT_YEARS) ? true : false;
@@ -154,30 +164,36 @@ public class Leccion_11 {
 			// Simula una Reserva (o compra de un objeto/servicio)
 
 			// Ctes
+			private static final String ELEMENTO = "Reserva"; 
 			private static final byte NUM_MAX_PAX = 4; 
 			
 			// Atributos o variables de instancia
 			private String LocataReserva = null; // Localizador de cada reserva
-			private String titular = null; // Titular de la reserva
-			private LocalDate fechaReserva; // Fecha de confirmación de la reserva
-
-			private Pax[] pasajeros = new Pax[Reserva.NUM_MAX_PAX];
+			private LocalDate fechaReserva; // Fecha de creción de la reserva
+			private Pax[] pasajeros = new Pax[Reserva.NUM_MAX_PAX]; // Pasajeros de la reserva
 			
 			// Constructor
-			Reserva(String titular, String fecha) {
-				// El Locata se genera con el método static
-
-				this.LocataReserva = LocalizadorReserva.generaLocalizador(); // Nos proporciona un nuevo Localizador
-				this.titular = titular.toUpperCase();
-				this.fechaReserva = LocalDate.parse(fecha); // Se espera un formato "yyyy-mm-dd"
+			Reserva(String passport, String nombre, String apellido1, String apellido2, 
+					String fechaNacimiento, 	boolean titular) {
+	
+				// El localizador de la reserva se genera con el método static 
+				LocataReserva = LocalizadorReserva.generaLocalizador(); 
+							
+				// Ajustamos fecha de la reserva
+				fechaReserva = LocalDate.now(); // Asignamos momento actual 
+				
+				// Asignamos los Pax (este ejemplo es teórico solo hay uno)
+				pasajeros[0] = new Pax(passport, nombre, apellido1, apellido2, fechaNacimiento, titular); 
 			}
 
 			// Métodos públicos
-			public void muestraReserva() { // Vuelca la reserva
-
+			public void muestraReserva() { 
+				// Vuelca la reserva
+				
+				System.out.println("Elemento : " + Reserva.ELEMENTO); 
 				System.out.println("Localizador : " + this.LocataReserva);
-				System.out.println("Titular : " + this.titular);
 				System.out.println("Fecha Reserva :" + this.fechaReserva);
+				pasajeros[0].muestraPax();
 			}
 
 		} // Class Reserva
@@ -185,7 +201,6 @@ public class Leccion_11 {
 		
 		// Inicialmente, vamos a probar los métodos static 
 		// de la Class LocalizadorReserva
-
 		
 		// Comprobamos datos inicales
 		System.out.println("Número actual de reservas es : " + LocalizadorReserva.muestraNumeroReservas());
@@ -200,9 +215,13 @@ public class Leccion_11 {
 		System.out.println("Localizador actual es : " + LocalizadorReserva.muestraLocalizadorActual());
 
 		// Creamos una reserva
-		Reserva reserva1 = new Reserva("Tomeu Sabater", "2026-04-09");
+		Reserva reserva1 = new Reserva("42.023.096-C", "Tomeu", "Sabater", null, "1966-03-18", true);
 		reserva1.muestraReserva();
-
+		
+		Reserva reserva2 = new Reserva("44.965.695-V", "Pepito", "Pérez", null, "1965-05-27", false);
+		reserva2.muestraReserva();
+		
+	
 		// Comprobamos los valores actuales
 		System.out.println("Número actual de reservas es : " + LocalizadorReserva.muestraNumeroReservas());
 		System.out.println("Localizador actual es : " + LocalizadorReserva.muestraLocalizadorActual());
