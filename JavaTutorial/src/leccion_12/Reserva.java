@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Reserva {
 
 	// Atributos o variables de instancia
-	private String LocataReserva = null; // Localizador de cada reserva
+	private String LocataReserva = null; // Localizador particular de cada reserva
 	private String titular = null; // Titular de la reserva
 	private LocalDate fechaReserva; // Fecha de confirmación de la reserva
 
@@ -14,12 +14,15 @@ public class Reserva {
 	// Class static con métodos y atributos static
 	// Además de ser una Class Nested, es Static (realmente no tendrá constructor,
 	// será como un "contenedor" de métodos)
+	
 	// As a member of the OuterClass, a nested class can be declared private,
 	// public, protected, or package private.
 	// Outer classes can only be declared public or package private.
-	// Se define static porque no la vamos a instancia, y además es una Class con
-	// variables y métodos comunes a cada Reserva, no deseamos tener un Obj para
-	// cada Obj Reserva
+	
+	// Se define static porque no la vamos a instanciar, solo usaremos sus métodos
+	// y además es una Class con variables y métodos comunes a cada Reserva, 
+	// no deseamos genera un Obj LocalizadorReserva para cada Obj Reserva
+	
 	private static class LocalizadorReserva {
 
 		// Localizador de una reserva está compuesto por

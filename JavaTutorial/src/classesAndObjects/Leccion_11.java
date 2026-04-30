@@ -229,7 +229,7 @@ public class Leccion_11 {
 		// Observamos que la Class LocalizadorReserva solamente es utilizada en la Class Reserva, 
 		// y también que podemos invocar al método generaLocalizador()
 		// líbremente sin necesidad de crear una nueva reserva.
-		// La Class LocalizadorReserva no tiene sentido sin la Class Reserva
+		// Pero la Class LocalizadorReserva no tiene sentido sin la Class Reserva
 		
 		// Observar que la Class Pax solamente es utilizada en la Class Reserva
 		// Tampoco tendría sentido fuera de la reserva
@@ -245,11 +245,10 @@ public class Leccion_11 {
 		// sin la existencia de la Class Reserva que la contiene. No obstante, sí que nos
 		// puede interesar llamara a métodos de la Class LocalizadorReserva (por ejemplo, 
 		// saber el número de localizador actual) sin quere instanciar la Class Reserva
-		// La diferencia será que:
-		// - la Class Pax será una INNER CLASS
+		// Para permitir esto último, la diferencia será que:
+		// - la Class Pax será una INNER CLASS 
 		// - la Class LocalizadorReserva será un STATIC NESTED CLASS
 
-		
 		// Ver la solución en la Leccion_12_Ejercicio
 		// Revisar NestedClasses.java para ejemplo de Inner Class y Static Nested Class
 

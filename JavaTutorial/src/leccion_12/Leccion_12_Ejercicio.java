@@ -10,8 +10,8 @@ class Leccion_12_Ejercicio {
 		// Ejercicio de Clases Anidadas (Inner Class / Static Nested Class)
 
 		// Retomamos la Leccion_11 y anidamos La Class LocalizadorReserva dentro de la
-		// Class Reserva
-		// Suponemos que Class LocalizadorReserva solamente se usa en Class Reserva
+		// Class Reserva ya que suponemos que Class LocalizadorReserva 
+		// solamente se usa en Class Reserva
 
 		// Al ser un elemento de una Class, como un atributo o método, podemos acompañar
 		// a la Class de static, private, public, etc.
