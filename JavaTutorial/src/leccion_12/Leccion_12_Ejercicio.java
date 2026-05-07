@@ -119,5 +119,5 @@ class Leccion_12_Ejercicio {
 
 // Siguientes lecciones son variaciones y posibles soluciones utilizando
 // Inner Class, Static Nested Class, métodos y variables static. 
-// Se pueden obviar y saltar directamente a 
+// Se pueden obviar y saltar directamente a leccion_14.java donde veremos las "Local Class"
 
