@@ -11,10 +11,11 @@ public class Leccion_14 {
 	
 	// Local Classes are classes that are defined in a block, 
 	// which is a group of zero or more statements between balanced braces. 
-	// You typically find local classes defined in the body of a method.
+	// You typically find a Local Classe defined in the body of a method.
 	
-	// Local Classes are non-static because they have access to instance members 
-	// of the enclosing block. Consequently, they cannot contain most kinds of static declarations.
+	// Local Classes are non-static because they have access to instance 
+	// members of the enclosing block. 
+	// Consequently, they cannot contain most kinds of static declarations.
 	
 	// Local Classes are similar to Inner Classes because they cannot define or declare any static members.
 	// You cannot declare static initializers or member interfaces in a Local Class. 
@@ -96,5 +97,6 @@ public class Leccion_14 {
 	
 	// El código mostrado aquí no es óptimo ya que es un ejemplo de las posibilidades de una Local Class
 	// Haremos un ejemplo similar pero más sencillo en lección_15_Ejercicio 
+	// Pasar a leccion_14_bis.java para un mejor ejemplo de una Local Class
 
 } // public class Leccion_14
