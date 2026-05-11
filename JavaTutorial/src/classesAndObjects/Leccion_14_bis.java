@@ -1,6 +1,8 @@
 package classesAndObjects;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 
 public class Leccion_14_bis {
 
@@ -19,8 +21,8 @@ public class Leccion_14_bis {
 		// 	- es / no es mayor de edad (según país) 
 		//	- peso (en varias unidades, hay máximo según espctáculo)
 		//	- altura (en varias unidades, hay mínimo según parque)
-		// 	- talla (de ropa, requerido según actividad que proporciona equipamiento)
-		//  - talla (de zapatos, requerido según actividad que proporciona equipamiento) 
+		// 	- talla de ropa (requerido según actividad que proporciona equipamiento)
+		//  - talla de zapatos (requerido según actividad que proporciona equipamiento) 
 		
 		// Con el objetivo de reducir la complejidad y concentrar el código,
 		// consideramos que debería existir un Local Class Persona que gestionará toda la 
@@ -80,11 +82,13 @@ public class Leccion_14_bis {
 											
 					// Constructor de la Local Class
 					public Pax(String nombrePax, String apellido1Pax, String apellido2Pax, 
-								LocalDate fechaNacimiento, float pesoPaxMDC, float alturaPaxMDC,
+								String fechaNacimiento, float pesoPaxMDC, float alturaPaxMDC,
 								String tallaPaxCode, byte numeroPiePax) {
 						
 						this.nombrePax = nombrePax;
 						this.apellido1Pax = apellido1Pax; 
+						this.apellido2Pax = apellido2Pax;
+						this.fechaNacimiento = LocalDate.parse(fechaNacimiento);
 						this.pesoPaxMDC = pesoPaxMDC; 
 						this.alturaPaxMDC = alturaPaxMDC; 
 						this.tallaPaxCode = tallaPaxCode; 
@@ -99,7 +103,7 @@ public class Leccion_14_bis {
 						
 						String NomLimpio; // Variable temporal 
 						
-						NomLimpio = nombrePax.replaceAll("[^a-zA-Z]", "");
+						NomLimpio = this.nombrePax.replaceAll("[^a-zA-Z]", "");
 						if (NomLimpio == "") {
 							return null; 
 						} else {
@@ -112,7 +116,7 @@ public class Leccion_14_bis {
 						
 						String Ap1Limpio; // Variable temporal 
 						
-						Ap1Limpio = apellido1Pax.replaceAll("[^a-zA-Z]", "");
+						Ap1Limpio = this.apellido1Pax.replaceAll("[^a-zA-Z]", "");
 						if (Ap1Limpio == "") {
 							return null; 
 						} else {
@@ -125,13 +129,18 @@ public class Leccion_14_bis {
 						
 						String Ap2Limpio; // Variable temporal 
 						
-						Ap2Limpio = apellido2Pax.replaceAll("[^a-zA-Z]", "");
-						if (Ap2Limpio == "") {
-							return null; 
+						if (this.apellido2Pax != null) {
+							
+							Ap2Limpio = this.apellido2Pax.replaceAll("[^a-zA-Z]", "");
+							if (Ap2Limpio == "") {
+								return null; 
+							} else {
+								return Ap2Limpio.toUpperCase(); 
+							}
 						} else {
-							return Ap2Limpio.toUpperCase(); 
+							return null;
 						}
-					}
+					} // getAp2Pax() 
 					
 					private float getPesoPaxIMP () {
 						// Pasamos del metrico 'kilogramo' al imperial 'libra'
@@ -181,32 +190,45 @@ public class Leccion_14_bis {
 						return (float) ((this.numeroPiePaxEU * 0.75) - 23);					
 					}
 					
+					private boolean esAdulto() {
+						// Determina si el Pax es mayor de edad
+
+						long anyos = ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now());
+						return (anyos >= Pax.ESMAYOR) ? true : false;
+					} // esAdulto()
+					
 					
 				} // Local Class Pax
 				
 				
 				// Instanciación de la Local Class
 				// Usaremos el Obj pasajero para obtener y formatear información del pasajero
-				Pax pasajero = new Pax(nombrePax, apellido1Pax, apellido2Pax, 
-						 fechaNacimiento, pesoPax, alturaPax, tallaPax, numeroPie); 
+				Pax pasajero;
+				pasajero = new Pax(nombrePax, apellido1Pax, apellido2Pax, fechaNacimiento, pesoPax, alturaPax, tallaPax, numeroPie); 
+	
+				// Damos valores a las variables de instancia de la Class Reserva
+				// Se utilizarán métodos de la Local Class Pax
 				
-				// Fechas 
+				// Fechas Reserva
 				this.fechaReserva = LocalDate.now(); 
 				this.fechaEvento = LocalDate.parse(fechaEvento); 
 			
-				
 				// Nombre y Apellidos		
 				this.nombrePax = pasajero.getNomPax(); 
 				this.apellido1Pax = pasajero.getAp1Pax(); 
 				this.apellido2Pax = pasajero.getAp2Pax(); 
 				
+				// Fechas Pasajero
+				this.fechaNacimiento = LocalDate.parse(fechaNacimiento);
+				this.esMayorEdad = pasajero.esAdulto(); 			
+
 				// Pesos 
 				this.pesoPaxMDC = pesoPax;
 				this.pesoPaxIMP = pasajero.getPesoPaxIMP();
 				
 				// Alturas
-				this.alturaPaxIMP = alturaPax;
-				this.alturaPaxMDC = (int) pasajero.getAlturaPaxIMP(); 
+				this.alturaPaxMDC = alturaPax;
+				this.alturaPaxIMP = pasajero.getAlturaPaxIMP(); 
 				
 				// Tallas
 				this.tallaPaxCode = tallaPax; 
@@ -216,37 +238,43 @@ public class Leccion_14_bis {
 				
 			} // Constructor de la Class Entrada
 			
+			
 			public void printVoucher() {
 			// Método que imprimer un Voucher
 			
 				System.out.println("************** VOUCHER **********");
-				
-				
-				
-			} // public void printVoucher
-			
-			
-			
+				System.out.println(Entrada.ELEMENTO);
+				System.out.println("*********************************");
+				if (this.apellido2Pax != null) {
+					System.out.println(this.apellido1Pax + " " + this.apellido2Pax + ","+ this.nombrePax);
+				} else {
+					System.out.println(this.apellido1Pax + ","+ this.nombrePax);
+				}
+				if (this.esMayorEdad) {
+					System.out.println("Pasajero ADULTO (" + this.fechaNacimiento + ")");
+				} else {
+					System.out.println("Pasajero MENOR (" + this.fechaNacimiento + ")");
+				}
+				System.out.println("*********************************");
+				System.out.println("Válida para el día :" + this.fechaEvento);
+				System.out.println("Efectuada el día :" + this.fechaReserva);
+				System.out.println("*******Pesos & Tallas ***********");
+				System.out.println(this.pesoPaxMDC + "Kg " + this.pesoPaxIMP + "Libras");
+				System.out.println(this.alturaPaxMDC + "cm " + this.alturaPaxIMP + "pies"); 
+				System.out.println(this.tallaPaxCode + " " + this.tallaPaxName); 
+				System.out.println(this.numeroPiePaxEU + "/" + this.numeroPiePaxUSA + " talla zapatos"); 
+				System.out.println("*********************************");
+			} // public void printVoucher	
 			
 		} // Class Entrada
 		
-		
 		// Generamos una Entrada
 		Entrada entrada1; 
-		entrada1 = new Entrada("2026-05-25", "Tomeu", "Sabater", "", "1966-03-18", 85.5f, 178, "XL", (byte)45);
+		entrada1 = new Entrada("2026-05-25", "Tomeu", "Sabater", "Bosch", "1966-03-18", 85.5f, 178, "XL", (byte)45);
 			
-		
-		
-		// public Entrada(LocalDate fechaEvento, String nombrePax, String apellido1Pax, String apellido2Pax, 
-			//	 LocalDate fechaNacimiento, float pesoPax, float alturaPax,
-				//  String tallaPax, byte numeroPie)
-		
-		
-		
 		// Imprimimos su Voucher
 		entrada1.printVoucher(); 
 		
-
 	} // public static void main
 
 } // public class Leccion_14_bis 
