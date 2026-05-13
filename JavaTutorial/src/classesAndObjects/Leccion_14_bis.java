@@ -28,6 +28,8 @@ public class Leccion_14_bis {
 		// consideramos que debería existir un Local Class Persona que gestionará toda la 
 		// información de Persona, así como volcar su información en diferentes unidades 
 		
+		// Nota: El código muestra un ejemplo teórico, se podría refactorizar bastante
+		
 		class Entrada { // Es la Class principal que contendrá la Local Class
 			
 			static final String ELEMENTO = "Entrada";
@@ -53,8 +55,7 @@ public class Leccion_14_bis {
 			private byte numeroPiePaxEU; // Ej; 34, 36, 42, 
 			private float numeroPiePaxUSA; // Eje:5.5, 7, 8.5, 10.5
 			
-			//Constructor
-			
+			//Constructor único 
 			public Entrada(String fechaEvento, String nombrePax, String apellido1Pax, String apellido2Pax, 
 						String fechaNacimiento, float pesoPax, int alturaPax, String tallaPax, byte numeroPie) {
 								
@@ -80,7 +81,7 @@ public class Leccion_14_bis {
 					private String tallaPaxCode;  // XS, S, M, L, XL, XXL
 					private byte numeroPiePaxEU; // Ej; 34, 36, 42, 
 											
-					// Constructor de la Local Class
+					// Constructor único de la Local Class
 					public Pax(String nombrePax, String apellido1Pax, String apellido2Pax, 
 								String fechaNacimiento, float pesoPaxMDC, float alturaPaxMDC,
 								String tallaPaxCode, byte numeroPiePax) {
