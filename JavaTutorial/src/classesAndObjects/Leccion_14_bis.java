@@ -11,6 +11,12 @@ public class Leccion_14_bis {
 		// Introducción_VII a CLASES Y OBJETOS. 
 		
 		// Local Class (Caso especial de una Inner Class) 
+		// es una Inner Class que se define dentro de un bloque de código
+		
+		// You can define a Local Class inside any block.
+		// For example, you can define a Local Class in a method body, a for loop, or an if clause, etc. 
+		// Local classes are non-static because they have access to instance members of the enclosing block. 
+		// Consequently, they cannot contain most kinds of static declarations.
 		
 		// Intentamos dar un ejemplo de Local Class:
 		// Tendremos una Class Entrada que simula la entrada a un espectáculo
@@ -29,6 +35,10 @@ public class Leccion_14_bis {
 		// información de Persona, así como volcar su información en diferentes unidades 
 		
 		// Nota: El código muestra un ejemplo teórico, se podría refactorizar bastante
+		// Nota: Es un buen ejemplo para entender el Shadowing , donde repetimos el 
+		// 	nombre de las variables locales en la Nested Class. El "this" nos aporta
+		//	claridad. Para acceder a una variable de la Outer Class se debe
+		//	referenciar mediante "OuterClass.this.variable"
 		
 		class Entrada { // Es la Class principal que contendrá la Local Class
 			
@@ -106,14 +116,17 @@ public class Leccion_14_bis {
 						
 						NomLimpio = this.nombrePax.replaceAll("[^a-zA-Z]", "");
 						if (NomLimpio == "") {
+							// Entrada.this.nombrePax = null; // Posible por Shadowing, pero no elegante
 							return null; 
 						} else {
+							// Entrada.this.nombrePax = NomLimpio; // Posible por Shadowing, pero no elegante
 							return NomLimpio.toUpperCase(); 
 						}
 					}			
 					
 					private String getAp1Pax() {
 						// Limpiamos y formateamos el Apellido1
+						// Refactorizable pasando por parámetro Ap1 o Ap2
 						
 						String Ap1Limpio; // Variable temporal 
 						
@@ -127,6 +140,7 @@ public class Leccion_14_bis {
 					
 					private String getAp2Pax() {
 						// Limpiamos y formateamos el Apellido2
+						// Refactorizable pasando por parámetro Ap1 o Ap2
 						
 						String Ap2Limpio; // Variable temporal 
 						
@@ -146,13 +160,14 @@ public class Leccion_14_bis {
 					private float getPesoPaxIMP () {
 						// Pasamos del metrico 'kilogramo' al imperial 'libra'
 						
-						return (this.pesoPaxMDC * KILOALIBRA); 
+						// Entrada.this.pesoPaxMDC = this.pesoPaxMDC * Pax.KILOALIBRA; // Ej. de Shadowing; No elegante
+						return (this.pesoPaxMDC * Pax.KILOALIBRA); 
 					}
 					
 					private float getAlturaPaxIMP() {
 						// Pasamos del decimal 'cm' a imperial 'pulgada'
 						
-						return (this.alturaPaxMDC * CMAPULGADA); 
+						return (this.alturaPaxMDC * Pax.CMAPULGADA); 
 					}
 					
 					private String getTallaPaxTexto() {
@@ -197,7 +212,6 @@ public class Leccion_14_bis {
 						long anyos = ChronoUnit.YEARS.between(this.fechaNacimiento, LocalDate.now());
 						return (anyos >= Pax.ESMAYOR) ? true : false;
 					} // esAdulto()
-					
 					
 				} // Local Class Pax
 				

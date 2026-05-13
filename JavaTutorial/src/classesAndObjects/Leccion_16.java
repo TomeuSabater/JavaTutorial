@@ -5,8 +5,19 @@ public class Leccion_16 {
 	// Introducción_VIII a CLASES Y OBJETOS. 
 	
 	// Anonymous Classes
-	// They enable you to declare and instantiate a class at the same time.
-	// They are like local classes except that they DO NOT HAVE A NAME.  Use them if you need to use a local class only once.
+	
+	
+	// Anonymous classes enable you to make your code more concise. 
+	// They enable you to declare and instantiate a class at the same time. 
+	// They are like Local Classes except that they DO NOT HAVE a name. 
+	// Use them if you need to use a local class only once.
+	
+	// While Local Classes are class declarations, anonymous classes are expressions, 
+	// which means that you define the class in another expression. 
+	
+	
+	
+	
 	// Anonymous Classe implements and Interface or extends a Class. In the body, method declarations are allowed but statements are not.
 	// It must be part of a statement, This explains why there is a semicolon after the closing brace.
 	// An anonymous class has access to the members of its enclosing class.
