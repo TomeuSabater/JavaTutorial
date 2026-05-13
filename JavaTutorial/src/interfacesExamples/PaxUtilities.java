@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class PaxUtilities implements PaxUtilitiesInterface{
-	
-	
+		
 	static final int ESMAYOR = 18; 	// Mayor de edad en EU
 	static final int USMAYOR = 21;  // Mayor de edad en US
+	static final float KILOALIBRA = 2.2f; // Factor conversión aprox. 
 	
 	// 
 	public String nombrePaxLimpio(String nombreOriginal) {
@@ -44,7 +44,10 @@ public class PaxUtilities implements PaxUtilitiesInterface{
 	// 
 	public float getPesoPaxIMP(float pesoPaxMDC) {
 		
-		return 3.3f; 
+		// Pasamos del metrico 'kilogramo' al imperial 'libra'
+		
+		// Entrada.this.pesoPaxMDC = this.pesoPaxMDC * Pax.KILOALIBRA; // Ej. de Shadowing; No elegante
+		return (pesoPaxMDC * PaxUtilities.KILOALIBRA); 
 	}
 
 }
