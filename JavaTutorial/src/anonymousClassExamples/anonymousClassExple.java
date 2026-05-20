@@ -33,8 +33,8 @@ public class anonymousClassExple {
 			public boolean esAdulto(){ return true;}
 			public void showPersona(){}
 			
-		}; 
-		
+		};  
+			
 		
 	}
 
