@@ -1,27 +1,30 @@
 package anonymousClassExamples;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Persona implements GetPersonDetails {
 	
-	// Variables static
+	//// Variables static
 	static final int MIN_ADULT_YEARS  = 18; 
 	static final String ELEMENTO = "Persona";
 	
-	// Variables de instancia
+	//// Variables de instancia
 	private String nombre; 
 	private String apellido; 
-	private String fechaNacimiento; // 
-		
-	// Constructor
-	public Persona(String nombre, String apellido, String fechaNacimiento) {
+	private String fechaNacimiento; // Se espera formato yyy-mm-dd
 	
+	
+	//// Constructor
+	public Persona(String nombre, String apellido, String fechaNacimiento) {
+		
 		this.nombre = nombre; 
 		this.apellido = apellido; 
 		this.fechaNacimiento = fechaNacimiento; 
 	} // Constructor 
+	
+	
+	//// Métodos públicos
 	
 	public int getEdad()  {
 		// Devuelve la edad en años 
